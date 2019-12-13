@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+ 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[spanish]{babel}
+\decimalpoint
+\usepackage[utf8]{inputenc}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{bbold}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+ 
+\newenvironment{problem}[2][Problema]{\hrule \begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist} \hrule }
+\newenvironment{solution}[2][\indent Solución:]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{\huge{\textbf{Estudio de canales cuánticos de muchos qubits con correlaciones restringidas}}  \\
+\textbf{\normalsize{\\ Práctica final \\ José Alfredo de León}}}
+\author{\normalsize{Asesor: Dr. Carlos Pineda}}
+\date{\footnotesize{13 de diciembre de 2019}}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\maketitle
+
+\begin{abstract}
+	Comenzamos a estudiar los canales cuánticos de 1 y 2 qubits que borran correlaciones. Se reprodujeron los resultados ya conocidos para 1 qubit y así entender el procedimiento para construir los mapeos de sistemas de más qubits. 
+\end{abstract}
+
+\section*{Marco teórico}
+Sea $\rho$ $\in$ $\mathcal{M}^{(N)}$ una matriz de densidad que actúa sobre un espacio de Hilbert de dimensión $N$. Sea el mapeo $\Phi$ : $\mathcal{M}^{(N)}$ $\to$ $\mathcal{M}^{(N)}$ un operador que representa a un canal cuántico. Por tanto, se postula la existencia de un superoperador lineal $\Phi$ tal que
+\begin{align}
+	\Phi \rho = \rho '
+\end{align}
+Se requiere que $\rho$ y $\rho '$ compartan las siguientes propiedades: (i) Hermiticidad, (ii) traza unitaria y (iii) positividad. De esta manera se asegura que $\Phi$ es un mapeo afín de matrices de densidad. Estas condiciones imponen las siguientes restricciones sobre la matriz $\Phi$\footnote{Se usa convención de suma de Einstein sobre índices repetidos.}:
+\begin{description}
+\centering
+	\item[(i)] $\rho ' = (\rho ')^{\dagger} \qquad \Leftrightarrow \qquad \Phi _{\stackrel{m \mu}{n \nu}} = \Phi ^{*}_{\stackrel{\mu m}{\nu n}}$
+	\item[(ii)] $Tr \rho ' = 1 \qquad \Leftrightarrow \qquad \Phi _{\stackrel{m m}{n \nu}} = \delta _{n\nu}$
+	\item[(iii)] $\rho ' \geq 0 \hspace{0.35cm} \qquad \Leftrightarrow \qquad \Phi _{\stackrel{m \mu}{n \nu}}\rho _{n\nu} \geq 0$.
+\end{description}
+Estas tres restricciones se vuelven más claras si se realiza un \textit{reshuffle} de la matriz $\Phi$ y se define la matriz dinámica $D_{\Phi}$ 
+\begin{align}
+	D_{\Phi} \equiv \Phi ^R		\hspace{0.3cm} \rightarrow \hspace{0.3cm} 	D_{\stackrel{m n}{\mu \nu}} = \Phi _{\stackrel{m \mu}{n \nu}}. 
+\end{align} Así, en términos de la matriz dinámica, se requiere que
+\begin{align}
+	\text{(i)}	& \quad	\rho ' = (\rho ')^{\dagger} \qquad	\Leftrightarrow	\quad \quad	D_{\stackrel{m n}{\mu \nu}} = D ^{\dagger}_{\stackrel{m n}{\mu \nu}} \\
+	\text{(ii)}	& \quad	\text{Tr} \rho ' = 1 \hspace{1.7mm} \qquad	\Leftrightarrow	\quad \quad	D_{\stackrel{m n}{m \nu}} = \delta _{n \nu} \\
+	\text{(iii)}	& \quad	\rho ' \geq 0 \hspace{5.5mm} \qquad	\Leftrightarrow	\quad \quad	D_{\stackrel{m n}{\mu \nu}} \rho _{n \nu} \geq 0 . 
+\end{align}
+
+Cualquer estado cuántico $\rho$ puede extenderse por medio de una \textit{ancilla} a un estado $\rho \otimes \sigma$ de un sistema compuesto más grande. Por ello, se exige que $\Phi$ sea \textit{completamente positivo}. Es decir, que el mapeo $\Phi \otimes \mathbb{1}_K$, que actúa sobre un espacio que ha sido extendido por otro espacio de Hilbert de dimensión $K$ arbitrario, sea también positivo. El teorema de Choi establece que un mapeo lineal $\Phi$ es completamente positivo si y sólo si la matriz dinámica correspondiente $D_{\Phi}$ es positiva \cite{bengtsson2017geometry}. 
+
+\section*{Resultados}
+Las representación matricial de los mapeos fueron escritas en la base computacional. El procedimiento a seguir fue el que se describe a continuación. Se vectorizó a los estados $\rho$ y $\rho '$ \cite{gilchrist2009vectorization},  tomando a $\rho$ como el estado más general del sistema y $\rho '$ el estado con las correlaciones deseadas borradas. Para calcular los coeficientes de los vectores $\vec{\rho}$ y $\vec{\rho '}$ se utilizó producto interno en el espacio de Hilbert-Schmidt, que se define como 
+	\begin{align}
+		\ip{A}{B} = \text{Tr} A^{\dagger}B.
+	\end{align}
+	
+\noindent Denotemos a $\Phi _{ijk}$ como el mapeo que borra las correlaciones en $i,j$ y $k$, con $i,j,k=x,y,z$.
+\subsection*{1 qubit:}
+Se encontró que los mapeos que borran una correlación de cualquiera de los 3 ejes coordenados de un 1 qubit, mapeos de la forma $\Phi _i$, no son canales físicos por no ser completamente positivos. Por otro lado, los mapeos que borran dos o tres correlaciones de cualesquiera 2 o todos los ejes coordenados de 1 qubit, de la forma $\Phi _{ij}$ o $\Phi _{xyz}$, sí son canales cuánticos válidos.
+
+Los resultados de los mapeos $\Phi _{i}$ y $\Phi _{ij}$ están de acuerdo con la incompatibilidad de los operadores de espín. Supongamos un estado cuántico arbitrario de una partícula de espín 1/2, luego de medir cualquiera de las tres coordenadas de espín el estado ha colapsado y se ha perdido por completo la información de las otras dos componentes de espín del estado inicial. De ninguna forma es posible medir dos componentes de espín simultáneamente, por lo que es imposible conservar la información de dos componentes de espín del estado inicial luego de realizar una medición.
+
+Dicho sea de paso, el canal $\Phi_{xyz}$ puede construirse como la composición del mapeo que borra cualesquiera dos correlaciones de dos ejes con el mapeo que borra la correlación del eje restante del qubit, o al revés. Es decir, 
+\begin{align}
+	\Phi _{xyz} = \Phi _{ij}\Phi _{k} = \Phi _{k}\Phi _{ij}, \qquad \qquad i \neq j \neq k .
+\end{align} De la misma manera, para los mapeos $\Phi _{ij}$ se tiene que
+\begin{align}
+	\Phi _{ij} = \Phi _i \Phi _j = \Phi _j \Phi _i. 
+\end{align} Esto es evidencia de que la composición de mapeos no físicos con mapeos que sí lo son pueden resultar en canales válidos. 
+
+\section*{2 qubits}
+Los mapeos de 2 qubits se construyeron de la siguiente manera
+\begin{align}
+	\Phi _{i_1j_1k_1i_2j_2k_2} = R \qty( \Phi _{i_1j_1k_1}\otimes \Phi _{i_2j_2k_2} ) R, 
+\end{align} donde $R = \mathbb{1}_2 \otimes S \otimes \mathbb{1}_2$, y a su vez
+\begin{align}
+	S &= \mqty(1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1).
+\end{align}
+
+Se encontró que los mapeos que actúan sobre nada más uno de los dos qubits y que son de la forma $\Phi _i \otimes \mathbb{1}$ o $\mathbb{1} \otimes \Phi _i$ no son canales físicos. Sin embargo, los mapeos de la forma $\Phi _{ij}\otimes \mathbb{1}$, $\mathbb{1} \otimes \Phi _{ij}$, $\Phi _{ijk}\otimes \mathbb{1}$ o $\mathbb{1} \otimes \Phi _{ijk}$ son canales cuánticos válidos. Estos canales que dejan invariante a uno de los qubits respetan los resultados que se encontraron para los canales cuánticos de 1 qubit.
+
+También se encontró que los mapeos que borran una correlación del mismo eje coordenado en ambos qubits no son canales válidos, pues no son completamente positivos. No obstante, los mapeos que borran dos correlaciones de los mismos ejes coordenados en ambos qubits sí son canales físicos.
+
+
+\bibliographystyle{abbrv}
+\bibliography{referencias}
+	
+
+	
+
+	
+	
+	
+	
+
+\end{document}
