@@ -16,9 +16,10 @@
 \usepackage{physics}
 \usepackage{wrapfig}% para colocar figuras en diferentes posiciones
 \usepackage{bbold}
-%-----estiliza cajas
+
 \usepackage{fancybox}
-%-----------------
+\usepackage{colortbl}
+
 
 \usepackage{lipsum}
 \usepackage{babel}
@@ -30,12 +31,13 @@
 \spanishdecimal{.}
 \usepackage{multicol}%para escribir en muchas columnas
 %para que no corte palabras
-    \usepackage[none]{hyphenat}
+\usepackage[none]{hyphenat}
 \usepackage{times}
 %\onehalfspacing
 
 \usepackage{hyperref}
 \usepackage{apacite}%bibliografia y citas en formato apa
+%\usepackage{biblatex}
 
 %---ejercicios, problemas -teoremas
 %---Problemas encerrados-Bonitos
@@ -187,17 +189,17 @@ Las líneas de investigación en las que trabaja el grupo son:
 \pagebreak
 \section{Descripción General del Proyecto}
 %\subsection{Qubits}
-Un bit cuántico, o \textit{qubit}, es la unidad fundamental de información de la computación e información cuántica, de igual manera que el bit lo es para la computación e información clásica. Un \textit{qubit}, o bien, un sistema de \textit{qubits}, está completamente descrito por su operador de densidad $\rho \in \mathcal{M}^{(n)}$; el cuál es un operador positivo, Hermítico y con traza unitaria que actúa sobre un espacio de Hilbert de $n$ dimensiones. 
+Un bit cuántico, o \textit{qubit}, es la unidad fundamental de información de la computación e información cuántica, de igual manera que el bit lo es para la computación e información clásica. Un sistema de \textit{qubits} es un sistema cuántico de dos niveles que está completamente descrito por su operador de densidad $\rho \in \mathcal{M}^{(n)}$; el cual es un operador Hermítico, positivo y con traza unitaria que actúa sobre un espacio de Hilbert de $n$ dimensiones \cite{nielsen_chuang_2011}. 
 
 % Para describrir al estado de un sistema de qubits se utiliza el formalismo de la matriz de densidad $\rho$; formulación alternativa que es equivalente a la de vector de estado, pues los postulados de la mecánica cuántica pueden ser reescritos en el lenguaje de la matriz de densidad. 
 
 %\subsection{Canales cuánticos}
 Para describir la evolución de sistemas cuánticos abiertos una de las herramientas más convenientes a utilizar es el formalismo matemático de los canales cuánticos. Este formalismo tiene la ventaja de describir adecuadamente cambios de estado discretos, es decir, transformaciones entre un estado inicial $\rho$ y un estado final $\rho '$ sin referencia explícita al paso del tiempo. 
 
-Un canal cuántico es una transformación lineal $\Phi : \mathcal{M}^{(n)} \to \mathcal{M}^{(n)}$ que debe cumplir con algunas condiciones específicas para que $\Phi$ represente una operación física. La transformación $\Phi$ debe de ser un mapeo afín. De esa manera, la matriz $\Phi$ debe de ser tal que $\rho$, y su imagen $\rho '$, compartan las tres propiedades que deben satisfacer para representar a un sistema físico. Adicionalmente, puesto que $\rho$ puede ser extendido por una \textit{ancilla} $\sigma$ a un estado de un sistema compuesto de mayor dimensión, los canales cuánticos deben cumplir con la condición de completa positividad. 
+Un canal cuántico es una transformación lineal $\Phi : \mathcal{M}^{(n)} \to \mathcal{M}^{(n)}$ que debe cumplir con algunas condiciones específicas para que $\Phi$ represente una operación física. La transformación $\Phi$ debe de ser un mapeo afín. De esa manera, la matriz $\Phi$ debe de ser tal que $\rho$, y su imagen $\rho '$, compartan las tres propiedades que deben satisfacer para representar a un sistema físico. Adicionalmente, puesto que $\rho$ puede ser extendido por una \textit{ancilla} $\sigma$ a un estado de un sistema compuesto de mayor dimensión, los canales cuánticos deben cumplir con la condición de completa positividad \cite{bengtsson_zyczkowski_2017}. 
 
 %\subsection{Matriz de Choi}
-En la práctica, evaluar las condiciones que la matriz $\Phi$ debe satisfacer resulta ser computacionalmente complicado. Por ello, es conveniente definir a la matriz de Choi $D_{\Phi}$, relacionada a su respectiva matriz $\Phi$ mediante un procedimiento de \textit{reshuffle}. Además, el teorema de Choi establece la condición que $D_{\Phi}$ debe cumplir para que $\Phi$ sea una transformación completamente positiva. 
+%En la práctica, evaluar las condiciones que la matriz $\Phi$ debe satisfacer resulta ser computacionalmente complicado. Por ello, es conveniente definir a la matriz de Choi $D_{\Phi}$, relacionada a su respectiva matriz $\Phi$ mediante un procedimiento de \textit{reshuffle}. Además, el teorema de Choi establece la condición que $D_{\Phi}$ debe cumplir para que $\Phi$ sea una transformación completamente positiva. 
 
 El proyecto consiste en estudiar canales cuánticos de muchos qubits con correlaciones restringidas. Se pretende explorar la construcción de las matrices que representan a aquellos canales cuánticos que 'borran' correlaciones de un sistema de $n$ qubits. Estas matrices son de tamaño $4^n$. Por esa razón, se utilizarán primero herramientas computacionales para construir y organizar los canales, según el número de qubits y correlaciones borradas del sistema. Con esto, se quiere intentar elucidar una expresión anlítica que generalice la forma de estos canales cuánticos.  
 
@@ -205,23 +207,50 @@ El proyecto consiste en estudiar canales cuánticos de muchos qubits con correla
 \section{Objetivos}
 \subsection{Objetivo principal}
 \begin{itemize}
-	\item Entender los canales cuánticos que borran correlaciones arbitrarias de un sistema de $n$ qubits. 	
+	\item Entender y catalogar (?) a los canales cuánticos que borran correlaciones arbitrarias de un sistema de $n$ qubits. 	
 \end{itemize}
 
 \subsection{Objetivos específicos}
 \begin{itemize}
-	\item Entender las transformaciones completamente positivas que preservan la traza. 
+	\item Entender las transformaciones completamente positivas. 
 	\item Construir, por medio de herramientas computacionales, la representación matricial de canales cuánticos que borran correlaciones arbitrarias de un sistema de $n$ qubits. 
 	\item Explorar una manera analítica de construir la representación matricial estos canales.
 \end{itemize}
 
 \section{Justificación del Proyecto}
+La investigación en información cuántica se ha desarrollado desde los años 50's, sin embargo ha adquirido importante relevancia en los últimos 25-30 años. La investigación en esta área promete una revolución en la tecnología y la comunicación en el futuro a mediano plazo.  
 
+\textit{Posible último párrafo:} Este proyecto me permitirá sumergirme por primera vez en la investigación científica en un área que, según investigadores expertos, promete mucho trabajo para los próximos años. De la misma manera, este proyecto me abre la oportunidad a continuar el trabajo de investigación en Información cuántica con mi tesis de licenciatura. Dicho sea de paso, esta propuesta de práctica final es una excelente manera de precisar mis intereses de investigación de cara al posgrado. 
 
 \section{Metodología}
 
 
 \section{Cronograma}
 
+\textbf{**Este no es mi cronograma}
+
+\begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                \hline
+                \textbf{Tareas} & \textbf{Enero} & \textbf{Febrero} & \textbf{Marzo} & \textbf{Abril} & \textbf{Mayo} & \textbf{Junio} \\ \hline
+                Tarea 1 & \cellcolor[gray]{0.5} &  &  &  &  &	\\ \hline
+                Tarea 2 &  & \cellcolor[gray]{0.5} & & & &	\\ \hline
+                Sub-tarea 2.1 & & \cellcolor[gray]{0.5} & & & &	\\ \hline
+                Sub-tarea 2.2 & & \cellcolor[gray]{0.5} & & & &	\\ \hline
+                Tarea 3 & & & \cellcolor[gray]{0.5} & & &	\\ \hline
+                Tarea 4 & & & & \cellcolor[gray]{0.5} & \cellcolor[gray]{0.5} &	\\ \hline
+                Sub-tarea 4.1 & & & & \cellcolor[gray]{0.5} & \cellcolor[gray]{0.5} &	\\ \hline
+                Sub-tarea 4.2 & & & & \cellcolor[gray]{0.5} & \cellcolor[gray]{0.5} &	\\ \hline
+                Tarea 5 & & & & & \cellcolor[gray]{0.5} & \cellcolor[gray]{0.5}	\\ \hline
+                Tarea 6 & & & & & & \cellcolor[gray]{0.5}	\\ \hline
+                Sub-tarea 6.1 & & & & & & \cellcolor[gray]{0.5}	\\ \hline
+                Sub-tarea 6.2 & & & & & & \cellcolor[gray]{0.5}	\\ \hline
+                Tarea 7 & & & & & &	\\ \hline
+
+        \end{tabular}
+\end{center}
+
+\bibliographystyle{apacite}
+\bibliography{references}
 
 \end{document}
