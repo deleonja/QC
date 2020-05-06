@@ -14,10 +14,6 @@ def combinations_of_correlations(n, num_of_corr):
 		for j in positions[i]:
 			r[i][j+1] = 1
 	return r
-	
-#r = R(3,3)
-
-print(r[10])
 
 '''	
 r = R(3, 3)
@@ -56,7 +52,7 @@ def maps_in_Pauli_basis(n, param, num_of_corr):
 	- param: number of maps to consider (usually depends on the number of correlations to leave invariant)
 	- num_of_corr: number of correlations to leave invariant
 
-	Returns an array with param number of  possible maps that leave invariant the num_of_corr n-qbit-system's number of correlations.
+	Returns an array with param number of all possible maps that leave invariant the num_of_corr n-qbit-system's number of correlations.
 	'''
 
 	# Storage all possible combinations of arrays of size 4**n with num_of_corr ones and the rest zeroes
@@ -68,7 +64,7 @@ def maps_in_Pauli_basis(n, param, num_of_corr):
 	# Assign to every diagonal element of every map its correspondent element in each array of posible combinations of 1's and 0's
 	for i in range(param): 
 		for j in range(4**n):
-			map_P[i][j][j] = r[i][j] 
+			maps_P[i][j][j] = r[i][j] 
 
 	# Return all possible maps in the Pauli basis
 	return maps_P
@@ -107,7 +103,7 @@ def S(N,alpha,n):
 		Sn = np.identity(2**N)
 	return Sn
 
-def change_of_basis_matrix(n, param, map_P):
+def change_of_basis_matrix_P_to_C(n):
 	alpha = [0,1,2,3]
 	R = np.array(list(product(alpha, repeat=(n))))
 	
@@ -127,16 +123,6 @@ def change_of_basis_matrix(n, param, map_P):
 	change_of_basis_M = change_of_basis_M.T
 
 	return change_of_basis_M
-
-	
-# matriz inversa de M_cb_PaC
-M_cb_PaC_inv = np.linalg.inv(M_cb_PaC)
-
-# en map_C se almacenarán los mapeos en la b. computacional:
-map_C = np.zeros((param, 4**n, 4**n)) 
-
-for i in range(param):
-	map_C[i] = np.dot(M_cb_PaC, np.dot(map_P[i], M_cb_PaC_inv))
 	
 def change_of_basis(A, change_of_basis_M):
 	'''
@@ -185,3 +171,22 @@ def reshuffle(A, n):
 		p = p + 1
 
 	return dynamical_Matrix
+
+def chop(expr, *, max=1e-10):
+	return [i if abs(i) > max else 0 for i in expr]
+
+def positivity_test(A):
+    '''
+    Checks the positivity of a matrix. 
+
+    Input: 
+    - A: matrix 
+
+    Returns a boolean value. True if A is indeed positive and false if it's not. 
+    '''
+    # Calculate the smallest eigenvalue of A 
+    smallest_eig = chop(np.linalg.eigh(A)[0])[0]
+
+    # Compute the logical value of the positivity
+    positivity = smallest_eig >= 0
+    return positivity

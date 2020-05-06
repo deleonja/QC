@@ -333,3 +333,6 @@ data/partition_4_12_01.dat
 data/partition_4_12_01.mat
 data/partition_4_12_05.dat
 #draft/images/partitions1.png
+
+# librerias
+.vscode
