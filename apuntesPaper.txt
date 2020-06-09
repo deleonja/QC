@@ -6,10 +6,8 @@
 \usepackage{graphicx}
 \usepackage{bbold}
 \usepackage{physics}
-\usepackage[]{lineno}
-\setlength\linenumbersep{3pt}
 \author{\textbf{J.A. de León}}
-\title{\Large Apuntes sobre el artículo \\ \emph{"Geometry of generalized Pauli channels" \cite{siudzinska2020geometry}}}
+\title{\Large Apuntes sobre \emph{Geometry of generalized Pauli channels}}
 \date{}
 \begin{document}
 	\maketitle
@@ -30,7 +28,7 @@
 	por consiguiente,
 	\begin{align*}
 	\Lambda = p_4\mathbb{1}	 + p_0\qty( \frac{1}{d} \mathbb{1} \Tr (\rho) ) & + p_1 \qty( \dyad{+_x}{+_x} \rho \dyad{+_x}{+_x} + \dyad{-_x}{-_x} \rho \dyad{-_x}{-_x} ) \\
-	& + p_2 \qty( \dyad{+_y}{+_y}\textsl{} \rho \dyad{+_y}{+_y} + \dyad{-_y}{-_y} \rho \dyad{-_y}{-_y} ) \\
+	& + p_2 \qty( \dyad{+_y}{+_y} \rho \dyad{+_y}{+_y} + \dyad{-_y}{-_y} \rho \dyad{-_y}{-_y} ) \\
 	& + p_3 \qty( \dyad{+_z}{+_z} \rho \dyad{+_z}{+_z} + \dyad{-_z}{-_z} \rho \dyad{-_z}{-_z} ).
 	\end{align*}
 	
@@ -58,18 +56,7 @@
 		\end{align*}
 	\end{enumerate}
 	
-	Los mapeos generalizados de Pauli deberían cumplir con las siguientes condiciones para ser canales cuánticos:
-	\begin{align*}
-		& p_{N+1} + \sum _{\alpha=1}^{N}p_{\alpha} + p_0 = 1,\\
-		& d^2p_{N+1} + d\sum _{\alpha=1}^{N}p_{\alpha} + p_0 \geq 0,\\
-		& dp_{\alpha} + p_0 \geq 0,\\
-		& p_0 \geq 0.
-	\end{align*}
 	
-	Y se puede ver fácilmente que los valores de $p$ arriba enunciados satisfacen estas cuatro condiciones. 
-	
-	\bibliographystyle{unsrt}
-	\bibliography{references}
 	
 	
 \end{document}
