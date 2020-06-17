@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%% Don't change anything in here. This space is called the preamble, it is where you tell the computer to load the proper LaTeX packages to perform the math and formatting desired. 
+
+\usepackage{physics} 
+\usepackage{siunitx} 
+\usepackage{enumerate} 
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{pgfplotstable}
+\usepackage{tikz,pgfplots}
+\usepackage{amsmath}  %I added this so that you can use the align tool for equations!
+	%wasysym: \smiley{} \frownie{} see http://milde.users.sourceforge.net/LUCR/Math/mathpackages/wasysym-symbols.pdf for list of most symbols available in this package
+	
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\pgfplotsset{compat=1.14}
+%%%%%%%%%%%%%%%%%%%%%%%%% Again, Don't change anything Above %%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Maps that erase arbitrary components of the density matrix of a $n$-qubits system} %Title should be concise and to the point  
+\author{J. A. de Le\'on} %Your name first
+
+
+\date{\today}  % This will automatically put today's date in the report
+
+\maketitle  %this command makes the title
+
+
+According to \cite{nielsen_chuang_2011}, an arbitrary density matrix on $n$ qubits can be expanded as
+\begin{align}
+	\rho = \frac{1}{2^n}\sum _{\vec{v}} \Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )\  \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n},
+	\label{rho}
+\end{align}
+where the sum is over vectors $\vec{v}=\qty(v_1,\ldots, v_n)$ with entries $v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )$ as $r_{i_1, i_2\ldots, i_n}$ to make easier the notation. \\
+
+The kind of maps that act on density matrices of the form \eqref{rho} that we're interested in are those which leave invariant or `erase' the coefficients in $\rho$ (i.e. $r'_{i_1, i_2\ldots, i_n}=r_{i_1, i_2\ldots, i_n}$ or $r'_{i_1, i_2\ldots, i_n}=0$). So far, with a numerical method we've found results for 3-qubits system maps that leave invariant 1, 2, 3 and 4 coefficients of $\rho$. Our results exhibit the following features:
+\begin{itemize}
+	\item Valid quantum channels are found for maps that leave invariant a power-of-2 number of coefficients.
+	\item There's not a relation 1-on-1 of all possible maps that leave invariant a certain number of coefficients with the valid quantum channels. It seems that not only the number of coefficients to leave invariant is taken into account but actually which coefficients will be left invariant too.
+	\item The results are recursive by increasing the number of qubits in the system, i.e. the valid quantum channels for 2 qubits have to obey the valid quantum channels for 1 qubit. In more detail, the 2-qubits quantum-channels that leave invariant any of the coefficients of the form $r_{i0}$ or $r_{0i}$ have to obey the valid quantum channels found for 1 qubit.
+\end{itemize}
+
+We're currently exploring equivalence relationships to reduce the ridiculous number of possible maps in order to achieve a decent computing time for the numerical method (this number increases as $2^{n^2-1}$). \\ 
+
+We tried to understand if the kind of maps of our interest are a particular family of the `maps constant on axes' defined by M. Nathanson and M.B. Ruskai in Equation (3) of \cite{nathanson2007pauli}. Though, not great success we've accomplished so far. For 1 qubit, we showed that the classical-quantum channels $\Psi ^{\text{QC}}$, together with the unit element, form the set of valid quantum channels of our results. Nevertheless, for 2 qubits the $\Phi ^{\text{QC}}$'s are only a subset of our results, and we still can't prove or disprove that the remaining quantum channels of our results can be constructed as convex combination of the $\Psi ^{\text{QC}}$'s.\\
+
+The analysis I made goes as follows. Considering de case of 2 qubits: Equation (8) of \cite{nathanson2007pauli} is an equivalent form of \eqref{rho} with operators $W$ as the tensor products of the Pauli matrices, therefore the coefficients $v_{Jj}$ are our $r_{i_1i_2}$, excluding $r_{00}$. As the authors state, the action of the channels they describe in Equation (2) is to take $v_{Jj}\to \qty(s+t_J)v_{Jj}$. Every $v_{Jj}$ corresponds to one of the fifteen coefficients that may be left invariant. For every $J$, there are three $v_{Jj}$, varying $j$. Thus, each $\Psi ^{\text{QC}}_J$ leaves invariant three different coefficients and $r_{00}$. So it seems to me that one can only leave invariant 1, 4, 7, 10, 13 or 16 coefficients with a convex combination of the classical-quantum channels $\Psi ^{\text{QC}}_J$.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+
+\end{document}
