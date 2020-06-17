@@ -1,5 +1,4 @@
 \documentclass[11pt]{article}
-
 \usepackage{physics} 
 \usepackage{siunitx} 
 \usepackage{enumerate} 
@@ -13,12 +12,7 @@
 \setlength\linenumbersep{3pt}
 	
 \usepackage{geometry}
- \geometry{
- a4paper,
- total={170mm,257mm},
- left=20mm,
- top=20mm,
- }
+\geometry{total={170mm,240mm}, left=20mm, top=20mm}
 
 \begin{document}
 
@@ -31,38 +25,63 @@
 \maketitle
 
 
-According to \cite{nielsen_chuang_2011}, an arbitrary density matrix on $n$ qubits can be expanded as
+According to \cite{nielsen_chuang_2011}, an arbitrary density matrix on $n$
+qubits can be expanded as
 \begin{align}
-	\rho = \frac{1}{2^n}\sum _{\vec{v}} \Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )\  \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n},
+	\rho = \frac{1}{2^n}\sum _{\vec{v}} \Tr 
+                  \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes 
+               \cdots \otimes \sigma_{v_n} \otimes \rho) \sigma _{v_1} \otimes 
+             \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n},
 	\label{rho}
 \end{align}
-where the sum is over vectors $\vec{v}=\qty(v_1,\ldots, v_n)$ with entries $v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )$ as $r_{v_1, v_2,\ldots, v_n}$ to make easier the notation. \\
+where the sum is over vectors $\vec{v}=\qty(v_1,\cdots, v_n)$ with entries
+$v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
+\sigma _{v_1} \otimes \sigma_{v_2} \otimes \cdots \otimes \sigma_{v_n} \otimes
+\rho )$ as $r_{v_1, v_2,\ldots, v_n}$ to make easier the notation. 
 
-The kind of maps that act on density matrices of the form \eqref{rho} that we're interested in are those which leave invariant or
-`erase' the coefficients in $\rho$ (i.e. $r'_{v_1, v_2,\ldots, v_n}=r_{v_1, v_2,\ldots, v_n}$ or $r'_{v_1, v_2,\ldots, v_n}=0$, where
-the primed $r$'s refer to the coefficients in the transformed density matrix $\rho '$). So far, with a numerical method we've found 
-results for 3-qubits system maps that leave invariant 1, 2, 3 and 4 coefficients in $\rho$. Our
-results exhibit the following features:
+The kind of maps that act on density matrices of the form \eqref{rho} that
+we're interested in are those which leave invariant or `erase' the coefficients
+in $\rho$ (i.e. $r'_{v_1, v_2,\ldots, v_n}=r_{v_1, v_2,\ldots, v_n}$ or
+$r'_{v_1, v_2,\ldots, v_n}=0$, where the primed $r$'s refer to the coefficients
+in the transformed density matrix $\rho '$). 
+
+So far, with a numerical method we've characterized all 1 and 2 qubit maps, whereas 
+for 3 qubits system we have studied maps that leave invariant 1, 2, 3 and 4
+coefficients in $\rho$. Our results exhibit the following features:
 \begin{itemize}
-	\item Valid quantum channels are found for maps that leave invariant a power-of-2 number of coefficients.
-	\item There's not a relation 1-on-1 for the number of possible maps that leave invariant a certain number of coefficients with the number valid
-	quantum channels found. It seems that not only the number of coefficients to leave invariant is taken into account but actually
-	which coefficients are left invariant too.
-	\item The results are recursive by increasing the number of qubits in the system, i.e. the valid quantum channels for 2
-	qubits have to obey the valid quantum channels for 1 qubit. In more detail, the 2-qubits quantum-channels that leave
-	invariant any of the coefficients of the form $r_{v_1,0}$ or $r_{0,v_2}$ have to obey the valid quantum channels found for 1
-	qubit.
+\item Valid quantum channels are only found for maps that leave invariant a
+power of two number of coefficients. We have not found an explanation for that.
+\item 
+% There's not a relation 1-on-1 for the number of possible maps that leave
+% invariant a certain number of coefficients with the number valid quantum
+% channels found. It seems that 
+Not only the number of coefficients to leave
+invariant is taken into account but actually which coefficients are left
+invariant too. 
+\item Valid maps for $n$ qubits must be valid for subsets of qubits. For example, 
+% \item The results are recursive by increasing the number of qubits in the
+% system, i.e. the valid quantum channels for 2 qubits have to obey the valid
+% quantum channels for 1 qubit. In more detail, 
+the 2-qubits quantum-channels
+that leave invariant any of the coefficients of the form $r_{v_1,0}$ or
+$r_{0,v_2}$ have to obey the valid quantum channels found for 1 qubit. 
+This induces nice rules that are not accessible (we think) by considering 
+a single $2^n$-level quantum system.
 \end{itemize}
+We're currently exploring equivalence relationships to reduce the ridiculous
+number of possible maps in order to achieve a decent computing time using the
+numerical method (this number increases as $2^{n^2-1}$). 
 
-We're currently exploring equivalence relationships to reduce the ridiculous number of possible maps in order to achieve a
-decent computing time using the numerical method (this number increases as $2^{n^2-1}$). \\ 
-
-We tried to understand if the kind of maps of our interest are a particular family of the `maps constant on axes' defined by M.
-Nathanson and M.B. Ruskai in Equation (3) of \cite{nathanson2007pauli}. Though, not great success we've accomplished so far.
-For 1 qubit, we showed that the classical-quantum channels $\Psi ^{\text{QC}}$, together with the unit element, form the set
-of valid quantum channels of our results. Nevertheless, for 2 qubits the $\Phi ^{\text{QC}}$'s are only a subset of our results,
-and we still can't prove or disprove that the remaining quantum channels of our results can be constructed as convex
-combination of the $\Psi ^{\text{QC}}$'s.\\
+We tried to understand if the kind of maps of our interest are a particular
+case of the `maps constant on axes' defined by M.  Nathanson and M.B. Ruskai
+in Equation (3) of \cite{nathanson2007pauli}. We are still unable to 
+answer this question. 
+For 1 qubit, we showed that the classical-quantum
+channels $\Psi ^{\text{QC}}$, together with the unit element, form the set of
+valid quantum channels of our results. Nevertheless, for 2 qubits the $\Phi
+^{\text{QC}}$'s are only a subset of our results, and we still can't prove or
+disprove that the remaining quantum channels of our results can be constructed
+as convex combination of the $\Psi ^{\text{QC}}$'s.
 
 The analysis I made goes as follows. Considering the case of 2 qubits: Equation (8) of \cite{nathanson2007pauli} is an
 equivalent form of \eqref{rho} with operators $W$ as the tensor products of the Pauli matrices, therefore the coefficients
