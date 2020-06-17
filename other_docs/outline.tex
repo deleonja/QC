@@ -33,10 +33,10 @@ According to \cite{nielsen_chuang_2011}, an arbitrary density matrix on $n$ qubi
 	\rho = \frac{1}{2^n}\sum _{\vec{v}} \Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )\  \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n},
 	\label{rho}
 \end{align}
-where the sum is over vectors $\vec{v}=\qty(v_1,\ldots, v_n)$ with entries $v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )$ as $r_{i_1, i_2\ldots, i_n}$ to make easier the notation. \\
+where the sum is over vectors $\vec{v}=\qty(v_1,\ldots, v_n)$ with entries $v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n} \otimes \rho )$ as $r_{v_i^{(1)}, v_i^{(2)},\ldots, v_i^{(n)}}$ to make easier the notation. \\
 
 The kind of maps that act on density matrices of the form \eqref{rho} that we're interested in are those which leave invariant or
-`erase' the coefficients in $\rho$ (i.e. $r'_{i_1, i_2\ldots, i_n}=r_{i_1, i_2\ldots, i_n}$ or $r'_{i_1, i_2\ldots, i_n}=0$). So far, with
+`erase' the coefficients in $\rho$ (i.e. $r'_{i_1, i_2\ldots, i_n}=r_{v_i^{(1)}, i_2\ldots, i_n}$ or $r'_{i_1, i_2\ldots, i_n}=0$). So far, with
 a numerical method we've found results for 3-qubits system maps that leave invariant 1, 2, 3 and 4 coefficients of $\rho$. Our
 results exhibit the following features:
 \begin{itemize}
