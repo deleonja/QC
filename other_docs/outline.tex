@@ -7,6 +7,7 @@
 \usepackage{pgfplotstable}
 \usepackage{tikz,pgfplots}
 \usepackage{amsmath} 
+\usepackage{xcolor}
 
 \usepackage[]{lineno}  \linenumbers
 \setlength\linenumbersep{3pt}
@@ -30,14 +31,14 @@ qubits can be expanded as
 \begin{align}
 	\rho = \frac{1}{2^n}\sum _{\vec{v}} \Tr 
                   \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes 
-               \cdots \otimes \sigma_{v_n} \otimes \rho) \sigma _{v_1} \otimes 
+               \cdots \otimes \sigma_{v_n} \rho) \sigma _{v_1} \otimes 
              \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n},
 	\label{rho}
 \end{align}
 where the sum is over vectors $\vec{v}=\qty(v_1,\cdots, v_n)$ with entries
 $v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
-\sigma _{v_1} \otimes \sigma_{v_2} \otimes \cdots \otimes \sigma_{v_n} \otimes
-\rho )$ as $r_{v_1, v_2,\ldots, v_n}$ to make easier the notation. 
+\sigma _{v_1} \otimes \sigma_{v_2} \otimes \cdots \otimes \sigma_{v_n}
+\rho )$ as $r_{v_1, v_2,\ldots, v_n}$ to shorten the notation. 
 
 The kind of maps that act on density matrices of the form \eqref{rho} that
 we're interested in are those which leave invariant or `erase' the coefficients
@@ -66,11 +67,11 @@ the 2-qubits quantum-channels
 that leave invariant any of the coefficients of the form $r_{v_1,0}$ or
 $r_{0,v_2}$ have to obey the valid quantum channels found for 1 qubit. 
 This induces nice rules that are not accessible (we think) by considering 
-a single $2^n$-level quantum system.
+a single $2^n$-level quantum system. {\color{red} [Nota]
+No entiendo la utilidad de este punto. Salvo la regla que nos permite ver si el canal es un producto tensorial de canales (o no), no se a que otras reglas se refieren. Claramente un producto tensorial de canales es tal que los 1s internos coinciden con los 1s en las orillas. Si se especificará mas este punto, propongo borrarlo, creo que mete ruido.}
 \end{itemize}
-We're currently exploring equivalence relationships to reduce the ridiculous
-number of possible maps in order to achieve a decent computing time using the
-numerical method (this number increases as $2^{n^2-1}$). 
+We are currently exploring equivalence relations (using particle permutations and local unitaries) to reduce the ridiculous
+number of possible maps, in order to achieve a decent computing time using numerical methods (this number increases as $2^{n^2-1}$). 
 
 We tried to understand if the kind of maps of our interest are a particular
 case of the `maps constant on axes' defined by M.  Nathanson and M.B. Ruskai
@@ -79,17 +80,17 @@ answer this question.
 For 1 qubit, we showed that the classical-quantum
 channels $\Psi ^{\text{QC}}$, together with the unit element, form the set of
 valid quantum channels of our results. Nevertheless, for 2 qubits the $\Phi
-^{\text{QC}}$'s are only a subset of our results, and we still can't prove or
+^{\text{QC}}$'s are only a subset of our results, and we still cannot prove or
 disprove that the remaining quantum channels of our results can be constructed
-as convex combination of the $\Psi ^{\text{QC}}$'s.
+as convex combinations of the $\Psi ^{\text{QC}}$s.
 
 The analysis I made goes as follows. Considering the case of 2 qubits: Equation (8) of \cite{nathanson2007pauli} is an
 equivalent form of \eqref{rho} with operators $W$ as the tensor products of the Pauli matrices, therefore the coefficients
-$v_{Jj}$ are our $r_{v_1,v_2}$, excluding $r_{0,0}$. As the authors state, the action of the channels they describe in Equation (2)
+$v_{Jj}$ are our $r_{v_1,v_2}$, excluding $r_{0,0}$. As the authors state, the action of the channels that they describe in Equation (2)
 is to take $v_{Jj}\to \qty(s+t_J)v_{Jj}$. Every $v_{Jj}$ corresponds to one of the fifteen coefficients that may be left invariant.
-For every $J$, there are three $v_{Jj}$, varying $j$. Thus, each $\Psi ^{\text{QC}}_J$ leaves invariant three different
-coefficients and $r_{0,0}$. So it seems to me that one can only leave invariant 1, 4, 7, 10, 13 or 16 coefficients with a convex
-combination of the classical-quantum channels $\Psi ^{\text{QC}}_J$.
+For every $J$, there are three $v_{Jj}$s. Thus, each $\Psi ^{\text{QC}}_J$ leaves invariant three different
+coefficients and $r_{0,0}$. So it seems that one can only leave invariant 1, 4, 7, 10, 13 or 16 coefficients with a convex
+combination of the classical-quantum channels $\Psi ^{\text{QC}}_J$. {\color{red} [Nota] creo que vale la pena explicar despacio esta ultima linea. De donde salen esos numeros?, es lo único que no me queda claro de este parrafo. Nos reunimos o crees que puedes explicar esto un poco mas pausado?, José Alfredo. Quizá valga la pena construir un ejemplo, digamos, el que deja invariante $10$ componentes.}
 
 \bibliographystyle{unsrt}
 \bibliography{references}
