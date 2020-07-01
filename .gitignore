@@ -341,3 +341,21 @@ data/partition_4_12_05.dat
 
 # librerias
 .vscode
+
+#archivos José Alfredo
+*.aux
+*.bbl
+*.blg
+*.log
+*.synctex.gz
+*.nav
+*.out
+*.snm
+*.to
+/apuntes
+computingTime.pdf
+resultados_08052020.pdf
+resultados_08052020.tex
+bibliografia/wootters1989.pdf
+other/__pycache__/
+other/notesOn2qubits.tex
