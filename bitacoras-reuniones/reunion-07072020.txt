@@ -1,5 +1,6 @@
 Por hacer:
-> Revisar si se relacionan nuestros canales con la compuerta C-NOT
+> Revisar si se relacionan nuestros canales con la compuerta C-NOT.
+> Entrelazamiento "estados invariantes" y relación con CP del canal.
 
 Preguntas abiertas:
 > Son positivas todas las matrices de densidad que resultan de aplicar un mapeo no válido?
