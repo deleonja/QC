@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4262,        119]
-NotebookOptionsPosition[      3392,         96]
-NotebookOutlinePosition[      3781,        112]
-CellTagsIndexPosition[      3738,        109]
+NotebookDataLength[      4469,        123]
+NotebookOptionsPosition[      3600,        100]
+NotebookOutlinePosition[      3989,        116]
+CellTagsIndexPosition[      3946,        113]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -35,8 +35,8 @@ Cell[BoxData[
       RowBox[{
        RowBox[{"Import", "[", 
         RowBox[{
-        "\"\</home/deleonja/documents/component-erasing-maps/mathematica/\
-Datos/\>\"", "<>", 
+        "\"\</home/deleonja/documents/component-erasing-maps/mathematica/data-\
+alejo/\>\"", "<>", 
          RowBox[{"ToString", "[", "#", "]"}], "<>", "\"\<.dat\>\""}], "]"}], 
        "\[IndentingNewLine]", "&"}], "/@", 
       RowBox[{"Range", "[", "41", "]"}]}], ",", 
@@ -44,8 +44,9 @@ Datos/\>\"", "<>",
       RowBox[{"41", ",", "64"}], "}"}]}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.805850605671451*^9, 3.805850678318684*^9}, {
   3.805850749759671*^9, 3.805850815532411*^9}, {3.805850847719151*^9, 
-  3.8058511140441504`*^9}},
- CellLabel->"In[45]:=",ExpressionUUID->"60161732-aab2-485b-b374-372b64e88ccd"],
+  3.8058511140441504`*^9}, {3.805851961109406*^9, 
+  3.8058519637559843`*^9}},ExpressionUUID->"60161732-aab2-485b-b374-\
+372b64e88ccd"],
 
 Cell[BoxData[
  RowBox[{
@@ -88,10 +89,13 @@ Cell[BoxData[
  CellLabel->"Out[63]=",ExpressionUUID->"35beade1-cf68-4f58-8f22-17393cc9c5a8"]
 }, Open  ]],
 
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.8058517292813797`*^9, 3.8058517316376743`*^9}, 
-   3.805851852813734*^9},ExpressionUUID->"ebcca2d7-0ec7-46a1-9650-\
-00a407bf3744"]
+Cell[TextData[StyleBox["No hay eigenvalores negativos para ninguna de las 45 \
+matrices de Choi asociadas a cada uno de los mapeos. Entonces los 41 son \
+canales v\[AAcute]lidos!!!",
+ FontColor->RGBColor[0.5, 0, 0.5]]], "Text",
+ CellChangeTimes->{{3.805852268720543*^9, 
+  3.805852305976164*^9}},ExpressionUUID->"2bac9522-9eb1-4423-bb91-\
+5ab8b0820408"]
 }, Open  ]]
 },
 WindowSize->{960, 1016},
@@ -113,13 +117,13 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 204, 4, 67, "Section",ExpressionUUID->"fdb08a97-6b4c-42f2-bb4f-ec0c2ba4b15d"],
-Cell[787, 28, 791, 19, 75, "Input",ExpressionUUID->"60161732-aab2-485b-b374-372b64e88ccd"],
-Cell[1581, 49, 542, 13, 30, "Input",ExpressionUUID->"8808cd02-5fc1-4fbb-af2f-807e4cd63e77"],
+Cell[787, 28, 825, 20, 75, "Input",ExpressionUUID->"60161732-aab2-485b-b374-372b64e88ccd"],
+Cell[1615, 50, 542, 13, 30, "Input",ExpressionUUID->"8808cd02-5fc1-4fbb-af2f-807e4cd63e77"],
 Cell[CellGroupData[{
-Cell[2148, 66, 344, 8, 30, "Input",ExpressionUUID->"fe1fc454-e180-4f8d-bcc6-2c64c7198759"],
-Cell[2495, 76, 687, 11, 57, "Output",ExpressionUUID->"35beade1-cf68-4f58-8f22-17393cc9c5a8"]
+Cell[2182, 67, 344, 8, 30, "Input",ExpressionUUID->"fe1fc454-e180-4f8d-bcc6-2c64c7198759"],
+Cell[2529, 77, 687, 11, 57, "Output",ExpressionUUID->"35beade1-cf68-4f58-8f22-17393cc9c5a8"]
 }, Open  ]],
-Cell[3197, 90, 179, 3, 30, "Input",ExpressionUUID->"ebcca2d7-0ec7-46a1-9650-00a407bf3744"]
+Cell[3231, 91, 353, 6, 58, "Text",ExpressionUUID->"2bac9522-9eb1-4423-bb91-5ab8b0820408"]
 }, Open  ]]
 }
 ]
