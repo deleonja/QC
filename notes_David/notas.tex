@@ -107,12 +107,20 @@
 \begin{document} 
 \maketitle
 \tableofcontents
+\newpage
 \section{Analysis of entanglement distribution of JAs channels}
 Here we analyze the fidelity distribution of one element on each class, since they are connected trivially through local unitaries, it is enough to consider  one element per class.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{distro_1.pdf}
+\includegraphics[scale=0.5]{distro_2.pdf}
+\includegraphics[scale=0.5]{distro_triv.pdf}
+\caption{eje x: concurrencia inicial, eje y: concurrencia final, tomando estados aleatorios.}
+\end{figure}
 \section{Erasing correlations plus local? noise}
 Let's define the mappings parameterized by $\mu$:
 \begin{equation}
-\mcE:\sum_{i,j} r_{ij} (\sigma_i \otimes \sigma_j) \mapsto \sum_{i} \mu r_{i0} (\sigma_i\otimes \one) +\sum_{i} \mu r_{0i} (\one \otimes \sigma_i)
+\mcE:\sum_{i,j} r_{ij} (\sigma_i \otimes \sigma_j) \mapsto \sum_{i>0} \mu r_{i0} (\sigma_i\otimes \one) +\sum_{i>0} \mu r_{0i} (\one \otimes \sigma_i)+r_{00} \one\otimes \one
 \end{equation}
 We found that such mappings are CPTP if and only if
 \begin{equation}
@@ -124,6 +132,28 @@ Defining similar maps for $3$ and $4$ particles respectively, we have:
 -\frac{1}{174}\leq &\mu \leq \frac{1}{10}\\
 \end{align}
 The last one doesn't follow the elegance of the growing dimension, this must be checked again. All this was computed analytically using mathematica.
+
+\section{Exploring and writing the former maps}
+Consider the map
+\begin{equation}
+\rho \mapsto (1-\mu) \tr_B \rho \otimes \sigma_1+\mu \sigma_2 \otimes \tr_A \rho,
+\end{equation}
+Taking $\sigma_1=\sigma_2=\one_{2 \times 2}/2$, we have that the map takes $\vec r$ to:
+\begin{equation}
+\left(
+\begin{array}{cccc}
+ r_{0,0} & \mu  r_{0,1} & \mu  r_{0,2} & \mu  r_{0,3} \\
+ (1-\mu) r_{1,0} & 0 & 0 & 0 \\
+ (1-\mu) r_{2,0} & 0 & 0 & 0 \\
+ (1-\mu) r_{3,0} & 0 & 0 & 0 \\
+\end{array}
+\right)
+\end{equation}
+\bibliographystyle{alpha}
+\bibliography{labibliografia} 
+\end{document}
+
+%Thrash
 \section{Implementing approximations to erasing using partial traces}
 The non-physical mapping (it violates the non-Broadcasting theorem) is defined as follows
 \begin{align}
@@ -146,6 +176,3 @@ This channel is CPTP if and only if
 \end{equation}
 This was computed in mathematica imposing the positive-semidefinitvness of the Choi matrix.
 Still constructing the rectangular map including the trace.
-\bibliographystyle{alpha}
-\bibliography{labibliografia} 
-\end{document}
