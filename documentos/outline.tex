@@ -15,6 +15,7 @@
 \usepackage{amsmath} 
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{amsfonts}
 
 \usepackage[]{lineno}  \linenumbers
 \setlength\linenumbersep{3pt}
@@ -82,8 +83,8 @@ left invariant are shown in Figure \ref{fig:CCs-by-components}.
 		\begin{tabular}{>{$n=}l<{$\hfill}*{12}{c}}
 			1 &&&&&1&3&1&&&&&5\\
 			2 &&&&1&15&35&15&1&&&&67\\
-			3 &&&1&63&\colorbox{Yellow}{?}&?&\colorbox{Yellow}{?}&
-				\colorbox{RedOrange}{63}&1&&&?
+			3 &&&1&\colorbox{RedOrange}{63}&\colorbox{Yellow}{561}&?&\colorbox{Yellow}{¿561?}&
+				\colorbox{RedOrange}{¿63?}&1&&&?
 			\end{tabular}
 			\caption{First column shows the number of qubits in the system. 
 							Second column displays, from left to right, the number of valid 
@@ -152,11 +153,89 @@ We would like to
 				that connect elements of different classes.
 \end{itemize}
 
+We explored if our quantum channels were a particular case of Ruskai maps. 
+We concluded that quantum channels that leave invariant a number of components
+in $\rho$ different than $1+3k, k\in \mathbb{Z}$ cannot be a Ruskai map. 
+Nonetheless, we were not able to demonstrate in a irrefutable manner that 
+the quantum channels that fullfil the condition were not Ruskai maps either, 
+but we strongly suspect that they're not.
 
+Below is shown a representation of the $r_{ij}$ components of the resulting
+density matrices of quantum channels applied to an arbitrary density matrix.
+Colored squares mean invariant components. Red squared correspond to the
+Bloch vector of each qubit and blue ones to correlations between the qubits.
 
+\begin{figure}[H]
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.15\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C0.png}
+		\caption{}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.15\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C16.png}
+		\caption{}
+	\end{minipage}
+\end{figure}
 
+\begin{figure}[H]
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C12.png}
+		\caption{C${}_1^2$}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C22.png}
+		\caption{C${}_2^2$}
+	\end{minipage}
+\end{figure}
 
+\begin{figure}[H]
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C14.png}
+		\caption{C${}_1^4$}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C24.png}
+		\caption{C${}_2^4$}
+	\end{minipage}\vfill
+\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C34.png}
+		\caption{C${}_3^4$}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C44.png}
+		\caption{C${}_4^4$}
+	\end{minipage}
+\end{figure}
 
+\begin{figure}[H]
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C18.png}
+		\caption{C${}_1^8$}
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.5\textwidth}
+		\centering
+	  \includegraphics[width=.9\textwidth]
+		{/home/deleonja/documents/docs_practicas/img-congreso/C28.png}
+		\caption{C${}_2^8$}
+	\end{minipage}
+\end{figure}
 
 \bibliographystyle{unsrt}
 \bibliography{references}
