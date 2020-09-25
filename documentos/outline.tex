@@ -61,10 +61,13 @@ basis.
 %$v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
 %\sigma _{v_1} \otimes \sigma_{v_2} \otimes \cdots \otimes \sigma_{v_n}
 %\rho )$ as $r_{v_1, v_2,\ldots, v_n}$ to shorten the notation. 
+
+
 In this work, we are interested in studying the set of maps that erase
 arbitrary components $\tau_i$ in $\rho$ and characterize the subset of maps
 that are quantum channels. We'll refer to the coefficients in both terms of 
 \eqref{rho} as the components in $\rho$.
+
 %The kind of maps that act on density matrices of the form \eqref{rho} that
 %we're interested in are those which leave invariant or erase  
 %components
@@ -87,10 +90,10 @@ of an arbitrary density matrix for 1 and 2 qubits.
 	\centering
 	\hfill \hfill
 	\includegraphics[height=2.5cm]
-	{/home/deleonja/documents/docs_practicas/img-congreso/tablero-1q}
+	{img/tablero-1q}
 	\hfill
 	\includegraphics[width=2.5cm]
-	{/home/deleonja/documents/docs_practicas/img-congreso/rho2q(2)}
+	{img/rho2q(2)}
 	\hfill \hfill
 	\caption{From left to right a pictorial representation for an arbitrary
 	density matrix for 1 and 2 qubits, respectively. Red squares refer to local
@@ -105,7 +108,7 @@ of Figure \ref{fig:CCs-by-components}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=5cm]
-	{/home/deleonja/documents/docs_practicas/img-congreso/1q-CCs.png}
+	{img/1q-CCs.png}
 	\caption{1-qubit density matrices resulting from applying quantum channels
 	to an arbitrary density matrix.}
 \end{figure}
@@ -114,7 +117,7 @@ of Figure \ref{fig:CCs-by-components}.
 \begin{figure}[H]
 	\centering
   \includegraphics[height=1.2cm]
-	{/home/deleonja/documents/docs_practicas/img-congreso/C16.png}
+	{img/C16.png}
 	\caption{C${}^{1}$}
 \end{figure}
 
@@ -122,14 +125,14 @@ of Figure \ref{fig:CCs-by-components}.
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C12.png}
+		{img/C12.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^2$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C22.png}
+		{img/C22.png}
 		\caption{C${}_2^2$}
 	\end{minipage}
 \end{figure}
@@ -138,26 +141,26 @@ of Figure \ref{fig:CCs-by-components}.
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C14.png}
+		{img/C14.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^4$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C24.png}
+		{img/C24.png}
 		\caption{C${}_2^4$}
 	\end{minipage}\vfill
 \begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C34.png}
+		{img/C34.png}
 		\caption{C${}_3^4$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C44.png}
+		{img/C44.png}
 		\vspace{2.5cm}
 		\caption{C${}_4^4$}
 	\end{minipage}
@@ -167,14 +170,14 @@ of Figure \ref{fig:CCs-by-components}.
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C18.png}
+		{img/C18.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^8$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
-		{/home/deleonja/documents/docs_practicas/img-congreso/C28.png}
+		{img/C28.png}
 		\caption{C${}_2^8$}
 	\end{minipage}
 \end{figure}
@@ -182,7 +185,7 @@ of Figure \ref{fig:CCs-by-components}.
 \begin{figure}[H]
 	\centering
   \includegraphics[height=1.2cm]
-	{/home/deleonja/documents/docs_practicas/img-congreso/C0.png}
+	{img/C0.png}
 	\caption{C${}^{16}$}
 \end{figure}
 
@@ -240,50 +243,9 @@ correspondence. In the next item we extend this discussion.
 			\end{enumerate}	Actuallly, this two simple rules allow us to connect
 			two elements of classes C${}^2_k$ and C${}^8_k$.
 
-%For 3 qubits the maps that leave invariant 16 components in $\rho$
-%have not been numerically analized, but we pressume there's a 
-%1-on-1 correspondence for the number of valid channels between those that leave
-%invariant 2 and 32 components, and similarly between those that leave 4 and 16
-%componentes invariant. This observation follows 
-%from the correspondence in the results for 1 and 2 qubits 
-%between quantum channels that leave invariant $2^k$ and $2^{2n-k}$, for 
-%$k=1, 2, \ldots, n$.
-		
-% \item The results are recursive by increasing the number of qubits in the
-% system, i.e. the valid quantum channels for 2 qubits have to obey the valid
-% quantum channels for 1 qubit. In more detail, 
-%\item Valid maps for $n$ qubits must be valid for subsets of qubits. For example,
-%the 2-qubits quantum-channels
-%that leave invariant any of the coefficients of the form $r_{v_1,0}$ or
-%$r_{0,v_2}$ have to obey the valid quantum channels found for 1 qubit. 
-%This induces nice rules that are not accessible (we think) by considering 
-%a single $2^n$-level quantum system. {\color{blue} [Nota]
-%No entiendo la utilidad de este punto. Salvo la regla que nos permite ver si el canal es un producto tensorial de canales (o no), no se a que otras reglas se refieren. Claramente un producto tensorial de canales es tal que los 1s internos coinciden con los 1s en las orillas. Si se especificará mas este punto, propongo borrarlo, creo que mete ruido.}
-
-%\janote{A mí no me convence la redacción del item anterior. A diferencia de 
-%				David, a m\'i s\'i me parece una observaci\'on importante porque evidencia
-%				que nuestros canales deben respetan las acciones v\'alidas sobre todos los 
-%				subsistemas, as\'i el canal no sea factorizable.}
-%
-%	\item One can identify that $r_{v_1,v_2,\ldots,v_n}$ is composed from the 
-%				individual Bloch vectors of each qubit and the correlation tensors of
-%				every system's subset. Then, with the action of a quantum channel in 
-%				terms	of $r'_{v_1,v_2,\ldots,v_n}$ in mind, quantum channels are found
-%				for those whose action on an arbitrary $\rho$ reproduce valid 
-%				results in every of the components of $r'_{v_1,v_2,\ldots,v_n}$.
-
 	\item The action of a quantum channel on every subsystem must be another
 				channel.
 
-%	\item Separable quantum channels are those constructed from the tensor product
-%				of valid quantum channels for subsets of qubits in the system that
-%				that follow the 
-%				power-of-2 rule for the components left invariant in $\rho$. For 2
-%				qubits, 25 quantum channels are of this particular type (this is the
-%				number of permutations with repetition of the five 
-%				quantum channels of 1 qubit). Therefore, the remaining 42 channels
-%				cannot be infered with the information provided by the 1-qubit
-%				quantum channels, in principle.
 \end{itemize}
 
 We explored if the kind of quantum channels of our study are a subset 
