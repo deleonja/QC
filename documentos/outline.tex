@@ -1,4 +1,4 @@
-\documentclass[11pt,dvipsnames]{article}
+\documentclass[11pt,dvipsnames]{article} % {{{
 
 \usepackage{geometry}
 \geometry{total={170mm,240mm}, left=20mm, top=20mm}
@@ -28,20 +28,19 @@
 \usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
 \FXRegisterAuthor{cp}{acp}{\color{blue}CP}
 \FXRegisterAuthor{ja}{aja}{\color{RedViolet}JA}
-
+% }}}
 \begin{document}
-
+% Titulo y otros {{{
 \title{Projective maps on a system of $n$ qubits} 
 %Title should be concise and to the point  
-\author{J. A. de León\\
-				\small{supervised by C. Pineda}}
+\author{J. A. de León\\ \small{in collaboration with C. Pineda, D. Davalos, Al Fonseca}}
 
 
 \date{\today}  
 
 \maketitle
-
-
+% }}}
+% Intro {{{
 According to \cite{bengtsson_zyczkowski_2017}, an arbitrary density matrix on $n$  
 qubits can be expanded as
 \begin{align}
@@ -53,7 +52,7 @@ qubits can be expanded as
 	\label{rho}
 \end{align}
 where we'll identify $\sigma _i$ as the tensor products of Pauli 
-matrices, which are a basis of the space of traceless density matrices, and 
+matrices, which are a basis of the space of traceless \cpnote{Quitar density} density matrices, and 
 $\tau_i$ the projections of $\rho$ onto each element of this particular
 basis.
 
@@ -64,9 +63,10 @@ basis.
 
 
 In this work, we are interested in studying the set of maps that erase
-arbitrary components $\tau_i$ in $\rho$ and characterize the subset of maps
+some components $\tau_i$ in $\rho$ and characterize the subset of maps
 that are quantum channels. We'll refer to the coefficients in both terms of 
-\eqref{rho} as the components in $\rho$.
+\eqref{rho} as the components in $\rho$. \cpnote{Quiza vale la pena poner
+uno o dos ejemplos acá.}
 
 %The kind of maps that act on density matrices of the form \eqref{rho} that
 %we're interested in are those which leave invariant or erase  
@@ -81,8 +81,7 @@ invariant 1, 2, 3, 4, and 64 components in $\rho$. Nonetheless, we have strong
 indications that point that only the maps that leave invariant 8 components are 
 needed to analyze in order to find the complete set of 3-qubit quantum 
 channels.
-\newline
-
+% }}}
 \section*{Results}
 In Figure \ref{fig:pictorial-rep-rho} we introduce a pictorial representation 
 of an arbitrary density matrix for 1 and 2 qubits.
