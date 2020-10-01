@@ -52,7 +52,9 @@ qubits can be expanded as
 	\label{rho}
 \end{align}
 where we'll identify $\sigma _i$ as the tensor products of Pauli 
-matrices, which are a basis of the space of traceless \cpnote{Quitar density} density matrices, and 
+matrices, which form a basis of the space of traceless %\cpnote{Quitar density}
+%density 
+matrices, and 
 $\tau_i$ the projections of $\rho$ onto each element of this particular
 basis.
 
@@ -65,8 +67,15 @@ basis.
 In this work, we are interested in studying the set of maps that erase
 some components $\tau_i$ in $\rho$ and characterize the subset of maps
 that are quantum channels. We'll refer to the coefficients in both terms of 
-\eqref{rho} as the components in $\rho$. \cpnote{Quiza vale la pena poner
-uno o dos ejemplos acá.}
+\eqref{rho} as the components in $\rho$. 
+\cpnote{Quiza vale la pena poner uno o dos ejemplos acá.} 
+For 1 qubit the picture of our problem is easy to understand given that 
+$\tau_i$ are the components of a vector in the Bloch ball, the so-called
+Bloch vector. As an example
+of a map of our interest let's consider one that erases any of the 
+components of the Bloch vector. Geometrically, this map collapses 
+the Bloch ball into a disk. This kind of map results not to fulfill 
+the completely positive condition.   
 
 %The kind of maps that act on density matrices of the form \eqref{rho} that
 %we're interested in are those which leave invariant or erase  
@@ -273,7 +282,7 @@ invariant 2 and 8 components cannot be repdroduced by maps constant on axes.
 
 \section*{To-do}
 In order to fully understand our results and generalize this kind of maps 
-for $n$ qubits is the following:
+for $n$ qubits we propose the following:
 \begin{enumerate}
 	\item Investigate the Kraus operator representation of this quantum channels.
 	\item Investigate the Schmidt spectrum of the Choi matrix.
