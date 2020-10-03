@@ -91,10 +91,10 @@ indications that point that only the maps that leave invariant 8 components are
 needed to analyze in order to find the complete set of 3-qubit quantum 
 channels.
 % }}}
-\section*{Results}
+\section*{Results} % {{{
 In Figure \ref{fig:pictorial-rep-rho} we introduce a pictorial representation 
 of an arbitrary density matrix for 1 and 2 qubits.
-\begin{figure}[H]
+\begin{figure} % {{{
 	\centering
 	\hfill \hfill
 	\includegraphics[height=2.5cm]
@@ -107,29 +107,33 @@ of an arbitrary density matrix for 1 and 2 qubits.
 	density matrix for 1 and 2 qubits, respectively. Red squares refer to local
 	Bloch vectors and blue squared to the correlation matrix.}
 	\label{fig:pictorial-rep-rho}
-\end{figure}
+\end{figure} % }}}
 In the following subsections we show the density matrices that result from
 applying a quantum channel to an arbitrary density matrix in the representation
 of Figure \ref{fig:CCs-by-components}.
 
-\subsection*{1 qubit}
-\begin{figure}[H]
+\subsection*{1 qubit} % {{{
+\begin{figure}% {{{
 	\centering
 	\includegraphics[width=5cm]
 	{img/1q-CCs.png}
-	\caption{1-qubit density matrices resulting from applying quantum channels
+	\caption{\cpnote{Acá mas bien estas dibujando los canales. Claro queu
+se pueden interpretar como matrices, pero mejor dejar que estos diagramas
+definan canales. Si no, creo que puede causar confusion. } 1-qubit density
+matrices resulting from applying quantum channels
 	to an arbitrary density matrix.}
-\end{figure}
+\end{figure} % }}}
+% }}}
 
 \subsection*{2 qubits}
-\begin{figure}[H]
+\begin{figure}[H] % {{{
 	\centering
   \includegraphics[height=1.2cm]
 	{img/C16.png}
 	\caption{C${}^{1}$}
-\end{figure}
+\end{figure} % }}}
 
-\begin{figure}[H]
+\begin{figure}[H] % {{{
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
@@ -143,9 +147,9 @@ of Figure \ref{fig:CCs-by-components}.
 		{img/C22.png}
 		\caption{C${}_2^2$}
 	\end{minipage}
-\end{figure}
+\end{figure} % }}}
 
-\begin{figure}[H]
+\begin{figure}[H] % {{{
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
@@ -172,9 +176,9 @@ of Figure \ref{fig:CCs-by-components}.
 		\vspace{2.5cm}
 		\caption{C${}_4^4$}
 	\end{minipage}
-\end{figure}
+\end{figure} % }}}
 
-\begin{figure}[H]
+\begin{figure}[H] % {{{
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]
@@ -188,30 +192,28 @@ of Figure \ref{fig:CCs-by-components}.
 		{img/C28.png}
 		\caption{C${}_2^8$}
 	\end{minipage}
-\end{figure}
+\end{figure} % }}}
 
-\begin{figure}[H]
+\begin{figure}[H] % {{{
 	\centering
   \includegraphics[height=1.2cm]
 	{img/C0.png}
 	\caption{C${}^{16}$}
-\end{figure}
+\end{figure} % }}}
 
 2-qubit results have been classified in equivalence classes (as shown) such
 that elemtens in a class are conected by
 \begin{enumerate}
-	\item Transpotiions (particle swaps)
+	\item Transpositions (particle swaps)
 	\item Permutations of rows or columns 1-3 (permutation of individual 
 	components)
 \end{enumerate}
 
 In general, our results exhibit the following features:
 \begin{itemize}
-\item Only a power-of-2 number of components may be left invariant by 
-			quantum channels. However,
-			not only the number of 
-			coefficients to leave invariant is taken into account but actually
-			which coefficientes are left invariant too.
+\item Only a power-of-2 number of components may be left invariant by quantum
+channels. However, not only the number of coefficients to leave invariant is
+taken into account but actually which coefficients are left invariant too.
 
 \item 
 The number of valid quantum channels according to the number of components
@@ -221,39 +223,37 @@ correspondence. In the next item we extend this discussion.
 
 \begin{figure}[H]
 	\centering
-		\begin{tabular}{>{$n=}l<{$\hfill}*{12}{c}}
-			1 &&&&&\colorbox{Apricot}{1}&3&\colorbox{Apricot}{1}&&&&&5\\
-			2 &&&&\colorbox{CadetBlue}{1}&\colorbox{Cyan}{15}&35&\colorbox{Cyan}{15}&\colorbox{CadetBlue}{1}&&&&67\\
-			3 &&&\colorbox{SpringGreen}{1}&\colorbox{RedOrange}{63}&\colorbox{Yellow}{561}&?&\colorbox{Yellow}{¿561?}&
-				\colorbox{RedOrange}{¿63?}&\colorbox{SpringGreen}{1}&&&?
-			\end{tabular}
-			\caption{First column shows the number of qubits in the system. 
-							In the second column each position correspond to the 
-							number of components invariant ($2^0, 2^1, \ldots, 2^{2n}$) and
-							the numbers shown are the number of quantum channels according to 
-							the number of components invariant.
-							Finally, third column specifies the total number of quantum 
-							channels for a n-qubit system.}
-			\label{fig:CCs-by-components}
+	\begin{tabular}{>{$n=$}l<{\hfill}*{12}{c}}
+1 &&&&&\colorbox{Apricot}{1}&3&\colorbox{Apricot}{1}&&&&&5\\
+2 &&&&\colorbox{CadetBlue}{1}&\colorbox{Cyan}{15}&35&\colorbox{Cyan}{15}&\colorbox{CadetBlue}{1}&&&&67\\
+3 &&&\colorbox{SpringGreen}{1}&\colorbox{RedOrange}{63}&\colorbox{Yellow}{561}&?&\colorbox{Yellow}{¿561?}&
+\colorbox{RedOrange}{¿63?}&\colorbox{SpringGreen}{1}&&&?
+\end{tabular}
+\caption{First column shows the number of qubits in the system.  In the second
+column each position correspond to the number of components invariant ($2^0,
+2^1, \ldots, 2^{2n}$) and the numbers shown are the number of quantum channels
+according to the number of components invariant.  Finally, third column
+specifies the total number of quantum channels for a n-qubit system.}
+\label{fig:CCs-by-components}
 \end{figure}
 
-\item Empirical observations of 2-qubit results led us to some rules that 
-			patterns in Figures obey:
-			\begin{enumerate}
-				\item If a component with indices $ij$ is left invariant, then two 
-							options are allowed: \textit{a.} both components with indices $i0$ 
-							and $0j$ are left invariant too, or \textit{b.} both
-							components with indices $i0$ and $0j$ are erased.
-				\item Focusing only on the correlation matrix (blue squares): if a 
-							component	with indices $ij$ is left invariant and the previous 
-							rule is obeyed, then the reamining components in the correlation 
-							matrix on row $i$ and column $j$ must be erased.
-			\end{enumerate}	Actuallly, this two simple rules allow us to connect
-			two elements of classes C${}^2_k$ and C${}^8_k$.
+\item Empirical observations of 2-qubit results led us to some rules that
+patterns in Figures obey:
+	\begin{enumerate}
+	\item If a component with indices $ij$ is left invariant, then two
+	options are allowed: \textit{a.} both components with indices $i0$ and
+	$0j$ are left invariant too, or \textit{b.} both components with
+        indices $i0$ and $0j$ are erased.
+	\item Focusing only on the correlation matrix (blue squares): if a
+component with indices $ij$ is left invariant and the previous rule is
+obeyed, then the remaining components in the correlation matrix on row $i$ and
+column $j$ must be erased.
+	\end{enumerate}	
+Actually, this two simple rules allow us to connect two elements of classes
+C${}^2_k$ and C${}^8_k$.
 
-	\item The action of a quantum channel on every subsystem must be another
-				channel.
-
+\item The action of a quantum channel on every subsystem must be another
+channel.
 \end{itemize}
 
 We explored if the kind of quantum channels of our study are a subset 
@@ -261,7 +261,7 @@ of the Pauli diagonal channels constant on axes \cite{nathanson2007pauli}.
 We were unable to demonstrate in a irrefutable manner that 
 our quantum channels are not a particular case of channels constant on axes, 
 but we strongly suspect that they're not. We briefly discuss this in the 
-next parragraph. 
+next paragraph. 
 
 Let's consider any density matrix written as
 \begin{align}
@@ -278,21 +278,20 @@ $\mathbb{C}^4$, listed in section 12.4 of \cite{bengtsson_zyczkowski_2017},
 we noted that a particular case of this maps, if it is to coincide with our subject of
 study, must be such that it leaves invariant $1+3k$ components ($k$ an integer)
 in $\rho$. Therefore, for a 2-qubit system quantum channels that leave 
-invariant 2 and 8 components cannot be repdroduced by maps constant on axes. 
-
-\section*{To-do}
+invariant 2 and 8 components cannot be reproduced by maps constant on axes. 
+% }}}
+\section*{To-do} % {{{
 In order to fully understand our results and generalize this kind of maps 
 for $n$ qubits we propose the following:
 \begin{enumerate}
-	\item Investigate the Kraus operator representation of this quantum channels.
-	\item Investigate the Schmidt spectrum of the Choi matrix.
-	\item Investigate the Jamiolkowski isomorphism to find an equivalence
-				between CP and the empirical rules listed previously.
-	\item Use our current results to propose an efficient way to do numerical
-				analysis to find 3-qubit quantum channels that leave 8 components 
-				invariant.
+\item Investigate the Kraus operator representation of this quantum channels.
+\item Investigate the Schmidt spectrum of the Choi matrix.
+\item Investigate the Jamiolkowski isomorphism to find an equivalence between
+CP and the empirical rules listed previously.
+\item Use our current results to propose an efficient way to do numerical
+analysis to find 3-qubit quantum channels that leave 8 components invariant.
 \end{enumerate}
-
+% }}}
 \bibliographystyle{unsrt}
 \bibliography{references}
 \vfill
