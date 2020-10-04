@@ -1,4 +1,4 @@
-outline.pdf ::
+outline.pdf :: outline.tex
 
 -include ~/makefile
 # Repositorio: 
