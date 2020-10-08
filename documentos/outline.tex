@@ -16,14 +16,15 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{amsfonts}
-\usepackage{bbold}
+\usepackage{dsfont}
+%\usepackage{bbold}
 
 
 \newcommand{\fref}[1]{fig.~\ref{#1}}  \newcommand{\tref}[1]{table~\ref{#1}}
 \newcommand{\Fref}[1]{Fig.~\ref{#1}}  \newcommand{\Tref}[1]{Table~\ref{#1}}
 
 \newcommand{\h}[1]{\colorbox{Yellow}{#1}}
-
+\newcommand{\1}{\mathds{1}}
 
 \usepackage[]{lineno}  \linenumbers
 \setlength\linenumbersep{3pt}
@@ -53,11 +54,7 @@ así se pone el nombre de Alejo 'Al' o es un typo y debería ir 'A.'?}
 According to \cite{bengtsson_zyczkowski_2017}, an arbitrary density matrix on $n$  
 qubits can be expanded as
 \begin{align}
-%	\rho = \frac{1}{2^n}\sum _{\vec{v}} \Tr 
-%                  \qty( \sigma _{v_1} \otimes \sigma_{v_2} \otimes 
-%               \cdots \otimes \sigma_{v_n} \rho) \sigma _{v_1} \otimes 
-%             \sigma_{v_2} \otimes \ldots \otimes \sigma_{v_n},
-  \rho = \frac{1}{2^n}\mathbb{1} + \sum _{i=1}^{2^{2n}-1}\tau _i\sigma _i,
+  \rho = \frac{1}{2^n}\1 + \sum _{i=1}^{2^{2n}-1}\tau _i\sigma _i,
 	\label{rho}
 \end{align}
 where we'll identify $\sigma _i$ as the tensor products of Pauli 
@@ -280,7 +277,7 @@ de este \TeX}. \janote{Listo.}
 	\begin{tabular}{>{$n=$}l<{\hfill}*{12}{c}}
 1 &&&&&\colorbox{Apricot}{1}&3&\colorbox{Apricot}{1}&&&&&5\\
 2 &&&&\colorbox{CadetBlue}{1}&\colorbox{Cyan}{15}&35&\colorbox{Cyan}{15}&\colorbox{CadetBlue}{1}&&&&67\\
-3 &&&\colorbox{SpringGreen}{1}&\colorbox{RedOrange}{63}&\colorbox{Yellow}{561}&?&\colorbox{Yellow}{¿561?}&
+3 &&&\colorbox{SpringGreen}{1}&\colorbox{RedOrange}{63}&\colorbox{Yellow}{651}&?&\colorbox{Yellow}{¿651?}&
 \colorbox{RedOrange}{¿63?}&\colorbox{SpringGreen}{1}&&&?
 \end{tabular}
 \caption{First column shows the number of qubits in the system.  In the second
@@ -379,37 +376,125 @@ pattern there is a 1-qubit quantum channel, of the form of \fref{fig:1q-ccs}.
 \cpnote{Sugiero que pongas algo de lo que hemos venido haciendo aca. Resultados preliminares. 
 Son importantes para la discucion pues lo obvio es comenzar a explorar 3 qubits.}
 
+Recall that for 3 qubits system
+we have numerically analyzed only maps that leave 
+invariant 1, 2, 3, 4, and 64 components in $\rho$. Therefore,
+results presented in this section are preliminary. Quantum channels
+follow the same features of 2 qubits system. Not all 3 qubits quantum 
+channels
+are shown as in the previous section, but only one element of every equivalence
+class found. Elements in equivalence classes are connected via particle swaps 
+and permutation of individual components.
 
-\section*{Are this channels a subset of Pauli diagonal channels constant
-on axes?}
-\cpnote{Esto amerita otra sección aparte} \janote{Listo.}
-We explored if the kind of quantum channels of our study are a subset 
-of the Pauli diagonal channels constant on axes \cite{nathanson2007pauli}.
-We were unable to demonstrate in a irrefutable manner that 
-our quantum channels are not a particular case of channels constant on axes, 
-but we strongly suspect that they're not. We briefly discuss this in the 
-next paragraph. 
+\subsubsection*{1-invariant-component maps}
+The only map that leaves invariant 1 component in $\rho$ is the completely
+depolarizing channel.
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=4cm]{img/3q-1c}
+	\caption{Completely depolarizing channel for 3 qubits.}
+\end{figure}
+
+\subsubsection*{2-invariant-components maps}
+All 63 maps that leave invariant 2 components in $\rho$ are 
+quantum channels. It's important to mention that in the 2 qubits case all 
+2-invariant-components maps are quantum channels, too. There are
+3 equivalence classes, quantum channels that leave invariant
+\begin{enumerate}
+	\item any component of a local Bloch vector,
+	\item any correlation between any pair of qubits,
+	\item any correlation between all qubits in the system.
+\end{enumerate}
+\begin{figure}[H]
+	\centering
+	\hfill \hfill
+	\includegraphics[height=4cm]{img/3q-2c-1}
+	\hfill
+	\includegraphics[height=4cm]{img/3q-2c-2}
+	\hfill
+	\includegraphics[height=4cm]{img/3q-2c-3}
+	\hfill \hfill
+	\caption{3-qubits quantum channels. Three equivalence classes 
+	(from left to right): leaves invariant one component of any local
+	Bloch vector, one correlation between any pair or qubits, and 
+	one correlation between all qubits in the system.}
+\end{figure}
+
+\subsubsection*{4-invariant-components maps}
+There are 39,711 maps that leave invariant 4 components in $\rho$, 651
+are quantum channels and may be classified in 10 equivalence classes, as
+shown in \fref{fig:QC-3q-4c}.
+\begin{figure}[H]
+	\centering
+	\hfill \hfill
+	\includegraphics[height=3cm]{img/3q-4c-si-1}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-si-2}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-si-3}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-si-4}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-si-5}
+	\hfill
+	\vfill
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-no-1}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-no-2}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-no-3}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-no-4}
+	\hfill
+	\includegraphics[height=3cm]{img/3q-4c-no-5}
+	\hfill \hfill
+	\caption{One element of every of the 10 equivalence
+	classes of the 3-qubits 2-invariant-components quantum channels.}
+	\label{fig:QC-3q-4c}
+\end{figure}
+
+\section*{\h{Are this channels a subset of Pauli diagonal channels constant
+on axes?}}
+\janote{Hola David. Esta es la sección de los mapeos de Ruskai}
+%\cpnote{Esto amerita otra sección aparte} \janote{Listo.}
+
+We explored if the quantum channels of our study were a subset 
+of Pauli diagonal channels constant on axes \cite{nathanson2007pauli}.
+We concluded that not all the set of our channels but only a subset
+is contained in the set of Pauli diagonal channels constant on axes.
+We'll discuss what a Pauli diagonal channel constant on axes is and 
+the argument that led us to the conclusion stated previously.
 
 Let's consider any density matrix written as
 \begin{align}
-	\rho = \frac{1}{d}\qty[\mathbb{1} + \sum _{J=1}^{d+1} \sum _{j=1}^{d-1}
+	\rho = \frac{1}{d}\qty[\1 + \sum _{J=1}^{d+1} \sum _{j=1}^{d-1}
 	v_{Jj}W_J^j],
 	\label{eq:ruskai-rho}
 \end{align}
 where $d$ is the dimension of the Hilbert space of the system and $W_J^j$ 
-are generators of a mutually unbiased bases (MUB) for $\mathbb{C}^{d}$. Then,
-the action of a Pauli diagonal channel constant on axis on a $\rho$ of the form
-\eqref{eq:ruskai-rho} is to take $v_{Jj}\mapsto (s+t_J)v_{Jj}$. Using a few
-different sets of tensor product of Pauli matrices that generate MUB's for
-$\mathbb{C}^4$, listed in section 12.4 of \cite{bengtsson_zyczkowski_2017}, 
-we noted that a particular case of this maps, if it is to coincide with our subject of
-study, must be such that it leaves invariant $1+3k$ components ($k$ an integer)
-in $\rho$. Therefore, for a 2-qubit system quantum channels that leave 
-invariant 2 and 8 components cannot be reproduced by maps constant on axes. 
-\cpnote{Creo que eso ya lo teníamos claro. Sería bueno que discutieramos pues 
-me gustaría dar mas seguridades. De hecho tu argumento me parece una prueba, pero quizá
-lo tengamos que refinar. Planeemos una reunion pronto con el resto del combo para ver esto.
-Obvio, creo, si hay intersección, pero no son los mismos.}
+are generators of a mutually unbiased bases (MUB) for $\mathbb{C}^{d}$.
+Then, the action of a Pauli diagonal channel constant on axes on a 
+$\rho$ of the form \eqref{eq:ruskai-rho} is to take 
+$v_{Jj}\mapsto (s+t_J)v_{Jj}$. The eigenvalues of a Pauli diagonal channel
+are 1 and $\lambda _J=s+t_J$. Note that there are $d+1$ eigenvalues 
+$\lambda_J$, and every eigenvalue has degeneration $d-1$. 
+
+In order to construct a channel of ours from a 
+Pauli diagonal channel $\lambda_J$ must be equal to one or zero. Our
+quantum channels have a power-of-2 rank. On the other hand, 
+the rank of a Pauli diagonal channel is $1+3k$ ($k\in \mathbb{Z}^+$,
+$1\leq k\leq d+1$),
+therefore there are subsets of our quantum channels that can't be  
+Pauli diagonal channels. For example, a quantum channel of 2 qubits 
+($d=4$) that leaves invariant 8 components in $\rho$ has rank 8, and
+there's not a $k$ for which the rank of a Pauli diagonal channel may be 8.
+
+
+%\cpnote{Creo que eso ya lo teníamos claro. Sería bueno que discutieramos pues 
+%me gustaría dar mas seguridades. De hecho tu argumento me parece una prueba, pero quizá
+%lo tengamos que refinar. Planeemos una reunion pronto con el resto del combo para ver esto.
+%Obvio, creo, si hay intersección, pero no son los mismos.}
 % }}}
 
 % }}}
