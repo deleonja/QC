@@ -58,11 +58,11 @@ qubits can be expanded as
 	\label{rho}
 \end{align}
 where we'll identify $\sigma _i$ as the tensor products of Pauli 
-matrices, which form a basis of the space of traceless %\cpnote{Quitar density}
+matrices, which form a basis of the space of traceless Hermitian
+%\cpnote{Quitar density}
 %density 
 matrices, and 
-$\tau_i$ the projections of $\rho$ onto each element of this particular
-basis.
+$\tau_i$ the projections of $\rho$ onto each element of this basis.
 
 %where the sum is over vectors $\vec{v}=\qty(v_1,\cdots, v_n)$ with entries
 %$v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
@@ -78,11 +78,10 @@ that are quantum channels. We'll refer to the coefficients in both terms of
 \janote{\h{Inicio}}
 For 1 qubit the picture of our problem is easy to understand given that 
 $\tau_i$ are the components of a vector in the Bloch ball, the so-called
-Bloch vector. As an example
-of a map of our interest let's consider one that erases any of the 
+Bloch vector. As an example, let's consider a map that erases any of the 
 components of the Bloch vector. Geometrically, this map collapses 
-the Bloch ball into a disk. This kind of map results not to fulfill 
-the completely positive condition.  
+the Bloch ball into a disk. This operation do not fulfill 
+the condition of complete positivity and therefore is not a quantum channel.  
 \janote{\h{Fin.}}
 
 %The kind of maps that act on density matrices of the form \eqref{rho} that
@@ -103,10 +102,12 @@ channels.
 \janote{Modifiqué este párrafo y agregué el cubo para 3 qubits en
 la fig 1, porfa revísalo}
 In \fref{fig:pictorial-rep-rho} we introduce a pictorial representation 
-of an arbitrary density matrix for a system of 1, 2 and 3 qubits. It 
-will be useful to visualize the kind of maps of our study making use
-of this tool. We'll consider any little square or cube in blank
-as a component erased in $\rho$ by the map.
+of the identity map acting on a density matric of a system of 1, 2 and 3 qubits,
+respectively. It will be helpful to visualize the maps we are studying 
+making use of this tool. We'll consider any little square or cube in blank
+as a component erased in $\rho$ by the map. 
+In the following subsections we present the actual quantum channels of
+1 and 2 qubits, and preliminary results for 3 qubits.
 \begin{figure}[H] % {{{
 	\centering
 	\hfill \hfill
@@ -119,17 +120,15 @@ as a component erased in $\rho$ by the map.
 	\includegraphics[width=2.5cm]
 	{img/rho-3q}
 	\hfill \hfill
-	\caption{From left to right a pictorial representation for an arbitrary
-	density matrix for 1, 2 and 3 qubits, respectively. 
+	\caption{From left to right the idendity map acting on
+  an arbitrary density matrix of 1, 2 and 3 qubits, respectively. 
 	Red squares refer to components of local Bloch vectors,
 	blue squares to correlations between any pair of qubits and
 	green squares to correlations between all qubits in the system, for
 	the 3-qubits case.}
 	\label{fig:pictorial-rep-rho}
 \end{figure} % }}}
-In the following subsections we show the density matrices that result from
-applying a quantum channel to an arbitrary density matrix in the representation
-of Figure \ref{fig:CCs-by-components}.
+
 
 \subsection*{1 qubit} % {{{
 \begin{figure}[H]% {{{
@@ -149,19 +148,19 @@ es medio chistoso. Igual comenta a que corresponde cada uno de los canales. Todo
 Creo que se puede tambien notar el número de componentes que deja invariante
 ese bicho. También están organizados en clases de equivalencia.}
 \janote{\h{Inicio}}
-The first and last channels in \fref{fig:1q-ccs} are the identity and the
-completely depolarizing. In between them, from left to right, the 
-channels are
-the bit-phase flip, phase-flip and bit-flip,
-respectively, all of them for the particular 
-case $p=0.5$.	This last three channels are equivalent via permutation
+The first and last patterns in \fref{fig:1q-ccs} represent the identity 
+and completely depolarizing channels. 
+In between them, from left to right, the patterns represent the
+the bit-phase flip, phase-flip and bit-flip channels, 
+all of them for the case $p=0.5$.	
+This last three channels are equivalent via permutation
 of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
 \janote{\h{Fin}}
 % }}}
 \subsection*{2 qubits} % {{{
-2-qubit results have been classified in equivalence classes (as shown
-from \fref{fig:2q-c1} to \fref{fig:2q-c16}) such
-that elemtens in a class are conected by
+2-qubits quantum channels have been classified in equivalence classes 
+(as shown from \fref{fig:2q-c1} to \fref{fig:2q-c16}) such
+that elements in a class are connected by
 \begin{enumerate}
 	\item Transpositions (particle swaps)
 	\item Permutations of rows or columns 1-3 (permutation of individual 
@@ -290,8 +289,9 @@ specifies the total number of quantum channels for a $n$-qubit system.}
 \label{fig:CCs-by-components}
 \end{figure} % }}}
 
-\item Empirical observations of 2-qubit results led us to some rules that the
-patterns in \fref{fig:2q-c1} to \fref{fig:2q-c16} obey:
+\item Empirical observations of results for 2 qubits 
+led us to some rules that the
+patterns showed from \fref{fig:2q-c1} to \fref{fig:2q-c16} obey:
 \cpnote{quizá acá diagrams en vez de figures?} 
 \janote{es que se me olvidó poner la referencia a las figuras (no me refería
 a los tableros como figuras)}
@@ -312,7 +312,7 @@ Let's take a look at the next example. \newline
 \newline
 The component with indices 21 in the pattern is left invariant,
 so the two options allowed are: \textit{a.} components with indices 01 and
-20 are erased, as in this pattern, or \textit{b.} components 
+20 are erased, as in this pattern above, or \textit{b.} components 
 with indices 01 and 20 are left invariant too, 
 as in the following pattern \newline
 
@@ -393,13 +393,14 @@ depolarizing channel.
 	\centering
 	\includegraphics[height=4cm]{img/3q-1c}
 	\caption{Completely depolarizing channel for 3 qubits.}
+	\label{fig:QC-3q-1c}
 \end{figure}
 
 \subsubsection*{2-invariant-components maps}
 All 63 maps that leave invariant 2 components in $\rho$ are 
 quantum channels. It's important to mention that in the 2 qubits case all 
-2-invariant-components maps are quantum channels, too. There are
-3 equivalence classes, quantum channels that leave invariant
+2-invariant-components maps are quantum channels, too. We can distinguish
+3 equivalence classes: quantum channels that leave invariant
 \begin{enumerate}
 	\item any component of a local Bloch vector,
 	\item any correlation between any pair of qubits,
@@ -414,16 +415,47 @@ quantum channels. It's important to mention that in the 2 qubits case all
 	\hfill
 	\includegraphics[height=4cm]{img/3q-2c-3}
 	\hfill \hfill
-	\caption{3-qubits quantum channels. Three equivalence classes 
+	\caption{3-qubits quantum channels. One element of each of the 
+	3 equivalence classes 
 	(from left to right): leaves invariant one component of any local
 	Bloch vector, one correlation between any pair or qubits, and 
 	one correlation between all qubits in the system.}
+	\label{fig:QC-3q-2c}
 \end{figure}
 
 \subsubsection*{4-invariant-components maps}
 There are 39,711 maps that leave invariant 4 components in $\rho$, 651
-are quantum channels and may be classified in 10 equivalence classes, as
-shown in \fref{fig:QC-3q-4c}.
+are quantum channels and may be classified in 10 equivalence classes.
+One arbitrary element of each class is shown in \fref{fig:QC-3q-4c}. 
+We understand how to infer 5 out of the 10 classes from quantum channels
+of 1 and 2 qubits, as it will be discussed.
+
+
+On top of the figure the first 4 elements
+(from left to right) correspond to quantum channels that are separable
+in a 1 or 2 qutbis quantum channel acting on any subsystem 
+and a completely depolarzing channel acting on the rest of the system.
+The fifth element on top of \fref{fig:QC-3q-4c} may be inferred from
+an extension for 3 qubits of one of the empirical rules stated for 2 qubits: 
+\begin{itemize}
+	\item If a component with indices $ijk$ (all different from zero) is
+	left invariant by the channel, if and only if one of the cases must be followed:
+	\begin{enumerate}
+		\item No other component is left invariant (i.e. a 2-invariant-components
+		channel),
+		\item Components $0j0$ and $i0k$ are also left invariant,
+		\item Components $00k$ and $ij0$ are also left invariant,
+		\item Components $i00$ and $0jk$ are also left invariant,
+		\item Components $ij0$, $0jk$, $i0k$, $i00$, $0j0$, and
+		$00k$ are left invariant.
+	\end{enumerate}
+	Be noted that case 5 leads to a quantum channel that leaves invariant
+	more than 4 components in $\rho$.
+\end{itemize}
+Quantum channels belonging to equivalence classes of bottom elements in 
+\ref{fig:QC-3q-4c} are such that we still can't infer with what has 
+been understood for 2 qubits.
+
 \begin{figure}[H]
 	\centering
 	\hfill \hfill
@@ -453,6 +485,14 @@ shown in \fref{fig:QC-3q-4c}.
 	classes of the 3-qubits 2-invariant-components quantum channels.}
 	\label{fig:QC-3q-4c}
 \end{figure}
+
+In principle, the rainbow hypothesis makes a connection between the 
+channels presented and channels that leave invariant 16, 32 and 64
+components. Therefore, we're currently inferring those quantum channels
+from those presented in figures \ref{fig:QC-3q-1c}, \ref{fig:QC-3q-2c} and
+\ref{fig:QC-3q-4c}. It is only necessary to find one element in an 
+equivalence class because the rest are found by particle swaps 
+and permutation of individual components.
 
 \section*{\h{Are this channels a subset of Pauli diagonal channels constant
 on axes?}}
