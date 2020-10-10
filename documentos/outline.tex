@@ -499,20 +499,17 @@ on axes?}}
 \janote{Hola David. Esta es la sección de los mapeos de Ruskai}
 %\cpnote{Esto amerita otra sección aparte} \janote{Listo.}
 
-We explored if the quantum channels of our study were a subset 
-of Pauli diagonal channels constant on axes \cite{nathanson2007pauli}.
-We concluded that not all the set of our channels but only a subset
-is contained in the set of Pauli diagonal channels constant on axes.
-We'll discuss what a Pauli diagonal channel constant on axes is and 
-the argument that led us to the conclusion stated previously.
-
-Let's consider any density matrix written as
+We explored if the quantum channels of our study are a subset 
+of Pauli diagonal channels constant on axes \cite{nathanson2007pauli}, let us call them $\mathcal{R}$.
+We concluded that only Kraus rank $4$ channels of the ones under study (hace falta asignarle un simbolo a tus canales) are candidates to be in $\mathcal{R}$, in fact we are convinced that all of them are in, but are still working in the proof. To see this
+let us analyse the action of Ruskai's maps on arbitrary density matrices
 \begin{align}
-	\rho = \frac{1}{d}\qty[\1 + \sum _{J=1}^{d+1} \sum _{j=1}^{d-1}
-	v_{Jj}W_J^j],
+	\rho \mapsto \frac{1}{d}\qty[\1 + \sum _{J=1}^{d+1} \sum _{j=1}^{d-1}
+	\lambda_J v_{Jj}W_J^j],
 	\label{eq:ruskai-rho}
 \end{align}
-where $d$ is the dimension of the Hilbert space of the system and $W_J^j$ 
+where $\Lambda_J$ are the eigenvalues of a given Ruskai map. \fxnote{Por fas corrige la argumentacion a partir de la modificacion a la ecuacion}
+where $d$ is the dimension of the Hilbert space of the system and $W_J^j$ \fxnote{JA, ojo que los $W_J$ generan un grupo ciclico, mas no generadores de MUBs, uno construye los $W_J$ usando MUBs!. Por fas mejor mete la definicion de $W_J$.}
 are generators of a mutually unbiased bases (MUB) for $\mathbb{C}^{d}$.
 Then, the action of a Pauli diagonal channel constant on axes on a 
 $\rho$ of the form \eqref{eq:ruskai-rho} is to take 
@@ -525,8 +522,8 @@ Pauli diagonal channel $\lambda_J$ must be equal to one or zero. Our
 quantum channels have a power-of-2 rank. On the other hand, 
 the rank of a Pauli diagonal channel is $1+3k$ ($k\in \mathbb{Z}^+$,
 $1\leq k\leq d+1$),
-therefore there are subsets of our quantum channels that can't be  
-Pauli diagonal channels. For example, a quantum channel of 2 qubits 
+therefore there are subsets of our quantum channels that cannot be  
+Pauli diagonal channels constant on axes. For example, a quantum channel of 2 qubits 
 ($d=4$) that leaves invariant 8 components in $\rho$ has rank 8, and
 there's not a $k$ for which the rank of a Pauli diagonal channel may be 8.
 
