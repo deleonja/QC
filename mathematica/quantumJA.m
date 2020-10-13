@@ -43,7 +43,24 @@ Inverse[ChangeOfBasisMatrix[qubitsNum]]
 CubePositions[diagElPos_]:=
 Position[ArrayReshape[SparseArray[diagElPos->ConstantArray[1,Length[diagElPos]],{64}]//Normal,{4,4,4}],1]-1
 
-Cube3q[indices_]:=Graphics3D[{Cube[#]&/@indices,{Opacity[0],Cube[{2,2,2},3]}},Axes->True,AxesLabel->{"x","y","z"},LabelStyle->Directive[Bold, Large,Black],PlotRange->{{-0.5,3.5},{-0.5,3.5},{-0.5,3.5}},AxesOrigin->{0.5,0.5,0.5},AxesStyle->Thickness[0.01],ImageSize->Medium]
+Cube3q[indices_]:=Graphics3D[{If[Count[#,0]==3,{Black,Cube[#]},
+If[Count[#,0]==2,{RGBColor["#CC0000"],Cube[#]},
+If[Count[#,0]==1,{RGBColor["#004C99"],Cube[#]},
+If[Count[#,0]==0,{RGBColor["#99FF33"],Cube[#]}]]]]&/@indices,
+{Thickness[0.012],Line[{{{-0.5,-0.5,-0.5},{-0.5,-0.5,3.5}},{{-0.5,-0.5,-0.5},{-0.5,3.5,-0.5}},{{-0.5,-0.5,-0.5},{3.5,-0.5,-0.5}},
+{{3.5,-0.5,-0.5},{3.5,-0.5,3.5}},
+{{-0.5,-0.5,3.5},{3.5,-0.5,3.5}},
+{{-0.5,3.5,-0.5},{3.5,3.5,-0.5}},
+{{3.5,3.5,-0.5},{3.5,3.5,3.5}},
+{{3.5,3.5,3.5},{-0.5,3.5,3.5}},
+{{-0.5,3.5,3.5},{-0.5,3.5,-0.5}},
+{{-0.5,3.5,3.5},{-0.5,-0.5,3.5}},
+{{3.5,3.5,3.5},{3.5,-0.5,3.5}},
+{{3.5,3.5,-0.5},{3.5,-0.5,-0.5}}}]}},
+Axes->False,AxesLabel->{"x","y","z"},LabelStyle->Directive[Bold,Medium,Black],PlotRange->{{-0.5,3.5},{-0.5,3.5},{-0.5,3.5}},AxesOrigin->{0.5,0.5,0.5},AxesStyle->Thickness[0.005],ImageSize->Medium,ImagePadding->45]
 
 End[];
 EndPackage[]
+
+
+
