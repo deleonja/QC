@@ -25,6 +25,7 @@
 
 \newcommand{\h}[1]{\colorbox{Yellow}{#1}}
 \newcommand{\1}{\mathds{1}}
+\newcommand{\R}{\mathcal{R}}
 
 \usepackage[]{lineno}  \linenumbers
 \setlength\linenumbersep{3pt}
@@ -55,12 +56,12 @@ qubits can be expanded as
   \rho = \frac{1}{2^n}\1 + \sum _{i=1}^{2^{2n}-1}\tau _i\sigma _i,
 	\label{rho}
 \end{align}
-where we'll identify $\sigma _i$ as the tensor products of Pauli 
+where we will identify $\sigma _i$ as the tensor products of Pauli 
 matrices, which form a basis of the space of traceless Hermitian
 %\cpnote{Quitar density}
 %density 
 matrices, and 
-$\tau_i$ the projections of $\rho$ onto each element of this basis.
+$\tau_i$ are the projections of $\rho$ onto each element of this basis.
 
 %where the sum is over vectors $\vec{v}=\qty(v_1,\cdots, v_n)$ with entries
 %$v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
@@ -70,7 +71,12 @@ $\tau_i$ the projections of $\rho$ onto each element of this basis.
 
 In this work, we are interested in studying the set of maps that erase
 some components $\tau_i$ in $\rho$ and characterize the subset of maps
-that are quantum channels. We'll refer to the coefficients in both terms of 
+that are quantum channels.
+\janote{Introduje la notación a continuación. Se ponía engorroso
+no tener una notación así en la sección de mapeos de Ruskai} 
+\h{Let us call this subset Pauli component erasing
+channels -PCE channels-.}
+We'll refer to the coefficients in both terms of 
 \eqref{rho} as the components in $\rho$. 
 For 1 qubit the picture of our problem is easy to understand given that 
 $\tau_i$ are the components of a vector in the Bloch ball, the so-called
@@ -89,17 +95,24 @@ the condition of complete positivity and therefore is not a quantum channel.
 So far, with a numerical method we've characterized all 1 and 2 qubit maps, 
 whereas for 3 qubits system we have numerically analyzed only maps that leave 
 invariant 1, 2, 3, 4, and 64 components in $\rho$. Nonetheless, we have strong
-indications that point that only the maps that leave invariant 8 components are 
-needed to analyze in order to find the complete set of 3-qubit quantum 
+indications that only maps that leave invariant 8 components are 
+needed to analyze in order to find the complete set of 3-qubit PCE 
 channels.
 % }}}
 \section*{Results} % {{{
 In \fref{fig:pictorial-rep-rho} we introduce a pictorial representation 
-of the identity map acting on a density matrix of a system of 1, 2 and 3 qubits,
+for the identity map acting on a density matrix for systems 
+of 1, 2 and 3 qubits,
 respectively. It will be helpful to visualize the maps we are studying 
 making use of this tool. We'll consider any little square or cube in blank
 as a component erased in $\rho$ by the map. 
-In the following subsections we present the actual quantum channels of
+\janote{Agregué la siguiente línea por tu observación sobre los colores 
+que está antes de la Fig. 3.}
+Red squares correspond to components of local Bloch vectors,
+blue squares to correlations between any pair of qubits, and
+green squares to correlations between all qubits in the system for
+the 3-qubits case.
+In the following subsections we present the PCE channels for
 1 and 2 qubits, and preliminary results for 3 qubits.
 \begin{figure}[H] % {{{
 	\centering
@@ -115,41 +128,56 @@ In the following subsections we present the actual quantum channels of
 	\hfill \hfill
 	\caption{From left to right the identity map acting on
   an arbitrary density matrix of 1, 2 and 3 qubits, respectively. 
-	Red squares refer to components of local Bloch vectors,
+	Red squares correspond to components of local Bloch vectors,
 	blue squares to correlations between any pair of qubits and
 	green squares to correlations between all qubits in the system, for
 	the 3-qubits case. }
 	\label{fig:pictorial-rep-rho}
 \end{figure} % }}}
 \subsection*{1 qubit} % {{{
+In \fref{fig:1q-ccs} we present the PCE channels for 1 qubit.
+The first and last patterns represent identity 
+and completely depolarizing channels. 
+In between them, from left to right, patterns represent 
+bit-phase flip, phase-flip and bit-flip channels, 
+all of them for $p=0.5$.	
+These last three channels are equivalent via permutation
+of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
 \begin{figure}[H]% {{{
 	\centering
 	\includegraphics[width=5cm]
 	{img/1q-CCs.png}
-	\caption{\cpnote{Mejora el caption. } 1-qubit 
-quantum channels.
-\janote{Listo.}
-}
+	\caption{
+\cpnote{Mejora el caption. } \janote{Listo.}
+1-qubit PCE channels. From left to right patterns represent  
+the following channels: identity,
+bit-phase flip, phase flip, bit flip (the last three for 
+$p=0.5$), and completely depolarizing.}
 	\label{fig:1q-ccs}
 \end{figure} % }}}
-The first and last patterns in \fref{fig:1q-ccs} represent the identity 
-and completely depolarizing channels. 
-In between them, from left to right, the patterns represent 
-the bit-phase flip, phase-flip and bit-flip channels, 
-all of them for the case $p=0.5$.	
-This last three channels are equivalent via permutation
-of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
 % }}}
 \subsection*{2 qubits} % {{{
-2-qubits quantum channels have been classified in equivalence classes 
+2-qubits PCE channels have been classified in equivalence classes 
 (as shown from \fref{fig:2q-c1} to \fref{fig:2q-c16}) such
 that elements in a class are connected by
 \begin{enumerate}
-	\item Transpositions (particle swaps)
-	\item Permutations of rows or columns 1-3 (permutation of individual 
-	components) \cpnote{Explica el por que de eso. En los dos casos, mas bien 
+	\item Particle swaps. Qubits in the system can be interchanged. Therefore
+	if a map is a PCE channel for a certain arrangement 
+	of qubits, then
+	there are equivalent PCE channels acting on the system for all possible
+	arrangements of qubits. In the pattern-picture this can be
+	interpreted as transpositions (exploiting the matrix properties of
+	patterns).
+	\item Permutations of individual components. The state of an individual
+	qubit may be rotated in such a way that components of its local Bloch
+	vector are swapped via permutations. PCE channels are equivalent
+	to these permutations.
+	In the pattern-picture this
+	is interpreted as permutations of rows or columns 1, 2 and 3.
+\cpnote{Explica el por que de eso. En los dos casos, mas bien 
 di como clasificamos, desde un punto de vista fisico, y luego a que traduice graficamente
 eso. primero lo importante y luego el detalle. }
+\janote{Listo.}
 \end{enumerate}
 \cpnote{No recuerdo que tan pronto mencionas lo de los colores azules y eso, pero seria 
 bueno explicarlo pronto y ser consistente con eso desde la primera figura}
@@ -204,6 +232,7 @@ bueno explicarlo pronto y ser consistente con eso desde la primera figura}
 		{img/C44.png}
 		\vspace{2.5cm}
 		\caption{C${}_4^4$}
+		\label{fig:2q-4c-2}
 	\end{minipage}
 \end{figure} % }}}
 
@@ -234,14 +263,19 @@ bueno explicarlo pronto y ser consistente con eso desde la primera figura}
 In general, our results exhibit the following features:
 \begin{itemize}
 \item Only a power-of-2 number of components in $\rho$ 
-may be left invariant by quantum
+may be left invariant by PCE 
 channels. However, not only the number of components in $\rho$ 
 to leave invariant determines complete positivity since
 not all maps that leave $2^{k}$ components invariant in $\rho$
 are quantum channels. For example, the pattern below corresponds 
-to a map that is not a quantum channel. \cpnote{Menciona con que clase y que figura
+to a map that is a potential element of C${}_2^4$ (\Fref{fig:2q-4c-2}).
+Nevertheless, complete positivity is not satisfied 
+and then the map is not a quantum channel. 
+\cpnote{Menciona con que clase y que figura
 tendría que ocntrastar. También en la siguiente parte sobra el 
-ambiente figure, pues ni le pones caption ni quieres que flote. Se lo quité}. % \begin{figure}[H]
+ambiente figure, pues ni le pones caption ni quieres que flote. Se lo quité}. 
+\janote{Listo.}
+% \begin{figure}[H]
 % 	\centering
 % 	\includegraphics[height=2cm]{img/not-cc}
 % \end{figure}
@@ -250,12 +284,14 @@ ambiente figure, pues ni le pones caption ni quieres que flote. Se lo quité}. %
 \end{center}
 
 \item 
-The number of valid quantum channels according to the number of components
-left invariant are shown in \fref{fig:CCs-by-components}.
+The ratio of PCE channels and all possible maps
+that erase components in $\rho$ according to number of qubits 
+and number of components
+invariant are shown in \fref{fig:CCs-by-components}.
 \cpnote{ En la figura, creo que los colores sobre y
 distraen. Tambien sería padre poner cuantos de cada clase hay. Por ejemplo
 poner 1/1 que quiere decir que el unico posible es canal, o 63/128 queriendo
-decir que 63 de los 128 son canales.  }
+decir que 63 de los 128 son canales.} \janote{Listo.}
 
 %Two numbers
 %of same color correspond to quantum channels that we suspect have a 1:1 
@@ -264,29 +300,30 @@ decir que 63 de los 128 son canales.  }
 \begin{figure}[H]% {{{
 	\centering
 	\begin{tabular}{>{$n=$}l<{\hfill}*{12}{c}}
-1 &&&&&\colorbox{Apricot}{1}&3&\colorbox{Apricot}{1}&&&&&5\\
-2 &&&&\colorbox{CadetBlue}{1}&\colorbox{Cyan}{15}&35&\colorbox{Cyan}{15}&\colorbox{CadetBlue}{1}&&&&67\\
-3 &&&\colorbox{SpringGreen}{1}&\colorbox{RedOrange}{63}&\colorbox{Yellow}{651}&?&\colorbox{Yellow}{¿651?}&
-\colorbox{RedOrange}{¿63?}&\colorbox{SpringGreen}{1}&&&?
+1 &&&&&\colorbox{Apricot}{1/1}&3/3&\colorbox{Apricot}{1/1}&&&&&5\\
+2 &&&&\colorbox{CadetBlue}{1/1}&\colorbox{Cyan}{15/15}&35/455&\colorbox{Cyan}{15/6435}&\colorbox{CadetBlue}{1/1}&&&&67\\
+3 &&&\colorbox{SpringGreen}{1/1}&\colorbox{RedOrange}{63/63}&\colorbox{Yellow}{651/39711}&?/$6\times 10^8$&\colorbox{Yellow}{¿651?/$1\times 10^{14}$}&
+\colorbox{RedOrange}{¿63?/$9\times 10^{17}$}&\colorbox{SpringGreen}{1/1}&&&?
 \end{tabular}
 \caption{First column shows the number of qubits in the system.  In the second
 column each position correspond to the number of components invariant ($2^0,
-2^1, \ldots, 2^{2n}$) and the numbers shown are the number of quantum channels
-according to the number of components invariant.  Finally, third column
-specifies the total number of quantum channels for a $n$-qubit system.}
+2^1, \ldots, 2^{2n}$) and the numbers shown are the ratios of PCE channels
+and all possible maps according to the number of components invariant.  Finally, third column
+specifies the total number of PCE channels for a $n$-qubit system.}
 \label{fig:CCs-by-components}
 \end{figure} % }}}
 
 \item Empirical observations of results for 2 qubits 
-led us to some rules that the
+led us to some rules that 
 patterns showed from \fref{fig:2q-c1} to \fref{fig:2q-c16} obey:
 \begin{enumerate}
 \item If a component with indices $ij$ is left invariant, then two options are
 allowed: \textit{a)} both components with indices $i0$ and $0j$ are left
 invariant too, or \textit{b)} both components with indices $i0$ and $0j$ are
 erased.
-Let us take a look at the next example. \cpnote{Cambié el hfill y los newlines
-por un center. Cuando lo veas quita este comentario}
+Let us take a look at the next example. 
+%\cpnote{Cambié el hfill y los newlines
+%por un center. Cuando lo veas quita este comentario}
 % \newline
 % \hfill
 \begin{center}
@@ -295,8 +332,8 @@ por un center. Cuando lo veas quita este comentario}
 % \hfill \hfill
 % \newline
 The component with indices 21 in the pattern is left invariant,
-so the two options allowed are: \textit{a.} components with indices 01 and
-20 are erased, as in this pattern above, or \textit{b.} components 
+then the only options allowed are: \textit{a)} components with indices 01 and
+20 are erased, as in this pattern above, or \textit{b)} components 
 with indices 01 and 20 are left invariant too, 
 as in the following pattern 
 \begin{center}
@@ -306,20 +343,20 @@ as in the following pattern
 % \hfill \hfill 
 % \newline
 \end{center}
-which is another quantum channel.
+which is in fact another PCE channel.
 % \janote{Fin.}
 
-\item Focusing only on the correlation matrix (blue squares): if a component
-with indices $ij$ is left invariant and the previous rule is obeyed, then the
-remaining components in the correlation matrix on row $i$ and column $j$ must
-be erased. 
+\item Considering only components in the correlation matrix (blue squares): if a component
+with indices $ij$ is left invariant and the previous rule is obeyed, then,
+in the correlation matrix, remaining components on row $i$ and column $j$ are
+erased, and the rest of the components are left invariant by a PCE channel. 
 Let's go back to the last pattern in the previous example. This rule 
 ensures that components in the correlation matrix outside of row 2 and 
-column 1 may be left invariant by a quantum channel, i.e.
+column 1 may be left invariant by a PCE channel, i.e.
 \begin{center}
 \includegraphics[width=2cm]{img/ex-2q8c-empiricalRule},
 \end{center}
-which is another quantum channel.
+which is another PCE channel.
 \end{enumerate}	
 % Actually, this two simple rules allow us to connect two elements of classes
 % C${}^2_k$ and C${}^8_k$. \cpnote{Creo que se pueden hacer más conexiones, no?}
@@ -331,21 +368,21 @@ C${}_2^8$.
 
 % \janote{Agrego el siguiente item porque no le había dado la suficiente
 % importancia unos items arriba (en el de la fig. 13)}
-\item \textit{(Rainbow hypothesis)} Quantum channels
+\item \textit{(Rainbow hypothesis)} PCE channels
 that leave $2^k$ components invariant and $2^{2n-k}$ have a
 1:1 correspondence. That is to say, two numbers of the same color 
-in \fref{fig:CCs-by-components} correspond to quantum
+in \fref{fig:CCs-by-components} correspond to PCE
 channels that have a 1:1 correspondence. 
 
-\item The action of a quantum channel on every subsystem must be another
-channel. 
+\item The action of a PCE channel on every subsystem must be another
+PCE channel. 
 % \cpnote{Esto también hay que explicar que efecto tiene en los diagramas}
 % \janote{\h{Inicio}}
 This can be seen from the patterns in \fref{fig:2q-c1} to \fref{fig:2q-c16}.
 Recall that red squares represent components of local Bloch vectors 
 and blue squares represent correlations shared between qubits. 
-Then, it may be noted that in the first column and first row of every
-pattern there is a 1-qubit quantum channel, of the form of \fref{fig:1q-ccs}.
+Then, it may be noted in the first column and first row of every
+pattern there is a 1-qubit PCE quantum channel of the form of \fref{fig:1q-ccs}.
 % \janote{\h{Fin}}
 \end{itemize}
 % }}}
@@ -353,16 +390,17 @@ pattern there is a 1-qubit quantum channel, of the form of \fref{fig:1q-ccs}.
 
 Recall that for 3 qubits system we have numerically analyzed only maps that
 leave invariant 1, 2, 3, 4, and 64 components in $\rho$. Therefore, results
-presented in this section are preliminary. Quantum channels follow the same
-features of 2 qubits system. Not all 3 qubits quantum channels are shown as in
+presented in this section are preliminary. Maps that are PCE channels follow the same
+features of 2-qubits system. Not all 3-qubits PCE channels 
+will be shown as in
 the previous section, but only one element of every equivalence class found.
 Elements in equivalence classes are connected via particle swaps and
 permutation of individual components.
 
 \subsubsection*{1-invariant-component maps} % {{{
 The only map that leaves invariant 1 component in $\rho$ is the completely
-depolarizing channel.
-\begin{figure}
+depolarizing channel, and it is trivially a PCE channel.
+\begin{figure}[H]
 	\includegraphics[height=4cm]{img/3q-1c}
 	\caption{Completely depolarizing channel for 3 qubits.}
 	\label{fig:QC-3q-1c}
@@ -370,8 +408,8 @@ depolarizing channel.
 % }}}
 \subsubsection*{2-invariant-components maps}% {{{
 All 63 maps that leave invariant 2 components in $\rho$ are 
-quantum channels. It's important to mention that in the 2 qubits case all 
-2-invariant-components maps are quantum channels, too. We can distinguish
+PCE channels. It's important to mention that in the 2-qubits case all 
+2-invariant-components maps are PCE channels, too. We can distinguish
 3 equivalence classes: quantum channels that leave invariant
 \begin{enumerate}
 	\item any component of a local Bloch vector,
@@ -387,8 +425,8 @@ quantum channels. It's important to mention that in the 2 qubits case all
 	\hfill
 	\includegraphics[height=4cm]{img/3q-2c-3}
 	\hfill \hfill
-	\caption{3-qubits quantum channels. One element of each of the 
-	3 equivalence classes 
+	\caption{3-qubits 2-components-invariant PCE channels. 
+	One element of each of the 3 equivalence classes 
 	(from left to right): leaves invariant one component of any local
 	Bloch vector, one correlation between any pair or qubits, and 
 	one correlation between all qubits in the system.}
@@ -398,39 +436,29 @@ quantum channels. It's important to mention that in the 2 qubits case all
 % }}}
 
 \cpnote{Estudiates los que dejan invariantes 3 elementos?}
+\janote{Sí. Agrego la siguiente sección:}
+\subsubsection*{3-invariants-component maps}
+No PCE channels were found in the set of all maps that leave
+3 components invariant in $\rho$.
 
 \subsubsection*{4-invariant-components maps} % {{{
 There are 39,711 maps that leave invariant 4 components in $\rho$, 651
-are quantum channels and may be classified in 10 equivalence classes.
-One arbitrary element of each class is shown in \fref{fig:QC-3q-4c}. 
-We understand how to infer 5 out of the 10 classes from quantum channels
-of 1 and 2 qubits, as it will be discussed.
+are PCE channels and may be classified in 10 equivalence classes.
+One arbitrary element in each class is shown in \fref{fig:QC-3q-4c}. 
+We understand how to infer 5 out of the 10 equivalence classes 
+from 1 and 2-qubits PCE channels, as it will be discussed.
 
-
-On top of the figure the first 4 elements
-(from left to right) correspond to quantum channels that are separable
-in a 1 or 2 qutbis quantum channel acting on any subsystem 
+On top of \fref{fig:QC-3q-4c} the first 4 elements
+(from left to right) correspond to PCE channels that are separable
+in a 1 or 2 qutbis PCE channel acting on any subsystem 
 and a completely depolarzing channel acting on the rest of the system.
-The fifth element on top of \fref{fig:QC-3q-4c} may be inferred from
-an extension for 3 qubits of one of the empirical rules stated for 2 qubits: 
-\begin{itemize}
-	\item If a component with indices $ijk$ (all different from zero) is
-	left invariant by the channel, if and only if one of the cases must be followed:
-	\begin{enumerate}
-		\item No other component is left invariant (i.e. a 2-invariant-components
-		channel),
-		\item Components $0j0$ and $i0k$ are also left invariant,
-		\item Components $00k$ and $ij0$ are also left invariant,
-		\item Components $i00$ and $0jk$ are also left invariant,
-		\item Components $ij0$, $0jk$, $i0k$, $i00$, $0j0$, and
-		$00k$ are left invariant.
-	\end{enumerate}
-	Be noted that case 5 leads to a quantum channel that leaves invariant
-	more than 4 components in $\rho$.
-\end{itemize}
-Quantum channels belonging to equivalence classes of bottom elements in 
-\ref{fig:QC-3q-4c} are such that we still can't infer with what has 
-been understood for 2 qubits.
+The fifth and last element on top of the figure may be understood invoking    
+an extension for 3 qubits of one of the empirical rules presented 
+for 2 qubits. The extensions of those rules will be discussed at
+the end of this section. 
+PCE channels belonging to equivalence classes of bottom elements in 
+the figure are such that we still cannot infer them with our 
+previous results.
 
 \begin{figure}[H]
 	\centering
@@ -457,60 +485,126 @@ been understood for 2 qubits.
 	\hfill
 	\includegraphics[height=3cm]{img/3q-4c-no-5}
 	\hfill \hfill
-	\caption{One element of every of the 10 equivalence
-	classes of the 3-qubits 2-invariant-components quantum channels.}
+	\caption{3-qubits 4-components-invariant PCE channels. 
+	One element of every of the 10 equivalence classes.}
 	\label{fig:QC-3q-4c}
 \end{figure}
 % }}}
 
-In principle, the rainbow hypothesis makes a connection between the 
-channels presented and channels that leave invariant 16, 32 and 64
-components. Therefore, we're currently inferring those quantum channels
-from those presented in figures \ref{fig:QC-3q-1c}, \ref{fig:QC-3q-2c} and
-\ref{fig:QC-3q-4c}. It is only necessary to find one element in an 
-equivalence class because the rest are found by particle swaps 
-and permutation of individual components.
+The empirical rules already presented for 2 qubits can be 
+formulated for 3 qubits as follows:
+\begin{itemize}
+	\item A component with indices $ijk$ (all different from zero) is
+	left invariant by a PCE channel if and only if 
+	one of the cases is followed:
+	\begin{enumerate}
+		\item Components $ij0$, $0jk$, $i0k$, $i00$, $0j0$, and
+		$00k$ are erased.
+		\item Components $i00$ and $0jk$ are also left invariant.
+		\item Components $0j0$ and $i0k$ are also left invariant.
+		\item Components $00k$ and $ij0$ are also left invariant.
+		\item Components $ij0$, $0jk$, $i0k$, $i00$, $0j0$, and
+		$00k$ are also left invariant.
+	\end{enumerate}
+	It can be noted that the element in the right upper corner of 
+	\fref{fig:QC-3q-4c} is understood as one of the cases 2-4 of this item.
+	\item Considering only components that correspond to correlations between
+	3 qubits in the system (green cubes): if a little cube 
+	with indices $ijk$ (all different from zero) is left invariant 
+	and any of the cases of the previous rule is obeyed, 
+	then the remaining components on columns $i$, $j$, and $k$ are
+	erased and the rest of components in the correlation tensor 
+	are left invariant by a PCE channel. 
+\end{itemize}
+Let us consider an example to make use of both empirical rules. If we 
+begin with an element of the same equivalence class as the second
+element on top of \fref{fig:QC-3q-4c}, then we make use of one of 
+the cases 2-4 of the first empirical rule for 3 qubits and get the PCE channel below.
+\begin{center}
+	\includegraphics[width=4cm]{img/3q-8c-je}.
+\end{center}
+Finally, we make use of the second rule to left invariant only components
+corresponding to correlations between all qubits in the system (green cubes)
+and get another PCE channel (pattern below).
+\begin{center}
+	\includegraphics[width=4cm]{img/3q-8c}
+\end{center}
+What we have done is start with a PCE channel that leaves 4 invariant
+components, make our way trough a 8-invariant-components PCE channel and 
+finally arrive at a 16-invariant-components PCE channel.
+
+In principle, the rainbow hypothesis ensures the correspondence between  
+the channels we have found and channels that leave invariant 16, 32 and 64
+components. The empirical rules for 3 qubits provide one way to \textit{travel}
+from a $k$-components-invariant quantum channel to a
+$(2n-k)$-components-invariant channel.
+It is sufficient to found one element in an 
+equivalence class because the rest of the elements are found 
+by particle swaps and permutation of individual components.
 % }}}
 \cpnote{Sería importante discutir como se comportan todas las hipotesis que hiciste 
 para dos qubits en el caso de 3 qubits}
+\janote{De acuerdo. Lo agregué después de la fig. 16}
+
+
 % }}}
 \section*{Are this channels a subset of Pauli diagonal channels constant on axes?} % {{{
-
-
-We explored if the quantum channels of our study have a containance relation
-with the subset of Pauli diagonal
-channels constant on axes \cite{nathanson2007pauli}, let us call them
-$\mathcal{R}$.  We concluded that only Kraus rank $4$ channels of the ones
-under study are candidates to
+We explored if PCE channels are contained within the set of Pauli diagonal
+channels constant on axes \cite{nathanson2007pauli}. Let us call them
+$\mathcal{R}$. For 2 qubits, we concluded that Kraus rank $4$ 
+PCE channels are the only non-trivial candidates to
 be in $\mathcal{R}$, in fact we are convinced that all of them are in, but are
-still working in the proof \cpnote{David is convinced, the rest of us
-have no idea}. To see this
-let us analyse the action of Ruskai's maps on arbitrary density matrices
+still working in the proof. 
+%\cpnote{David is convinced, the rest of us have no idea} 
+To see this let us analyze the action of maps in $\R$ 
+on arbitrary density matrices
 \begin{align}
-	\rho \mapsto \frac{1}{d}\qty[\1 + \sum _{J=1}^{d+1} \sum _{j=1}^{d-1}
-	\lambda_J v_{Jj}W_J^j],
-	\label{eq:ruskai-rho}
+	\rho \longmapsto \frac{1}{d}\qty[\1 + \sum _{J=1}^{d+1} \lambda_J
+	\sum _{j=1}^{d-1}	v_{Jj}W_J^j],
+	\label{eq:ruskai-action}
 \end{align}
-where $\lambda_J$ are the eigenvalues of a given Ruskai map. \fxnote{Por fas
-corrige la argumentacion a partir de la modificacion a la ecuacion} where $d$
-is the dimension of the Hilbert space of the system and $W_J^j$ \fxnote{JA, ojo
-que los $W_J$ generan un grupo ciclico, mas no generadores de MUBs, uno
-construye los $W_J$ usando MUBs!. Por fas mejor mete la definicion de $W_J$.}
-are generators of a mutually unbiased bases (MUB) for $\mathbb{C}^{d}$.  Then,
-the action of a Pauli diagonal channel constant on axes on a $\rho$ of the form
-\eqref{eq:ruskai-rho} is to take $v_{Jj}\mapsto (s+t_J)v_{Jj}$. The eigenvalues
-of a Pauli diagonal channel are 1 and $\lambda _J=s+t_J$. Note that there are
-$d+1$ eigenvalues $\lambda_J$, and every eigenvalue has degeneration $d-1$. 
+where $\lambda_J$ are the eigenvalues of a given map, and $W_J$ are 
+operators acting on $\mathbb{C}^d$, vector space that has a collection of 
+at most $d+1$ mutually unbiased bases $\qty{\ket{\psi_k^J}}$, that are defined as
+\begin{align}
+	W_J &= \sum _{k=1}^{d}\omega^k \dyad{\psi_k^J}{\psi_k^J}, 
+	\hspace{2cm} J=1,\ldots,d+1
+\end{align}
+where $\omega = e^{2\pi i/d}$. When $d+1$ mutually unbiased bases exist,
+the $d^2-1$ unitaries
+$\qty{W_J^m}_{m=1,\ldots,d,J=1,\ldots,d+1}$ 
+and the identity matrix form a basis for the space of 
+Hermitian matrices of $d\times d$. 
+%\fxnote{Por fas
+%corrige la argumentacion a partir de la modificacion a la ecuacion} 
 
-In order to construct a channel of ours from a 
-Pauli diagonal channel $\lambda_J$ must be equal to one or zero. Our
-quantum channels have a power-of-2 rank. On the other hand, 
-the rank of a Pauli diagonal channel is $1+3k$ ($k\in \mathbb{Z}^+$,
-$1\leq k\leq d+1$),
-therefore there are subsets of our quantum channels that cannot be  
-Pauli diagonal channels constant on axes. For example, a quantum channel of 2 qubits 
-($d=4$) that leaves invariant 8 components in $\rho$ has rank 8, and
-there's not a $k$ for which the rank of a Pauli diagonal channel may be 8.
+%\fxnote{JA, ojo
+%que los $W_J$ generan un grupo ciclico, mas no generadores de MUBs, uno
+%construye los $W_J$ usando MUBs!. Por fas mejor mete la definicion de $W_J$.}
+ 
+
+To examine if PCE channels are contained in $\R$ let us consider
+the rank of both maps and discuss how only a subset of PCE channels
+could be in $\R$. Our results show that PCE channels have 
+a power-of-2 rank. On the other hand, from \eqref{eq:ruskai-action} it
+can be seen that the rank of a map in $\R$ is 1 plus 
+the number of all $\lambda_J$ different from zero. Note that 
+there are $d-1$ eigenvalues that are $\lambda_J$ for each $J$. Consequently, rank 
+of maps in $\R$ is $1 + k(d-1)$, where $k = 1,2,\ldots,d+1$. It follows
+that a necessary condition for maps in $\R$ and PCE channels to have the 
+same rank is that
+\begin{align}
+	\hspace{2cm}2^j&=1 + k(2^{2n}-1),	\hspace{1.5cm} j=0,1,\ldots,2n
+\end{align}
+is always true for some $k\in \mathbb{Z^+}$, and $n$ the number 
+of qubits. If we take $n=2$ and $j=3$ 
+(2 qubits, $2^3$ components invariant)
+\begin{align}
+	k&= \frac{2^3-1}{2^{2\qty(2)}-1}=\frac{7}{15}.
+\end{align}
+Therefore the rank of a PCE channel may not be the same of any map in $\R$.
+Then, there are PCE channels that cannot be in $\R$, like
+all 8-components-invariant PCE channels, as shown in the previous example. 
 
 
 %\cpnote{Creo que eso ya lo teníamos claro. Sería bueno que discutieramos pues 
