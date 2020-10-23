@@ -62,12 +62,6 @@ where the $\sigma _i$s are tensor products of Pauli
 matrices, which together the identity, form a basis in the space of $2^n\times 2^n$ matrices. Thus the 
 $\tau_i$s are the projections of $\rho$ onto each element of this basis, using the Hilbert-Schmidt inner product.
 
-%where the sum is over vectors $\vec{v}=\qty(v_1,\cdots, v_n)$ with entries
-%$v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
-%\sigma _{v_1} \otimes \sigma_{v_2} \otimes \cdots \otimes \sigma_{v_n}
-%\rho )$ as $r_{v_1, v_2,\ldots, v_n}$ to shorten the notation. 
-
-
 In this work, we are interested in studying the set of maps that erase
 some of the components $\tau_i$ in $\rho$, and characterize the subset of maps
 that are quantum channels.
@@ -75,20 +69,13 @@ that are quantum channels.
 no tener una notación así en la sección de mapeos de Ruskai} 
 \h{Let us call this subset Pauli component erasing
 channels -\pce{} channels-.}
-We will refer to the coefficients in both terms of 
-\eqref{rho} as the components in $\rho$ \ddnote{No se que quieres decir con esta frase JA, si no es nada importante, quitemosla}. 
+%We will refer to the coefficients in both terms of 
+%\eqref{rho} as the components in $\rho$ \ddnote{No se que quieres decir con esta frase JA, si no es nada importante, quitemosla}. 
 For 1 qubit the picture of our problem is easy to understand given that 
 $\tau_i$ are the components of a vector in the Bloch ball, the so-called
 Bloch vector. As an example, let us consider a map that erases any of the 
 components of the Bloch vector. Geometrically, this map collapses 
 the Bloch ball into a disk. This operation is not completely positive, and therefore is not a quantum channel.  
-
-%The kind of maps that act on density matrices of the form \eqref{rho} that
-%we're interested in are those which leave invariant or erase  
-%components
-%in $\rho$ (i.e. $r'_{v_1, v_2,\ldots, v_n}=r_{v_1, v_2,\ldots, v_n}$ or
-%$r'_{v_1, v_2,\ldots, v_n}=0$, where the primed $r$'s refer to the 
-%components in the transformed density matrix $\rho '$). 
 
 So far, evaluating complete positivity numerically, we have obtained all 1 and 2 \pce{} channels. Whereas for $3$ qubits systems we have numerically analyzed only maps that leave 
 invariant 1, 2, 3, 4, and 64 components in $\rho$. Nonetheless, we have strong
