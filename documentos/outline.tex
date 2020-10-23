@@ -16,6 +16,7 @@
 \usepackage{xcolor}
 \usepackage{float}
 \usepackage{amsfonts}
+\newcommand{\pce}{PCE}
 \usepackage{dsfont}
 %\usepackage{bbold}
 
@@ -37,6 +38,7 @@
 \usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
 \FXRegisterAuthor{cp}{acp}{\color{blue}CP}
 \FXRegisterAuthor{ja}{aja}{\color{RedViolet}JA}
+\FXRegisterAuthor{dd}{ddg}{\color{red}DD}
 % }}}
 \begin{document}
 % Titulo y otros {{{
@@ -51,17 +53,14 @@
 % }}}
 % Intro {{{
 According to \cite{bengtsson_zyczkowski_2017}, an arbitrary density matrix on $n$  
-qubits can be expanded as
+qubits can be written as
 \begin{align}
   \rho = \frac{1}{2^n}\1 + \sum _{i=1}^{2^{2n}-1}\tau _i\sigma _i,
 	\label{rho}
 \end{align}
-where we will identify $\sigma _i$ as the tensor products of Pauli 
-matrices, which form a basis of the space of traceless Hermitian
-%\cpnote{Quitar density}
-%density 
-matrices, and 
-$\tau_i$ are the projections of $\rho$ onto each element of this basis.
+where the $\sigma _i$s are tensor products of Pauli 
+matrices, which together the identity, form a basis in the space of $2^n\times 2^n$ matrices. Thus the 
+$\tau_i$s are the projections of $\rho$ onto each element of this basis, using the Hilbert-Schmidt inner product.
 
 %where the sum is over vectors $\vec{v}=\qty(v_1,\cdots, v_n)$ with entries
 %$v_i$ chosen from the set $\{0,1,2,3\}$. We label the coefficients $\Tr \qty(
@@ -70,20 +69,19 @@ $\tau_i$ are the projections of $\rho$ onto each element of this basis.
 
 
 In this work, we are interested in studying the set of maps that erase
-some components $\tau_i$ in $\rho$ and characterize the subset of maps
+some of the components $\tau_i$ in $\rho$, and characterize the subset of maps
 that are quantum channels.
 \janote{Introduje la notación a continuación. Se ponía engorroso
 no tener una notación así en la sección de mapeos de Ruskai} 
 \h{Let us call this subset Pauli component erasing
-channels -PCE channels-.}
-We'll refer to the coefficients in both terms of 
-\eqref{rho} as the components in $\rho$. 
+channels -\pce{} channels-.}
+We will refer to the coefficients in both terms of 
+\eqref{rho} as the components in $\rho$ \ddnote{No se que quieres decir con esta frase JA, si no es nada importante, quitemosla}. 
 For 1 qubit the picture of our problem is easy to understand given that 
 $\tau_i$ are the components of a vector in the Bloch ball, the so-called
-Bloch vector. As an example, let's consider a map that erases any of the 
+Bloch vector. As an example, let us consider a map that erases any of the 
 components of the Bloch vector. Geometrically, this map collapses 
-the Bloch ball into a disk. This operation does not fulfill 
-the condition of complete positivity and therefore is not a quantum channel.  
+the Bloch ball into a disk. This operation is not completely positive, and therefore is not a quantum channel.  
 
 %The kind of maps that act on density matrices of the form \eqref{rho} that
 %we're interested in are those which leave invariant or erase  
@@ -92,8 +90,7 @@ the condition of complete positivity and therefore is not a quantum channel.
 %$r'_{v_1, v_2,\ldots, v_n}=0$, where the primed $r$'s refer to the 
 %components in the transformed density matrix $\rho '$). 
 
-So far, with a numerical method we've characterized all 1 and 2 qubit maps, 
-whereas for 3 qubits system we have numerically analyzed only maps that leave 
+So far, evaluating complete positivity numerically, we have obtained all 1 and 2 \pce{} channels. Whereas for $3$ qubits systems we have numerically analyzed only maps that leave 
 invariant 1, 2, 3, 4, and 64 components in $\rho$. Nonetheless, we have strong
 indications that only maps that leave invariant 8 components are 
 needed to analyze in order to find the complete set of 3-qubit PCE 
@@ -108,7 +105,7 @@ making use of this tool. We'll consider any little square or cube in blank
 as a component erased in $\rho$ by the map. 
 \janote{Agregué la siguiente línea por tu observación sobre los colores 
 que está antes de la Fig. 3.}
-Red squares correspond to components of local Bloch vectors,
+Red squares correspond to components of Bloch vectors of one-particle reduced density matrices,
 blue squares to correlations between any pair of qubits, and
 green squares to correlations between all qubits in the system for
 the 3-qubits case.
@@ -137,11 +134,11 @@ In the following subsections we present the PCE channels for
 \subsection*{1 qubit} % {{{
 In \fref{fig:1q-ccs} we present the PCE channels for 1 qubit.
 The first and last patterns represent identity 
-and completely depolarizing channels. 
-In between them, from left to right, patterns represent 
-bit-phase flip, phase-flip and bit-flip channels, 
-all of them for $p=0.5$.	
-These last three channels are equivalent via permutation
+and the total depolarizing channel. 
+Patterns in between represent 
+bit-phase flip, phase-flip and bit-flip channels (from left to right), 
+all of them for $p=1/2$.	
+These three flip channels are equivalent via permutation
 of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
 \begin{figure}[H]% {{{
 	\centering
@@ -158,17 +155,16 @@ $p=0.5$), and completely depolarizing.}
 % }}}
 \subsection*{2 qubits} % {{{
 2-qubits PCE channels have been classified in equivalence classes 
-(as shown from \fref{fig:2q-c1} to \fref{fig:2q-c16}) such
+(as shown from \fref{fig:2q-c1} to \fref{fig:2q-c16}), such
 that elements in a class are connected by
 \begin{enumerate}
-	\item Particle swaps. Qubits in the system can be interchanged. Therefore
+	\item Particle swaps: Qubits in the system can be interchanged. Therefore
 	if a map is a PCE channel for a certain arrangement 
 	of qubits, then
 	there are equivalent PCE channels acting on the system for all possible
 	arrangements of qubits. In the pattern-picture this can be
-	interpreted as transpositions (exploiting the matrix properties of
-	patterns).
-	\item Permutations of individual components. The state of an individual
+	interpreted as transpositions.
+	\item Permutations of individual components: The state of an individual
 	qubit may be rotated in such a way that components of its local Bloch
 	vector are swapped via permutations. PCE channels are equivalent
 	to these permutations.
@@ -291,7 +287,7 @@ invariant are shown in \fref{fig:CCs-by-components}.
 \cpnote{ En la figura, creo que los colores sobre y
 distraen. Tambien sería padre poner cuantos de cada clase hay. Por ejemplo
 poner 1/1 que quiere decir que el unico posible es canal, o 63/128 queriendo
-decir que 63 de los 128 son canales.} \janote{Listo.}
+decir que 63 de los 128 son canales.} \janote{Listo.} \ddnote{Me parece que este punto esta incompleto, tampoco entiendo completamente la figura.}
 
 %Two numbers
 %of same color correspond to quantum channels that we suspect have a 1:1 
@@ -343,7 +339,20 @@ as in the following pattern
 % \hfill \hfill 
 % \newline
 \end{center}
-which is in fact another PCE channel.
+which is in fact another PCE channel. This rule can be derived using the complete positive condition over the following pattern:
+\begin{equation}
+\begin{array}{|c|c|c|c|}
+\hline
+1 & a_1 & 0 & 0 \\ 
+\hline
+a_2 & b & 0 & 0 \\ 
+\hline
+0 & 0 & 0 & 0 \\ 
+\hline
+0 & 0 & 0 & 0\\
+\hline
+\end{array}
+\end{equation}
 % \janote{Fin.}
 
 \item Considering only components in the correlation matrix (blue squares): if a component
@@ -552,7 +561,7 @@ para dos qubits en el caso de 3 qubits}
 We explored if PCE channels are contained within the set of Pauli diagonal
 channels constant on axes \cite{nathanson2007pauli}. Let us call them
 $\mathcal{R}$. For 2 qubits, we concluded that Kraus rank $4$ 
-PCE channels are the only non-trivial candidates to
+PCE channels are the only candidates to
 be in $\mathcal{R}$, in fact we are convinced that all of them are in, but are
 still working in the proof. 
 %\cpnote{David is convinced, the rest of us have no idea} 
@@ -563,18 +572,12 @@ on arbitrary density matrices
 	\sum _{j=1}^{d-1}	v_{Jj}W_J^j],
 	\label{eq:ruskai-action}
 \end{align}
-where $\lambda_J$ are the eigenvalues of a given map, and $W_J$ are 
-operators acting on $\mathbb{C}^d$, vector space that has a collection of 
-at most $d+1$ mutually unbiased bases $\qty{\ket{\psi_k^J}}$, that are defined as
-\begin{align}
-	W_J &= \sum _{k=1}^{d}\omega^k \dyad{\psi_k^J}{\psi_k^J}, 
-	\hspace{2cm} J=1,\ldots,d+1
-\end{align}
-where $\omega = e^{2\pi i/d}$. When $d+1$ mutually unbiased bases exist,
-the $d^2-1$ unitaries
-$\qty{W_J^m}_{m=1,\ldots,d,J=1,\ldots,d+1}$ 
-and the identity matrix form a basis for the space of 
-Hermitian matrices of $d\times d$. 
+where $\lambda_J$ are the eigenvalues of a given map, and operators $W_J$ are unitaries defined as
+\begin{equation}
+	W_J = \sum _{k=1}^{d}\omega^k \dyad{\psi_k^J}{\psi_k^J}, 
+\end{equation}
+where sets of vectors $\qty{\ket{\psi_k^J}}_k$ with $J=1,\dots, 1+d$ are mutually unbiased basis (MUB) over $\mathbb{C}^d$, and $\omega = e^{2\pi i/d}$. There are $d^2-1$ unitaries generated with the powers of the $W_J$s, i.e.
+$\qty{W_J^m}_{m=1,\ldots,d,J=1,\ldots,d+1}$. They, together the identity matrix, form a basis in the space of $d\times d$ matrices. \ddnote{JA, he visto que dices que una base de unitarias es solo una base para matrices unitarias, no es cierto.} 
 %\fxnote{Por fas
 %corrige la argumentacion a partir de la modificacion a la ecuacion} 
 
@@ -588,10 +591,9 @@ the rank of both maps and discuss how only a subset of PCE channels
 could be in $\R$. Our results show that PCE channels have 
 a power-of-2 rank. On the other hand, from \eqref{eq:ruskai-action} it
 can be seen that the rank of a map in $\R$ is 1 plus 
-the number of all $\lambda_J$ different from zero. Note that 
-there are $d-1$ eigenvalues that are $\lambda_J$ for each $J$. Consequently, rank 
-of maps in $\R$ is $1 + k(d-1)$, where $k = 1,2,\ldots,d+1$. It follows
-that a necessary condition for maps in $\R$ and PCE channels to have the 
+the number of all $\lambda_J$ different from zero. Notice that eigenvalues $\lambda_J$ have multiplicity $d-1$, for each $J$. Consequently, the allowed matrix ranks 
+of maps in $\R$ are $1 + k(d-1)$, where $k = 1,2,\ldots,d+1$. It follows
+that a \textit{necessary} condition for maps in $\R$ and PCE channels to have the 
 same rank is that
 \begin{align}
 	\hspace{2cm}2^j&=1 + k(2^{2n}-1),	\hspace{1.5cm} j=0,1,\ldots,2n
