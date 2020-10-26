@@ -45,10 +45,7 @@
 \title{Projective maps on a system of $n$ qubits} 
 %Title should be concise and to the point  
 \author{J. A. de León\\ \small{in collaboration with C. Pineda, D. Dávalos, A. Fonseca}}
-
-
 \date{\today}  
-
 \maketitle
 % }}}
 % Intro {{{
@@ -59,29 +56,31 @@ qubits can be written as
 	\label{rho}
 \end{align}
 where the $\sigma _i$s are tensor products of Pauli 
-matrices, which together the identity, form a basis in the space of $2^n\times 2^n$ matrices. Thus the 
-$\tau_i$s are the projections of $\rho$ onto each element of this basis, using the Hilbert-Schmidt inner product.
+matrices, which together with the identity, form a orthogonal basis in the space of
+$2^n\times 2^n$ matrices. Thus the $\tau_i$s are the projections of $\rho$ onto
+each element of this basis, using the Hilbert-Schmidt inner product.
 
 In this work, we are interested in studying the set of maps that erase
 some of the components $\tau_i$ in $\rho$, and characterize the subset of maps
 that are quantum channels.
-\janote{Introduje la notación a continuación. Se ponía engorroso
-no tener una notación así en la sección de mapeos de Ruskai} 
-\h{Let us call this subset Pauli component erasing
-channels -\pce{} channels-.}
+Let us call this subset Pauli component erasing
+channels -\pce{} channels-.
 %We will refer to the coefficients in both terms of 
 %\eqref{rho} as the components in $\rho$ \ddnote{No se que quieres decir con esta frase JA, si no es nada importante, quitemosla}. 
 For 1 qubit the picture of our problem is easy to understand given that 
 $\tau_i$ are the components of a vector in the Bloch ball, the so-called
-Bloch vector. As an example, let us consider a map that erases any of the 
-components of the Bloch vector. Geometrically, this map collapses 
-the Bloch ball into a disk. This operation is not completely positive, and therefore is not a quantum channel.  
+Bloch vector. As an example, let us consider a map that erases any single
+component of the Bloch vector. Geometrically, this map collapses 
+the Bloch ball into a disk. This operation is not completely positive, and
+therefore is not a quantum channel.  However, erasing two components yields 
+a quantum channel.
 
-So far, evaluating complete positivity numerically, we have obtained all 1 and 2 \pce{} channels. Whereas for $3$ qubits systems we have numerically analyzed only maps that leave 
-invariant 1, 2, 3, 4, and 64 components in $\rho$. Nonetheless, we have strong
-indications that only maps that leave invariant 8 components are 
-needed to analyze in order to find the complete set of 3-qubit PCE 
-channels.
+So far, evaluating complete positivity numerically, we have obtained all 1 and
+2 \pce{} channels. Whereas for $3$ qubits systems we have numerically analyzed
+only maps that leave invariant 1, 2, 3, 4, and 64 components in $\rho$.
+Nonetheless, we have strong indications that only maps that leave invariant 8
+components are needed to analyze in order to find the complete set of 3-qubit
+PCE channels.
 % }}}
 \section*{Results} % {{{
 In \fref{fig:pictorial-rep-rho} we introduce a pictorial representation 
@@ -90,8 +89,6 @@ of 1, 2 and 3 qubits,
 respectively. It will be helpful to visualize the maps we are studying 
 making use of this tool. We'll consider any little square or cube in blank
 as a component erased in $\rho$ by the map. 
-\janote{Agregué la siguiente línea por tu observación sobre los colores 
-que está antes de la Fig. 3.}
 Red squares correspond to components of Bloch vectors of one-particle reduced density matrices,
 blue squares to correlations between any pair of qubits, and
 green squares to correlations between all qubits in the system for
