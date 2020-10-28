@@ -129,7 +129,6 @@ of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
 	\includegraphics[width=5cm]
 	{img/1q-CCs.png}
 	\caption{
-\cpnote{Mejora el caption. } \janote{Listo.}
 1-qubit PCE channels. From left to right patterns represent  
 the following channels: identity,
 bit-phase flip, phase flip, bit flip (the last three for 
@@ -150,17 +149,12 @@ that elements in a class are connected by
 	interpreted as transpositions.
 	\item Permutations of individual components: The state of an individual
 	qubit may be rotated in such a way that components of its local Bloch
-	vector are swapped via permutations. PCE channels are equivalent
+	vector are swapped via permutations\cpnote{De acuerdo a lo que he pensado, esa frase no es cierta. 
+        Me gustaría discutir.}. PCE channels are equivalent
 	to these permutations.
 	In the pattern-picture this
 	is interpreted as permutations of rows or columns 1, 2 and 3.
-\cpnote{Explica el por que de eso. En los dos casos, mas bien 
-di como clasificamos, desde un punto de vista fisico, y luego a que traduice graficamente
-eso. primero lo importante y luego el detalle. }
-\janote{Listo.}
 \end{enumerate}
-\cpnote{No recuerdo que tan pronto mencionas lo de los colores azules y eso, pero seria 
-bueno explicarlo pronto y ser consistente con eso desde la primera figura}
 
 \begin{figure}[H] % {{{
 	\centering
@@ -199,6 +193,7 @@ bueno explicarlo pronto y ser consistente con eso desde la primera figura}
 	  \includegraphics[width=.9\textwidth]
 		{img/C24.png}
 		\caption{C${}_2^4$}
+		\label{fig:2q-4c-2}
 	\end{minipage}\vfill
 \begin{minipage}[c]{0.5\textwidth}
 		\centering
@@ -212,7 +207,6 @@ bueno explicarlo pronto y ser consistente con eso desde la primera figura}
 		{img/C44.png}
 		\vspace{2.5cm}
 		\caption{C${}_4^4$}
-		\label{fig:2q-4c-2}
 	\end{minipage}
 \end{figure} % }}}
 
@@ -251,10 +245,6 @@ are quantum channels. For example, the pattern below corresponds
 to a map that is a potential element of C${}_2^4$ (\Fref{fig:2q-4c-2}).
 Nevertheless, complete positivity is not satisfied 
 and then the map is not a quantum channel. 
-\cpnote{Menciona con que clase y que figura
-tendría que ocntrastar. También en la siguiente parte sobra el 
-ambiente figure, pues ni le pones caption ni quieres que flote. Se lo quité}. 
-\janote{Listo.}
 % \begin{figure}[H]
 % 	\centering
 % 	\includegraphics[height=2cm]{img/not-cc}
@@ -268,10 +258,6 @@ The ratio of PCE channels and all possible maps
 that erase components in $\rho$ according to number of qubits 
 and number of components
 invariant are shown in \fref{fig:CCs-by-components}.
-\cpnote{ En la figura, creo que los colores sobre y
-distraen. Tambien sería padre poner cuantos de cada clase hay. Por ejemplo
-poner 1/1 que quiere decir que el unico posible es canal, o 63/128 queriendo
-decir que 63 de los 128 son canales.} \janote{Listo.} \ddnote{Me parece que este punto esta incompleto, tampoco entiendo completamente la figura.}
 
 %Two numbers
 %of same color correspond to quantum channels that we suspect have a 1:1 
@@ -302,10 +288,6 @@ allowed: \textit{a)} both components with indices $i0$ and $0j$ are left
 invariant too, or \textit{b)} both components with indices $i0$ and $0j$ are
 erased.
 Let us take a look at the next example. 
-%\cpnote{Cambié el hfill y los newlines
-%por un center. Cuando lo veas quita este comentario}
-% \newline
-% \hfill
 \begin{center}
 \includegraphics[width=2cm]{img/ex-2q2c-empiricalRule}
 \end{center}
@@ -351,16 +333,11 @@ column 1 may be left invariant by a PCE channel, i.e.
 \end{center}
 which is another PCE channel.
 \end{enumerate}	
-% Actually, this two simple rules allow us to connect two elements of classes
-% C${}^2_k$ and C${}^8_k$. \cpnote{Creo que se pueden hacer más conexiones, no?}
-% \janote{Es cierto, corrijo:}
 Actually, this two simple rules allow us to relate
 different equivalence classes. In the previous example we were able to connect 
 an element of C${}_2^2$ to one of C${}_3^4$, to another one of
 C${}_2^8$.
 
-% \janote{Agrego el siguiente item porque no le había dado la suficiente
-% importancia unos items arriba (en el de la fig. 13)}
 \item \textit{(Rainbow hypothesis)} PCE channels
 that leave $2^k$ components invariant and $2^{2n-k}$ have a
 1:1 correspondence. That is to say, two numbers of the same color 
@@ -369,8 +346,6 @@ channels that have a 1:1 correspondence.
 
 \item The action of a PCE channel on every subsystem must be another
 PCE channel. 
-% \cpnote{Esto también hay que explicar que efecto tiene en los diagramas}
-% \janote{\h{Inicio}}
 This can be seen from the patterns in \fref{fig:2q-c1} to \fref{fig:2q-c16}.
 Recall that red squares represent components of local Bloch vectors 
 and blue squares represent correlations shared between qubits. 
@@ -427,13 +402,10 @@ PCE channels. It's important to mention that in the 2-qubits case all
 \end{figure}
 
 % }}}
-
-\cpnote{Estudiates los que dejan invariantes 3 elementos?}
-\janote{Sí. Agrego la siguiente sección:}
-\subsubsection*{3-invariants-component maps}
+\subsubsection*{3-invariants-component maps} % {{{
 No PCE channels were found in the set of all maps that leave
 3 components invariant in $\rho$.
-
+% }}}
 \subsubsection*{4-invariant-components maps} % {{{
 There are 39,711 maps that leave invariant 4 components in $\rho$, 651
 are PCE channels and may be classified in 10 equivalence classes.
@@ -483,7 +455,7 @@ previous results.
 	\label{fig:QC-3q-4c}
 \end{figure}
 % }}}
-
+% Rules for 3 qubits {{{
 The empirical rules already presented for 2 qubits can be 
 formulated for 3 qubits as follows:
 \begin{itemize}
@@ -535,11 +507,7 @@ It is sufficient to found one element in an
 equivalence class because the rest of the elements are found 
 by particle swaps and permutation of individual components.
 % }}}
-\cpnote{Sería importante discutir como se comportan todas las hipotesis que hiciste 
-para dos qubits en el caso de 3 qubits}
-\janote{De acuerdo. Lo agregué después de la fig. 16}
-
-
+% }}}
 % }}}
 \section*{Are this channels a subset of Pauli diagonal channels constant on axes?} % {{{
 We explored if PCE channels are contained within the set of Pauli diagonal
@@ -548,7 +516,6 @@ $\mathcal{R}$. For 2 qubits, we concluded that Kraus rank $4$
 PCE channels are the only candidates to
 be in $\mathcal{R}$, in fact we are convinced that all of them are in, but are
 still working in the proof. 
-%\cpnote{David is convinced, the rest of us have no idea} 
 To see this let us analyze the action of maps in $\R$ 
 on arbitrary density matrices
 \begin{align}
@@ -593,10 +560,6 @@ Then, there are PCE channels that cannot be in $\R$, like
 all 8-components-invariant PCE channels, as shown in the previous example. 
 
 
-%\cpnote{Creo que eso ya lo teníamos claro. Sería bueno que discutieramos pues 
-%me gustaría dar mas seguridades. De hecho tu argumento me parece una prueba, pero quizá
-%lo tengamos que refinar. Planeemos una reunion pronto con el resto del combo para ver esto.
-%Obvio, creo, si hay intersección, pero no son los mismos.}
 % }}}
 \section*{To-do} % {{{
 In order to fully understand our results and generalize this kind of maps 
