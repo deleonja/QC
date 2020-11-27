@@ -22,6 +22,10 @@ CubePositions::usage=
 "CubePositions[diagElPos] gives the positions of the painted cubes given the positions of the 1's in the diagonal of the quantum channel."
 Cube3q::usage=
 "Cube3q[indices] graphs the 3-qubit board given the indices of the painted cubes."
+CPtest::usage=
+"CPtest[points] returns True if CP, False if not."
+Ptest::usage=
+"Ptest[A] returns True if A is positive semidefinite, False if not."
 
 Begin["`Private`"]
 Reshuffle[SqMatrix_]:=ArrayFlatten[ArrayFlatten/@Partition[Partition[ArrayReshape[#,{Sqrt[Dimensions[SqMatrix][[1]]],Sqrt[Dimensions[SqMatrix][[1]]]}]&/@SqMatrix,Sqrt[Dimensions[SqMatrix][[1]]]],Sqrt[Dimensions[SqMatrix][[1]]]],1];
@@ -59,6 +63,9 @@ If[Count[#,0]==0,{RGBColor["#99FF33"],Cube[#]}]]]]&/@indices,
 {{3.5,3.5,-0.5},{3.5,-0.5,-0.5}}}]}},
 Axes->False,AxesLabel->{"x","y","z"},LabelStyle->Directive[Bold,Medium,Black],PlotRange->{{-0.5,3.5},{-0.5,3.5},{-0.5,3.5}},AxesOrigin->{0.5,0.5,0.5},AxesStyle->Thickness[0.005],ImageSize->Medium,ImagePadding->45]
 
+CPtest[points_]:=If[(QC[SparseArray[points+1->ConstantArray[1,{points//Length}],{4,4,4}]//Normal//Flatten,3]//Reshuffle//Eigenvalues//Min)>=0,True,False]
+
+Ptest[A_]:=AllTrue[(Diagonal[Map[Reverse,Minors[A,#],{0,1}]]&/@Range[Length[A]]),#>=0&,2]
 End[];
 EndPackage[]
 
