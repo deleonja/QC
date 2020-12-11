@@ -28,6 +28,10 @@ PtestM::usage=
 "Ptest[A] evaluates the positive-semidefiniteness of A using the principal minors criterion."
 Ptest::usage=
 "Ptest[A] evaluates the positive-semidefiniteness of A with its eigenvalues."
+Dirac::usage=
+"Dirac[vector] returns vector in Dirac notation in computational basis."
+TwoQBoard::usage=
+"TwoQBoard[diagonalPCE] returns a two qubits board."
 
 Begin["`Private`"]
 Reshuffle[SqMatrix_]:=ArrayFlatten[ArrayFlatten/@Partition[Partition[ArrayReshape[#,{Sqrt[Dimensions[SqMatrix][[1]]],Sqrt[Dimensions[SqMatrix][[1]]]}]&/@SqMatrix,Sqrt[Dimensions[SqMatrix][[1]]]],Sqrt[Dimensions[SqMatrix][[1]]]],1];
@@ -71,8 +75,17 @@ PtestM[A_]:=AllTrue[(Diagonal[Map[Reverse,Minors[A,#],{0,1}]]&/@Range[Length[A]]
 
 Ptest[A_]:=(A//Eigenvalues//Min)>=0
 
+Dirac[vector_List]:=(vector[[#]]Ket[IntegerString[(#-1),2,Sqrt[Length[vector]]]])&/@Delete[Range[Length[vector]],Position[vector,0]]//Total
+
+TwoQBoard[diagonalPCE_List]:=ArrayPlot[ArrayReshape[diagonalPCE,{4,4}]]
 End[];
 EndPackage[]
+
+
+
+
+
+
 
 
 
