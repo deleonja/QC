@@ -1,0 +1,868 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     39678,        858]
+NotebookOptionsPosition[     38846,        834]
+NotebookOutlinePosition[     39240,        850]
+CellTagsIndexPosition[     39197,        847]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Definitions", "Section",
+ CellChangeTimes->{{3.823134084216033*^9, 3.8231340931722307`*^9}, {
+  3.823134309985849*^9, 
+  3.823134312849865*^9}},ExpressionUUID->"67edd130-9cb4-47af-85ec-\
+9aec3fcdd3ce"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    SubsuperscriptBox["a", "j", "\[Mu]"], " ", "for", " ", "1", " ", 
+    "qubit"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"EigenvalSigns1QubitPCE", "[", "]"}], ":=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1", ",", "1", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1", ",", 
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}], ",", "1", ",", 
+         RowBox[{"-", "1"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}], ",", 
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"To", " ", "calculate", " ", 
+     SubsuperscriptBox["a", 
+      SubscriptBox["j", "1"], 
+      SubscriptBox["\[Mu]", "1"]], 
+     SubsuperscriptBox["\[Ellipsis]a", 
+      SubscriptBox["j", "l"], 
+      SubscriptBox["\[Mu]", "l"]]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"EigenSignsPCE", "[", "n_Integer", "]"}], ":=", 
+    RowBox[{"Nest", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"KroneckerProduct", "[", 
+        RowBox[{
+         RowBox[{"EigenvalSigns1QubitPCE", "[", "]"}], ",", "#"}], "]"}], 
+       "&"}], ",", 
+      RowBox[{"EigenvalSigns1QubitPCE", "[", "]"}], ",", 
+      RowBox[{"n", "-", "1"}]}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"To", " ", "calculate", " ", 
+      SubscriptBox["\[Mu]", "1"]}], ",", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["\[Mu]", "2"], " ", "for", " ", "which", " ", 
+       SubscriptBox["\[Lambda]", 
+        RowBox[{
+         SubscriptBox["\[Mu]", "1"], ",", 
+         SubscriptBox["\[Mu]", "2"]}]]}], "<", 
+      RowBox[{"0", " ", "from", " ", "the", " ", "number", " ", "of", " ", 
+       SubscriptBox["\[Tau]", 
+        RowBox[{
+         SubscriptBox["j", "1"], ",", 
+         SubscriptBox["j", "2"]}]], " ", "left", " ", "invariant", " ", 
+       RowBox[{"(", 
+        RowBox[{"only", " ", "for", " ", "2", " ", 
+         RowBox[{"qubits", "!!"}]}], ")"}]}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NegativeEigenvaluesFromTaus", "[", "i_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "\[Tau]", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\[Tau]", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Normal", "[", 
+           RowBox[{"SparseArray", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"{", "1", "}"}], "~", "Join", "~", "#"}], "\[Rule]", 
+              RowBox[{"ConstantArray", "[", 
+               RowBox[{"1", ",", "i"}], "]"}]}], ",", "16"}], "]"}], "]"}], 
+          "&"}], "/@", 
+         RowBox[{"Subsets", "[", 
+          RowBox[{
+           RowBox[{"Range", "[", 
+            RowBox[{"2", ",", "16"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", "-", "1"}], "}"}]}], "]"}]}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"IntegerDigits", "[", 
+          RowBox[{
+           RowBox[{"#", "-", "1"}], ",", "4", ",", "2"}], "]"}], "&"}], "/@", 
+        
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Position", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"EigenSignsPCE", "[", "2", "]"}], ".", "#"}], ",", 
+              RowBox[{"x_", "/;", 
+               RowBox[{"x", "<", "0"}]}]}], "]"}], "]"}], "&"}], "/@", 
+          "\[Tau]"}], ")"}]}]}]}], "\[IndentingNewLine]", 
+     "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.823134113468595*^9, 3.823134302831201*^9}},
+ CellLabel->
+  "In[828]:=",ExpressionUUID->"f3a0c41a-cae3-455e-b19d-8394e5b70d34"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Configurations for which ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[Lambda]", 
+     RowBox[{
+      SubscriptBox["\[Mu]", "1"], ",", 
+      SubscriptBox["\[Mu]", "2"]}]], "<", "0"}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "8cccc852-7234-481f-8d2b-43a8f907dfca"],
+ " holds"
+}], "Section",
+ CellChangeTimes->{{3.823134329809908*^9, 3.823134330178438*^9}, {
+  3.823134488232521*^9, 
+  3.8231345125285053`*^9}},ExpressionUUID->"8b8c73f6-edd8-4d00-b552-\
+14a6c5a11fd8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"TableForm", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"ToString", "[", 
+            RowBox[{"Style", "[", 
+             RowBox[{"i", ",", "Bold"}], "]"}], "]"}], "<>", 
+           "\"\< \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \
+\(1\)], \*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:\>\""}], "}"}], ",", 
+         
+         RowBox[{"{", 
+          RowBox[{"\"\<\!\(\*Cell[TextData[{
+Cell[BoxData[FormBox[
+SubscriptBox[\"\[Lambda]\", RowBox[{
+SubscriptBox[\"\[Mu]\", \"1\"], \",\", 
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\",ExpressionUUID->\"8893c9a1-\
+7639-47c0-ab0c-a347e70edff9\"],
+\"<0\"
+}],ExpressionUUID->\"fcb91b6e-4965-4053-a896-481e83cc6c6d\"]\)\>\"", ",", 
+           "\"\<\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations\>\"", ",", 
+           "\"\<\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations\>\""}], "}"}]}], "}"}], "~", "Join", "~", 
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"Sort", "[", 
+          RowBox[{"Tally", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Length", "[", "#", "]"}], "&"}], "/@", 
+            RowBox[{"NegativeEigenvaluesFromTaus", "[", "i", "]"}]}], "]"}], 
+          "]"}], ",", 
+         RowBox[{"Transpose", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Sort", "[", 
+             RowBox[{"Tally", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Length", "[", "#", "]"}], "&"}], "/@", 
+               RowBox[{"Union", "[", 
+                RowBox[{"NegativeEigenvaluesFromTaus", "[", "i", "]"}], 
+                "]"}]}], "]"}], "]"}], "}"}], "[", 
+           RowBox[{"[", 
+            RowBox[{";;", ",", ";;", ",", "2"}], "]"}], "]"}], "]"}], ",", 
+         "2"}], "]"}], "~", "Join", "~", 
+       RowBox[{"{", 
+        RowBox[{"{", "}"}], "}"}]}], ",", 
+      RowBox[{"TableAlignments", "->", "Center"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "16"}], "}"}]}], "]"}], "//", "TableForm"}]], "Input",
+ CellChangeTimes->{{3.8231254706850243`*^9, 3.8231255094690247`*^9}, {
+  3.8231256051127853`*^9, 3.823125679845416*^9}, {3.8231257411085663`*^9, 
+  3.8231257904985867`*^9}, {3.823126277074234*^9, 3.823126341200966*^9}, {
+  3.823128562500208*^9, 3.823128596867429*^9}, {3.823128684509721*^9, 
+  3.823128685339613*^9}, {3.8231343347399397`*^9, 3.823134423338159*^9}, {
+  3.8231344534441347`*^9, 3.823134468370387*^9}, {3.823134528537944*^9, 
+  3.823134530566615*^9}},
+ CellLabel->
+  "In[833]:=",ExpressionUUID->"f049be2b-57b6-4689-a2a5-f92f2e459f77"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[GridBox[{
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"1 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"0", "1", "1"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "1 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {0, 1, 1}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"2 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"0", "15", "1"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "2 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {0, 15, 1}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"3 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"4", "105", "105"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "3 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {4, 105, 105}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"4 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"0", "35", "1"},
+         {"2", "420", "105"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "4 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {0, 35, 1}, {2, 420, 105}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"5 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"2", "105", "105"},
+         {"5", "840", "168"},
+         {"6", "420", "420"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "5 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {2, 105, 105}, {5, 840, 168}, {6, 420, 420}, {}}, 
+        TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"6 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"2", "1155", "105"},
+         {"3", "1680", "420"},
+         {"5", "168", "168"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "6 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {2, 1155, 105}, {3, 1680, 420}, {5, 168, 168}, {}}, 
+        TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"7 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"4", "420", "420"},
+         {"5", "1680", "168"},
+         {"6", "2625", "2625"},
+         {"9", "280", "280"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "7 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {4, 420, 420}, {5, 1680, 168}, {6, 2625, 2625}, {9, 280, 
+         280}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"8 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"0", "15", "1"},
+         {"1", "540", "15"},
+         {"3", "3360", "420"},
+         {"4", "2520", "840"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "8 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {0, 15, 1}, {1, 540, 15}, {3, 3360, 420}, {4, 2520, 
+         840}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"9 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \
+\\(\\*SubscriptBox[\\(j\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \
+\\(2\\)]\\)]\\) left invariant:\"\>", "\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"1", "15", "15"},
+         {"3", "420", "420"},
+         {"5", "840", "840"},
+         {"6", "2520", "280"},
+         {"7", "2640", "2640"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "9 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {1, 15, 15}, {3, 420, 420}, {5, 840, 840}, {6, 2520, 280}, {
+         7, 2640, 2640}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"10 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"1", "105", "15"},
+         {"3", "2940", "420"},
+         {"4", "1680", "420"},
+         {"6", "280", "280"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "10 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {1, 105, 15}, {3, 2940, 420}, {4, 1680, 420}, {6, 280, 
+         280}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"11 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"5", "315", "315"},
+         {"6", "1680", "280"},
+         {"7", "840", "840"},
+         {"10", "168", "168"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "11 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {5, 315, 315}, {6, 1680, 280}, {7, 840, 840}, {10, 168, 
+         168}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"12 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"1", "105", "15"},
+         {"3", "420", "35"},
+         {"4", "840", "840"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "12 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {1, 105, 15}, {3, 420, 35}, {4, 840, 840}, {}}, 
+        TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"13 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"3", "35", "35"},
+         {"7", "420", "420"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "13 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {3, 35, 35}, {7, 420, 420}, {}}, TableAlignments -> 
+        Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"14 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"3", "105", "35"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "14 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {3, 105, 35}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"15 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"7", "15", "15"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "15 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {7, 15, 15}, {}}, TableAlignments -> Center]]},
+     {
+      InterpretationBox[GridBox[{
+         {"\<\"16 \\!\\(\\*SubscriptBox[\\(\[Tau]\\), \\(\\*SubscriptBox[\\(j\
+\\), \\(1\\)], \\*SubscriptBox[\\(j\\), \\(2\\)]\\)]\\) left invariant:\"\>", \
+"\<\"\"\>", "\<\"\"\>"},
+         {"\<\"\\!\\(\\*Cell[TextData[{\\nCell[BoxData[FormBox[\\n\\n   \
+SubscriptBox[\\\"\[Lambda]\\\", \\n    RowBox[{\\nSubscriptBox[\\\"\[Mu]\\\", \
+\\\"1\\\"], \\\",\\\", \\n\\n     SubscriptBox[\\\"\[Mu]\\\", \\\"2\\\"]}]], \
+TraditionalForm]],FormatType->\\\"TraditionalForm\\\"],\\n\\\"<0\\\"\\n}]]\\)\
+\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\[RightVector]\\)]\\) \
+configurations\"\>", "\<\"\\!\\(\\*OverscriptBox[\\(\[Tau]\\), \\(\
+\[RightVector]\\)]\\) unique configurations\"\>"},
+         {"0", "1", "1"},
+         {"\<\"\"\>", "\<\"\"\>", "\<\"\"\>"}
+        },
+        GridBoxAlignment->{"Columns" -> {{Center}}, "Rows" -> {{Baseline}}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[2.0999999999999996`]}, 
+            Offset[0.27999999999999997`]}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}}],
+       TableForm[{{
+         "16 \!\(\*SubscriptBox[\(\[Tau]\), \(\*SubscriptBox[\(j\), \(1\)], \
+\*SubscriptBox[\(j\), \(2\)]\)]\) left invariant:"}, {
+         "\!\(\*Cell[TextData[{\nCell[BoxData[FormBox[\n\n   SubscriptBox[\"\
+\[Lambda]\", \n    RowBox[{\nSubscriptBox[\"\[Mu]\", \"1\"], \",\", \n\n     \
+SubscriptBox[\"\[Mu]\", \"2\"]}]], \
+TraditionalForm]],FormatType->\"TraditionalForm\"],\n\"<0\"\n}]]\)", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) \
+configurations", 
+          "\!\(\*OverscriptBox[\(\[Tau]\), \(\[RightVector]\)]\) unique \
+configurations"}, {0, 1, 1}, {}}, TableAlignments -> Center]]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.5599999999999999]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   Column],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.823134426150484*^9, 3.82313447036087*^9, 
+  3.823134533536662*^9},
+ CellLabel->
+  "Out[833]//TableForm=",ExpressionUUID->"dbabc4fc-7dd7-4185-8508-\
+46b0d5abf35e"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1067, 987},
+WindowMargins->{{Automatic, -1436}, {Automatic, 37}},
+FrontEndVersion->"12.1 for Linux x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"20f36d7b-6fb1-45ca-939f-4aa21341f1f7"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 207, 4, 67, "Section",ExpressionUUID->"67edd130-9cb4-47af-85ec-9aec3fcdd3ce"],
+Cell[790, 28, 3999, 112, 260, "Input",ExpressionUUID->"f3a0c41a-cae3-455e-b19d-8394e5b70d34"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4826, 145, 530, 16, 69, "Section",ExpressionUUID->"8b8c73f6-edd8-4d00-b552-14a6c5a11fd8"],
+Cell[CellGroupData[{
+Cell[5381, 165, 2787, 67, 150, "Input",ExpressionUUID->"f049be2b-57b6-4689-a2a5-f92f2e459f77"],
+Cell[8171, 234, 30647, 596, 1733, "Output",ExpressionUUID->"dbabc4fc-7dd7-4185-8508-46b0d5abf35e"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
