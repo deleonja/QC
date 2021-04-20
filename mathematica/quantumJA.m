@@ -30,6 +30,14 @@ Dirac::usage=
 "Dirac[vector] returns vector in Dirac notation in computational basis."
 TwoQBoard::usage=
 "TwoQBoard[diagonalPCE] returns a two qubits board."
+Erase::usage=
+"Erase[EigInfo,PCEfrom,invariantComponents] erases in all valid forms."
+BlochSphTransformation::usage="Returns Bloch Ball transformation of a 1-qubit quantum chanenl given a
+list with center point and the factor of x,y and z. 
+Example: BlochSphTransformation[{{0,0,0.3},{1,1/2,1/2}}] returns 
+a taco-like figure with center at (0,0,0.3).
+BlochSphTransformation[coord_List]
+"
 
 Begin["`Private`"]
 Reshuffle[SqMatrix_]:=1/Power[2,Log[4,Length[SqMatrix]]]*ArrayFlatten[ArrayFlatten/@Partition[Partition[ArrayReshape[#,{Sqrt[Dimensions[SqMatrix][[1]]],Sqrt[Dimensions[SqMatrix][[1]]]}]&/@SqMatrix,Sqrt[Dimensions[SqMatrix][[1]]]],Sqrt[Dimensions[SqMatrix][[1]]]],1];
@@ -78,6 +86,34 @@ PTest[A_]:=Min[Eigenvalues[A]]>=0
 Dirac[vector_List]:=(vector[[#]]Ket[IntegerString[(#-1),2,Log[2,Length[vector]]]])&/@Delete[Range[Length[vector]],Position[vector,0]]//Total
 
 TwoQBoard[diagonalPCE_List]:=ArrayPlot[SparseArray[Position[ArrayReshape[diagonalPCE,{4,4}],1]->(If[#[[1]]==1\[And]#[[2]]==1,Black,If[#[[1]]==1\[Or]#[[2]]==1,RGBColor["#CC0000"],If[#[[1]]!=1\[And]#[[2]]!=1,RGBColor["#004C99"],Nothing]]]&/@Position[ArrayReshape[diagonalPCE,{4,4}],1]),{4,4}]]
+
+Erase[EigInfo_,PCEfrom_,invariantComponents_]:=Module[{dimPCE},
+dimPCE=Length[Dimensions[PCEfrom][[2;;]]];
+If[Count[#//Flatten,1]==invariantComponents,#,Nothing]&/@
+DeleteDuplicates[
+Flatten[
+Table[
+DeleteDuplicates[ReplacePart[PCEfrom[[i]]+#-ConstantArray[1,ConstantArray[4,dimPCE]],#->0&/@Position[PCEfrom[[i]]+#-ConstantArray[1,ConstantArray[4,dimPCE]],-1]]&/@EigInfo]
+,{i,Length[PCEfrom]}]
+,1]
+]
+]
+
+BlochSphTransformation[coord_]:=Module[{x0,y0,z0,a,b,c},
+{x0,y0,z0}=coord[[1]];
+{a,b,c}=If[#==0,0.02,#]&/@coord[[2]];
+Style[Show[ContourPlot3D[x^2+y^2+z^2==1,{x,-1,1},{y,-1,1},{z,-1,1},
+ContourStyle->{Yellow,Opacity[0.25]},Mesh->None],
+ContourPlot3D[(x-x0)^2/a^2+(y-y0)^2/b^2+(z-z0)^2/c^2==1,{x,-1,1},{y,-1,1},{z,-1,1},
+ContourStyle->{Dashed,Pink,Opacity[0.65]},Mesh->None],
+Graphics3D[{
+        Black, Arrow[Tube[{{0,0,0},1.3*Normalize[{1,0,0}]}],0.05],
+        Black,Arrow[Tube[{{0,0,0},1.3*Normalize[{0,1,0}]}],0.05],
+        Black,Arrow[Tube[{{0,0,0},1.3*Normalize[{0,0,1}]}],0.05],
+Text["x",{1.3,0,0}],Text["y",{0,1.3,0}],Text["z",{0,0,1.3}] },
+Boxed->False],Boxed->False,Axes->False,PlotRange->1.3],
+RenderingOptions->{"3DRenderingMethod"->"HardwareDepthPeeling"}]
+]
 End[];
 EndPackage[]
 
