@@ -52,6 +52,7 @@
 \newcommand{\pauli}[2]{\sigma_{#1}\otimes\sigma_{#2}}
 \newcommand{\Er}{\E_{\mathcal{R}} }
 \newcommand{\PCE}[1]{\mathsf{PCE}_\mathsf{#1}}
+\newcommand{\ot}{\otimes}
 
 %\usepackage[]{lineno}  \linenumbers
 %\setlength\linenumbersep{3pt}
@@ -104,7 +105,7 @@ a_j^{\mu}=\left\{ \begin{array}{rl}
 \end{equation}
 
 Now, Choi matrix's eigenvalues of an n-qubit Pauli Channel are
-\begin{align}
+\begin{align}\label{eq:eigvals-PCE}
 \lambda_{\mu_1,\ldots,\mu_n}=1+
 \sum_{\underset{(j_1,\ldots,j_n\neq0)}{j_1,\ldots,j_n=0}}^3
 a_{j_1}^{\mu_1}\ldots a_{j_n}^{\mu_n}\tau_{j_1,\ldots,j_n}
@@ -118,7 +119,7 @@ a_{j_l}^{\mu_l}&=\left\{ \begin{array}{rl}
 \end{align}
 
 Therefore, the inequalities needed to be sattisfied for the CP are
-\begin{equation}\label{eq:eigvals-PCE}
+\begin{equation}\label{eq:inequalities-PCE}
 \sum_{\underset{(j_1,\ldots,j_n\neq0)}{j_1,\ldots,j_n=0}}^3
 a_{j_1}^{\mu_1}\ldots a_{j_n}^{\mu_n}\tau_{j_1,\ldots,j_n}
 \geq
@@ -360,7 +361,7 @@ of basis.
  & \includegraphics[width=2.2cm]{ruleC81_2} &\\ 
 \end{tabular} 
 
-\item C$_2^2$: $\E_1\E_7\E_1$\newline
+\item C$_2^2$: $\E_6\E_7\E_1$\newline
 \begin{tabular}{m{2cm} m{2cm} m{2cm} m{2cm} m{2cm} m{2cm} m{2cm}}
 \includegraphics[width=2.2cm]{img-JA/id}  
 & \hspace{0.8cm}$\longrightarrow$ 
@@ -371,18 +372,18 @@ of basis.
 & \includegraphics[width=2.2cm]{C22}\\ 
  & \includegraphics[width=2.2cm]{img-JA/16To8} &  
  & \includegraphics[width=2.2cm]{img-JA/8To4} &
- & \includegraphics[width=2.2cm]{16To8}\\ 
+ & \includegraphics[width=2.2cm]{otroTambien}\\ 
 \end{tabular}
 \end{itemize}
 
 
 \pagebreak
-\item \textbf{1 component:} $\E_7\E_1\E_7\E_1$\newline
+\item \textbf{1 component:} $\E_9\E_6\E_7\E_1$\newline
 \begin{tabular}{m{2cm} m{2cm} m{2cm}}
 \includegraphics[width=2.2cm]{C22}
 & \hspace{0.8cm}$\longrightarrow$ 
 & \includegraphics[width=2.2cm]{depolarizing} \\ 
- & \includegraphics[width=2.2cm]{img-JA/8To4} &  \\ 
+ & \includegraphics[width=2.2cm]{img-JA/otro} &  \\ 
 \end{tabular}
 \end{itemize}
 
@@ -395,7 +396,7 @@ remaining elements.
 Hypothesis 1 has strong numerical support. The search for PCE quantum
 channels has been done in two different ways:
 \begin{enumerate}
-\item Using the inequalities in \eqref{eq:eigvals-PCE} to test CP of 
+\item Using the inequalities in \eqref{eq:inequalities-PCE} to test CP of 
 all PCE operations (even the ones that do not follow the power-of-2 rule).
 \item Using hypoteshis 1.
 \end{enumerate}
@@ -414,7 +415,7 @@ Both of them get the same results.
 It is quite obvious (in the figures representation) that the concatenation
 always erases half of the number of non-zero components. A proof 
 for that is missing.
-\item Analytic proof for \eqref{eq:eigvals-PCE}. 
+\item Analytic proof for \eqref{eq:inequalities-PCE}. 
 \item Analytic proof that \eqref{eq:PCE-characterization} is necessary 
 and sufficient to find all elements in $\PCE{n}$.
 \item Analytic proof that taking $-1\to 0$ for $a_k^k$ leads to CP.
@@ -423,6 +424,84 @@ to reduce the problem to $n$ inequalities.
 \item Find a way to count PCE channels.
 \end{enumerate}
 % }}}
+
+\section*{Progress}
+\subsection*{An idea to prove equation \eqref{eq:eigvals-PCE}}
+A density matrix of 1 qubit in Pauli matrices basis is written as
+\begin{align}
+\rho=\frac{1}{2}\sum_{i=0}^3r_i\sigma_i,
+\end{align}
+where $\sigma_i$ are a $2\times2$ identity plus Pauli matrices.
+For 2 qubits, in the general case, the density matrix cannot be written as
+\begin{align}\label{eq:2qubits-densityM-PauliBasis-separable}
+\rho&=\frac{1}{4}\qty(\sum_{i=0}^3r_i\sigma_i
+\ot
+\sum_{j=0}^3r_j\sigma_j)
+\end{align}
+because a 2-qubits state is not separable, in general. Therefore, 
+the density matrix is written as
+\begin{align}
+\rho=\frac{1}{4}\sum_{i,j=0}^3r_{i,j}\sigma_{i,j}.
+\end{align}
+In some sense, expanding 
+\eqref{eq:2qubits-densityM-PauliBasis-separable}
+\begin{align}
+\frac{1}{4}\qty(\sum_{i=0}^3r_i\sigma_i
+\ot
+\sum_{j=0}^3r_j\sigma_j)
+&=\frac{1}{4}\qty(
+\1_{4}\ot\1_{4}+\1\ot\sum_{j=1}^3r_j\sigma_j+
+\sum_{i=1}^3r_i\sigma_i\ot\1+
+\sum_{i=1}^3r_i\sigma_i\ot\sum_{j=1}^3r_j\sigma_j
+)
+\end{align}
+makes us a hint realize that, in the general case, the components
+of 2-qubits density matrix in tensor products of Pauli matrices basis are
+\begin{align}
+r_ir_j&\to r_{i.j},&\ r_i&\to r_{i,0},&\ r_j &\to r_{0,j}.
+\end{align}
+It follows that $n$-quits density matrix is
+\begin{align}
+\rho=\frac{1}{2^n}\sum_{j_1,\ldots,j_n=0}^3
+r_{j_1,\ldots,j_n}\sigma_{j_1}\ot\ldots\ot\sigma_{j_n},
+\end{align}
+therefore,
+\begin{align}
+\label{eq:general-comp-of-density-matrix-in-Pauli-matrices-basis}
+r_{j_1}\ldots r_{j_k}\ldots r_{j_n}&\to r_{j_1,\ldots,j_n}, &
+r_{j_k}&\to r_{0,\ldots,j_k,\ldots,0},
+\end{align}
+where 
+\begin{align}
+r_{j_1}\ldots r_{j_k}\ldots r_{j_n}&\neq r_{j_1,\ldots,j_n}, &
+r_{j_k}&\neq r_{0,\ldots,j_k,\ldots,0},
+\end{align}
+
+Now, the state $\rho_{\E}$ isomorphic to the Choi matrix $D_{\E}$
+(is this written ok?) of a 1-qubit PCE channel~$\E$~is
+\begin{align}
+\rho_{\E}&=\sum_{i=0}^3\lambda_i \dyad{\sigma_i}{\sigma_i},
+\end{align}
+where $\ket{\sigma_i}$ are the vectorized $\sigma_i$ and
+$\lambda_i$ are (this has been shown analytically)
+\begin{align}\label{eq:eigvals-1q-choi}
+\lambda_0&=\frac{1}{4}\qty(1+\tau_1+\tau_2+\tau_3), &
+\lambda_1&=\frac{1}{4}\qty(1+\tau_1-\tau_2-\tau_3),\nonumber\\
+\lambda_2&=\frac{1}{4}\qty(1-\tau_1+\tau_2-\tau_3), &
+\lambda_3&=\frac{1}{4}\qty(1-\tau_1-\tau_2+\tau_3).
+\end{align}
+
+I claim that, in the same sense of 
+\eqref{eq:general-comp-of-density-matrix-in-Pauli-matrices-basis},
+the eigenvalues of $\rho_{\E}$ of $n$-qubits PCE quantum channel
+$\E$ are of the form
+\begin{align}
+\lambda_{j_1}\ldots \lambda_{j_k}\ldots \lambda_{j_n}
+&\to\lambda_{j_1,\ldots,j_n}, &
+\lambda_{j_k}&\to\lambda_{0,\ldots,j_k,\ldots,0},
+\end{align}
+where $\lambda_k$ are the eigenvalues \eqref{eq:eigvals-1q-choi}.
+
 \bibliographystyle{unsrt}
 \bibliography{references}
 \end{document}
