@@ -38,6 +38,11 @@ Example: BlochSphTransformation[{{0,0,0.3},{1,1/2,1/2}}] returns
 a taco-like figure with center at (0,0,0.3).
 BlochSphTransformation[coord_List]
 "
+PCEgenerators::usage=
+"PCEgenerators[n] returns the diagonal superoperators of the generators
+of PCE quantum channels of n qubits."
+tensorPower::usage=
+"."
 
 Begin["`Private`"]
 Reshuffle[SqMatrix_]:=1/Power[2,Log[4,Length[SqMatrix]]]*ArrayFlatten[ArrayFlatten/@Partition[Partition[ArrayReshape[#,{Sqrt[Dimensions[SqMatrix][[1]]],Sqrt[Dimensions[SqMatrix][[1]]]}]&/@SqMatrix,Sqrt[Dimensions[SqMatrix][[1]]]],Sqrt[Dimensions[SqMatrix][[1]]]],1];
@@ -113,6 +118,13 @@ Graphics3D[{
 Text["x",{1.3,0,0}],Text["y",{0,1.3,0}],Text["z",{0,0,1.3}] },
 Boxed->False],Boxed->False,Axes->False,PlotRange->1.3],
 RenderingOptions->{"3DRenderingMethod"->"HardwareDepthPeeling"}]
+]
+
+tensorPower[A_, n_] := Nest[KroneckerProduct[A, #] &, A, n - 1]
+
+PCEgenerators[n_]:=Module[{a},
+a={{1,1,1,1},{1,1,-1,-1},{1,-1,1,-1},{1,-1,-1,1}};
+DiagonalMatrix[#]&/@ReplacePart[tensorPower[a,2],Position[tensorPower[a,2],-1]->0][[2;;]]
 ]
 End[];
 EndPackage[]
