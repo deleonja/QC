@@ -1,7 +1,14 @@
 import numpy as np
-from itertools import combinations
-from itertools import product
+from itertools import product, combinations
 import sys
+
+# Pauli matrices:
+s1 = np.array([[0,1],[1,0]])        # sigma_x
+s2 = np.array([[0,-1j],[1j,0]])     # sigma_y
+s3 = np.array([[1,0],[0,-1]])       # sigma_z
+
+# Array with identity matrix and 3 Pauli matrices
+sigma = np.array([np.identity(2),s1,s2,s3])
 
 def combinations_of_components(n, num_of_corr):
 	rIndices = list(range(4**n-1))

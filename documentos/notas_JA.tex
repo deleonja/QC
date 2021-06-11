@@ -502,6 +502,42 @@ $\E$ are of the form
 \end{align}
 where $\lambda_k$ are the eigenvalues \eqref{eq:eigvals-1q-choi}.
 
+\section*{Number of PCE channels by the ratio of components 
+left invariant}
+\begin{itemize}
+\item 1$/$2 of total components invariant:
+\begin{align}
+4^n-1
+\end{align}
+
+\item 1$/$4 of total components invariant:
+\begin{align}
+\frac{\binom{4^n-1}{2}}{3},
+\end{align}
+
+\item 1$/$8 of total components invariant:
+\begin{align}
+\frac{\binom{4^n-1}{3}-\binom{4^n-1}{2}/3}{28}
+\end{align}
+
+\item 1$/$16 of total components invariant:
+\begin{align}
+\frac{\binom{4^n-1}{4}-35\qty(\frac{\binom{4^n-1}{3}-\binom{4^n-1}{2}/3}{28})}{840}
+\end{align}
+\end{itemize}
+
+\begin{table}[h!]
+\tiny
+\begin{tabular}{llllccccccclll}
+{\color[HTML]{FF0000} \textbf{1}} &                       &                           &                                & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}               & \cellcolor[HTML]{FCE5CD}\textbf{1}   & \textbf{3}                             & \textbf{1}                              & \multicolumn{1}{l}{}                    & \multicolumn{1}{l}{}                &                                                       &                                    &                                \\
+{\color[HTML]{FF0000} \textbf{2}} &                       &                           &                                & \multicolumn{1}{l}{} & \cellcolor[HTML]{FCE5CD}\textbf{1} & \cellcolor[HTML]{CFE2F3}\textbf{15}  & \cellcolor[HTML]{FCE5CD}\textbf{35}    & \textbf{15}                             & \textbf{1}                              & \multicolumn{1}{l}{}                &                                                       &                                    &                                \\
+{\color[HTML]{FF0000} \textbf{3}} &                       &                           &                                & \textbf{1}           & \textbf{63}                        & \cellcolor[HTML]{FCE5CD}\textbf{651} & \cellcolor[HTML]{CFE2F3}\textbf{1,395} & \cellcolor[HTML]{FCE5CD}\textbf{651}    & \textbf{63}                             & \textbf{1}                          &                                                       &                                    &                                \\
+{\color[HTML]{FF0000} \textbf{4}} &                       &                           & \multicolumn{1}{c}{\textbf{1}} & \textbf{255}         & \textbf{10,795}                    & 97,155                               & \cellcolor[HTML]{FCE5CD}200,787        & \cellcolor[HTML]{CFE2F3}\textbf{97,155} & \cellcolor[HTML]{FCE5CD}\textbf{10,795} & \textbf{255}                        & \multicolumn{1}{c}{\textbf{1}}                        &                                    &                                \\
+{\color[HTML]{FF0000} \textbf{5}} &                       & \multicolumn{1}{c}{1}     & \multicolumn{1}{c}{1,023}      & 174,251              & 6,347,715                          & 53,743,987                           & \multicolumn{1}{l}{}                   & \cellcolor[HTML]{FCE5CD}53,743,987      & \cellcolor[HTML]{CFE2F3}6,347,715       & \cellcolor[HTML]{FCE5CD}174,251     & \multicolumn{1}{c}{\textbf{1,023}}                    & \multicolumn{1}{c}{\textbf{1}}     &                                \\
+{\color[HTML]{FF0000} \textbf{6}} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{4,095} & \multicolumn{1}{c}{2,794,155}  & 408,345,795          & 13,910,980,083                     & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}                   & \multicolumn{1}{l}{}                    & \cellcolor[HTML]{FCE5CD}13,910,980,083  & \cellcolor[HTML]{CFE2F3}408,345,795 & \multicolumn{1}{c}{\cellcolor[HTML]{FCE5CD}2,794,155} & \multicolumn{1}{c}{\textbf{4,095}} & \multicolumn{1}{c}{\textbf{1}}
+\end{tabular}
+\end{table}
+
 \bibliographystyle{unsrt}
 \bibliography{references}
 \end{document}

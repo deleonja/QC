@@ -124,7 +124,7 @@ tensorPower[A_, n_] := Nest[KroneckerProduct[A, #] &, A, n - 1]
 
 PCEgenerators[n_]:=Module[{a},
 a={{1,1,1,1},{1,1,-1,-1},{1,-1,1,-1},{1,-1,-1,1}};
-DiagonalMatrix[#]&/@ReplacePart[tensorPower[a,2],Position[tensorPower[a,2],-1]->0][[2;;]]
+DiagonalMatrix[#]&/@ReplacePart[tensorPower[a,n],Position[tensorPower[a,n],-1]->0][[2;;]]
 ]
 End[];
 EndPackage[]
