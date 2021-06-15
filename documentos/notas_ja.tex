@@ -460,3 +460,30 @@ left invariant}
 {\color[HTML]{FF0000} \textbf{6}} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{4,095} & \multicolumn{1}{c}{2,794,155}  & 408,345,795          & 13,910,980,083                     & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}                   & \multicolumn{1}{l}{}                    & \cellcolor[HTML]{FCE5CD}13,910,980,083  & \cellcolor[HTML]{CFE2F3}408,345,795 & \multicolumn{1}{c}{\cellcolor[HTML]{FCE5CD}2,794,155} & \multicolumn{1}{c}{\textbf{4,095}} & \multicolumn{1}{c}{\textbf{1}}
 \end{tabular}
 \end{table}
+
+\section{2 qubits: hermanitos}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{hermanitos}
+  \caption{Los hermanitos de 2 qubits. La fila de arriba muestra al hermano 
+  mayor del canal que tiene exactamente abajo.}
+  \label{•}
+\end{figure}
+
+Estos hermanitos tienen la siguiente forma
+\begin{align}
+\Phi=\E_i\ot \E_j+\qty(\1-\E_i)\ot \qty(\1-\E_j),
+\end{align}
+donde $\E_i$ son el canal identidad y los 3 canales PCE que mapean 
+la esfera de Bloch hacia alguno de los 3 ejes cartesianos.
+
+Un canal cuántico PCE $\phi$ que deja invariantes únicamente 
+dos componentes, $\tau_{0,\ldots,0}$ y otra $\tau_{j_1,\ldots,j_n}$,
+tiene un `hermano mayor PCE' $\Phi$ que deja invariantes $4^n-1$
+componentes que es de la forma
+\begin{align}
+\Phi=\bigotimes_{i=1}^n\E_{j_i}+\bigotimes_{i=1}^{n}\1 -\E_{j_i},
+\end{align}
+donde $\E_{j_i}$ son los canales cuánticos de 1 qubit de la identidad
+y los 3 canales que mapean la esfera de Bloch a alguno de los ejes 
+cartesianos.
