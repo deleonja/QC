@@ -1,1 +1,28 @@
-\section*{Alejo's ideas}
+\section{Alejo's ideas}
+% 
+\subsection{Eigenvalues of the Choi matrix}
+% 
+It is possible to show that the eigenvalues of the Choi matrix associated to a Pauli channel of $N$ qubits may be written in a compact form as
+% 
+\begin{equation}
+ \lambda_{\vec{\mu}\vec{\nu}}=\sum_{\vec{m}\vec{n}}(-1)^{\vec{\mu}\cdot\vec{m} + \vec{\nu}\cdot\vec{n}} \tau_{\vec{m}\vec{n}},
+ \label{EigenChoi}
+\end{equation}
+% 
+where $\tau_{\vec{m}\vec{n}}$ are the channel coefficients, the dimension of the ``vector indices" is $N$ and each vector element may attain the values $0$ or $1$. For instance, for $N=1$ we have
+% 
+\begin{equation}
+ \lambda_{\mu\nu}=\sum_{m,n=0}^1(-1)^{\mu m + \nu n} \tau_{m,n}.
+\end{equation}
+% 
+% 
+\subsection{Analytical derivation of conditions for PCE channels}
+% 
+Is it possible to infer the whole set of conditions (rules) a PCE channel must satisfy from the general expression for the eigenvalues of the Choi matrix (Eq. \ref{EigenChoi})? Work in progress...
+
+% 
+\subsection{Extremal channels}
+% 
+It can be shown that PCE channels correspond to the extremal points in the polytope of trace preserving channels and non-negative $\tau$ coefficients for the case $M=1$. For $N>1$, in addition to the set of PCE channels, there are other  ``extremal channels", it there anything special around them?
+
+
