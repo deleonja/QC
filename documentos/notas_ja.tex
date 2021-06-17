@@ -1,81 +1,4 @@
-\documentclass[11pt,dvipsnames]{article} % {{{
-
-\usepackage{geometry}
-\geometry{total={170mm,240mm}, left=20mm, top=20mm}
-
-\usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
-\usepackage{physics} 
-\usepackage{siunitx} 
-\usepackage{enumerate} 
-\usepackage{pgfplots}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\graphicspath{ {./img-JA/} }
-\definecolor{mycolor}{RGB}{255,50,0}
-
-\usepackage{pgfplotstable}
-\usepackage{tikz,pgfplots}
-\usepackage{amsmath} 
-\usepackage{xcolor}
-\usepackage{float}
-\usepackage{amsfonts}
-\newcommand{\pce}{PCE}
-\usepackage{dsfont}
-%\usepackage{bbold}
-
-\newtheorem{conj}{Hypothesis}
-
-
-\newcommand{\fref}[1]{fig.~\ref{#1}}  
-\newcommand{\tref}[1]{table~\ref{#1}}
-\newcommand{\Fref}[1]{Fig.~\ref{#1}}  
-\newcommand{\Tref}[1]{Table~\ref{#1}}
-
-\newcommand{\R}{\mathcal{R}}
-\newcommand{\psii}{\psi_i}
-\newcommand{\Pk}[1]{\ket{\psi_{#1} }}
-\newcommand{\Pb}[1]{\bra{\psi_{#1} }}
-\newcommand{\pk}{\ket{\psi}}
-\newcommand{\M}{\mathcal{M}^{(N)}}
-\newcommand{\E}{\mathcal{E}}
-\newcommand{\Erho}{\mathcal{E}(\rho)}
-\newcommand{\1}{\mathds{1}}
-\newcommand{\ten}{\otimes}
-\newcommand{\h}[1]{\colorbox{Yellow}{#1}}
-\newcommand{\hi}{\mathcal{H}}
-\newcommand{\txt}[1]{\text{#1}}
-\newcommand{\here}{\h{\hspace{15cm}} }
-\newcommand{\rhoi}{\dyad{\psii}{\psii}}
-\newcommand{\ind}[2]{ {{}^{#1}_{#2}} }
-\newcommand{\rc}[1]{r_{#1}}
-\newcommand{\pauli}[2]{\sigma_{#1}\otimes\sigma_{#2}}
-\newcommand{\Er}{\E_{\mathcal{R}} }
-\newcommand{\PCE}[1]{\mathsf{PCE}_\mathsf{#1}}
-\newcommand{\ot}{\otimes}
-
-%\usepackage[]{lineno}  \linenumbers
-%\setlength\linenumbersep{3pt}
-	
-
-\usepackage{fancybox}
-\usepackage{colortbl}
-\usepackage{amsbsy}
-\usepackage[draft,inline,nomargin]{fixme} \fxsetup{theme=color}
-\FXRegisterAuthor{cp}{acp}{\color{blue}CP}
-\FXRegisterAuthor{ja}{aja}{\color{mycolor}JA}
-\FXRegisterAuthor{dd}{ddg}{\color{red}DD}
-
-% }}}
-\begin{document}
-% Titulo y otros {{{
-\title{Eigenvalues and concatenation idea of PCE quantum channels} 
-%Title should be concise and to the point  
-%\author{J. A. de León}
-\date{\today}  
-\maketitle
-% }}}
-\section*{CP from eigenvalues} % {{{
+\section{CP from eigenvalues} % {{{
 % Intro {{{
 Choi matrix's eigenvalues of a 1-qubit Pauli Channel are
 \begin{align}
@@ -135,12 +58,12 @@ a_{j_l}^{\mu_l}=\left\{ \begin{array}{rl}
 \end{equation}
 where we used that $\lambda_{0,\ldots,0}$ is always non-negative.
 % }}}
-\subsection*{Another observation from this} % {{{
+\subsection{Another observation from this} % {{{
 Choi's matrix of 2 qubits is diagonal in Pauli product basis
 (Kraus operators). Does this follow in the general case???? 
 % }}}
 % }}}
-\section*{General characterisation of PCE quantum channels} % {{{
+\section{General characterisation of PCE quantum channels} % {{{
 \subsubsection*{To avoid confusion} % {{{
 \cpnote{Igual el canal totalmente despolarizante y el estado totalmente mixto 
 tendrían el mismo diagrama. Quiza el borde se puede ser de diferente color
@@ -392,7 +315,7 @@ Only $n$ elements in $\Gamma_n$ are sufficient to generate the
 remaining elements.
 \end{conj}
 % }}}
-\subsection*{Numerical Results} % {{{
+\subsection{Numerical Results} % {{{
 Hypothesis 1 has strong numerical support. The search for PCE quantum
 channels has been done in two different ways:
 \begin{enumerate}
@@ -409,7 +332,7 @@ Both of them get the same results.
 \end{figure}
 % }}}
 % }}}
-\section*{Things to do and questions to answer} % {{{
+\section{Things to do and questions to answer} % {{{
 \begin{enumerate}
 \item This characterization may explain the power-of-2 rule. 
 It is quite obvious (in the figures representation) that the concatenation
@@ -425,8 +348,8 @@ to reduce the problem to $n$ inequalities.
 \end{enumerate}
 % }}}
 
-\section*{Progress}
-\subsection*{An idea to prove equation \eqref{eq:eigvals-PCE}}
+\section{Progress}
+\subsection{An idea to prove equation \eqref{eq:eigvals-PCE}}
 A density matrix of 1 qubit in Pauli matrices basis is written as
 \begin{align}
 \rho=\frac{1}{2}\sum_{i=0}^3r_i\sigma_i,
@@ -502,7 +425,7 @@ $\E$ are of the form
 \end{align}
 where $\lambda_k$ are the eigenvalues \eqref{eq:eigvals-1q-choi}.
 
-\section*{Number of PCE channels by the ratio of components 
+\section{Number of PCE channels by the ratio of components 
 left invariant}
 \begin{itemize}
 \item 1$/$2 of total components invariant:
@@ -538,6 +461,29 @@ left invariant}
 \end{tabular}
 \end{table}
 
-\bibliographystyle{unsrt}
-\bibliography{references}
-\end{document}
+\section{2 qubits: hermanitos}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{hermanitos}
+  \caption{Los hermanitos de 2 qubits. La fila de arriba muestra al hermano 
+  mayor del canal que tiene exactamente abajo.}
+  \label{•}
+\end{figure}
+
+Estos hermanitos tienen la siguiente forma
+\begin{align}
+\Phi=\E_i\ot \E_j+\qty(\1-\E_i)\ot \qty(\1-\E_j),
+\end{align}
+donde $\E_i$ son el canal identidad y los 3 canales PCE que mapean 
+la esfera de Bloch hacia alguno de los 3 ejes cartesianos.
+
+Un canal cuántico PCE $\phi$ que deja invariantes únicamente 
+dos componentes, $\tau_{0,\ldots,0}$ y otra $\tau_{j_1,\ldots,j_n}$,
+tiene un `hermano mayor PCE' $\Phi$ que deja invariantes $4^n-1$
+componentes que es de la forma
+\begin{align}
+\Phi=\bigotimes_{i=1}^n\E_{j_i}+\bigotimes_{i=1}^{n}\1 -\E_{j_i},
+\end{align}
+donde $\E_{j_i}$ son los canales cuánticos de 1 qubit de la identidad
+y los 3 canales que mapean la esfera de Bloch a alguno de los ejes 
+cartesianos.
