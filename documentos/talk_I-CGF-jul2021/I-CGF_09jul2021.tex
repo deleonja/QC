@@ -1,0 +1,615 @@
+%%%%% slides template
+% Giovanni Ramirez (ramirez@ecfm.usac.edu.gt)
+% 20200828
+% Require: images/ecfmByN.png images/usacByN.jpg
+%
+%
+% Use this option to print notes only
+% \documentclass[xcolor=dvipsnames,handout,notes=only]{beamer}%
+%
+% Use this option to print notes and slides
+% \documentclass[xcolor=dvipsnames,handout,notes=show]{beamer}%
+%
+% Use this option to get a printer-friendly version
+% \documentclass[xcolor=dvipsnames,handout]{beamer}%
+%
+% Unse this option to get slides only
+\documentclass[xcolor=dvipsnames,presentation]{beamer}%
+%
+%%%%%
+
+
+%%%%% theme and coloring
+% a list of themes can be found here https://hartwork.org/beamer-theme-matrix/
+% I like a simple Malmoe with some modifications and color-schemes like
+% dolphin for a white background, beetle for a gray background or dove for
+% plain slides
+%
+% theme definition
+\usetheme{Malmoe}
+%
+% definition of the presentation mode: full slides
+\mode<presentation> {
+% coloring for slides other options: beetle, dove
+  \usecolortheme{dolphin}
+% to include a slide with the table of contents
+ \AtBeginSection[] {
+  \begin{frame}
+    \tableofcontents[currentsection]
+  \end{frame} }
+}
+%
+% definition of the handout mode: printer-friendly
+\mode<handout>{
+% coloring: dove is white
+  \usecolortheme{dove}
+% this is to print 2 slides in 1 page, other values are allowed
+  \usepackage{pgfpages}
+  \renewcommand\textbullet{\ensuremath{\bullet}}
+  \pgfpagesuselayout{2 on 1}[letterpaper,border shrink=5mm]
+% set the fontsize of the notes
+  \setbeamerfont{note page}{size=\scriptsize}
+% disable the slide with the table of contents
+  \AtBeginSection[]{}
+}
+%%%%%
+
+%%%%% personalisation
+% clear all headers
+\setbeamertemplate{headline}{}
+% disable navigation buttons
+\setbeamertemplate{navigation symbols}{}
+% configure the blocks used for equations, theorems, etc
+\setbeamertemplate{blocks}[rounded][shadow=true]
+% clear the footline
+\setbeamertemplate{footline}{}
+% set the footline
+\setbeamertemplate{footline}{
+  \hbox{%
+% left block with the shortname, it is set in the \author command
+    \begin{beamercolorbox}[wd=.40\paperwidth,ht=2.25ex,dp=1ex,center]%
+      {author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+% center block with the short title, it is set in the \title command
+    \begin{beamercolorbox}[wd=.50\paperwidth,ht=2.25ex,dp=1ex,center]%
+      {title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+% right block with the number of slides
+    \begin{beamercolorbox}[wd=.10\paperwidth,ht=2.25ex,dp=1ex,right]%
+      {date in head/foot}%
+      \usebeamerfont{date in head/foot}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{1em}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+%%%%%
+
+%%%%% packages
+%
+% language, decimal point mark
+\usepackage[spanish,es-nodecimaldot]{babel}%
+%
+% to use only T1 scalable fonts
+\usepackage[T1]{fontenc}%
+\let\Tiny=\tiny% this is a proper configuration of the tiny font size
+%
+% to use UTF coding, other options latin1
+\usepackage[utf8]{inputenc}%
+%
+\usepackage{array}
+% special math symbols
+\usepackage{latexsym,amsfonts,amsmath}%
+%
+% to include graphics
+\usepackage{graphicx}%
+%
+% to use tiks: nice to draw diagrams
+\usepackage{tikz}%
+\usetikzlibrary{arrows,shapes,positioning}
+%
+% to use SI units and physics notation
+\usepackage[squaren]{SIunits}%
+\usepackage{physics}%
+\usepackage{multirow}
+\usepackage{xcolor}
+%
+% to use hypenation
+\usepackage{ragged2e}%
+\let\raggedright=\RaggedRight%
+%
+\usepackage{dsfont}
+% to configure the hyperref to set metadata in the PDF file
+\hypersetup{%
+%pdfpagemode=FullScreen,% to open the file in fullscreen
+breaklinks={true},% to allow links in more than one line
+%pdfstartview={Fit},% to set the slide to fit the screen
+%pdfpagemode=FullScreen,% to set it to full screen
+pdfauthor={Giovanni Ramirez Garcia (ramirez@ecfm.usac.edu.gt)},% author name
+pdftitle={Quantum Optics aplied to Quantum Computing},% title of the talk
+pdfsubject={Keynote for the talk at Lat0 group},% subject of the talk
+pdfkeywords={quantum optics, quantum computing, quantum algorithms, quantum
+  circuits}% keywords to categorise the contents
+}
+%%%%%
+
+%%%%% Talk data
+%
+%title
+\title[Canales cuánticos PCE]% this is the short title
+{\bf Mapeos proyectivos en sistemas de qubits}% this is the long title
+%
+% author
+\author[José Alfredo de León (ECFM-USAC)]% this is the short name
+{\bf José Alfredo de León${}^1$, 
+Carlos Pineda${}^2$,\\
+David Dávalos${}^2$, 
+Alejandro Fonseca${}^2$}% this is the long name
+%
+% affiliation
+\institute{${}^1$Escuela de Ciencias Físicas y Matemáticas, USAC \newline%
+${}^2$Instituto de Física, UNAM}%
+%
+% date and information about the conference
+\date{I Congreso Guatemalteco de Física\\09 de julio de 2021}
+%%%%%
+
+
+\begin{document}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Title and Outline
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\begin{frame}[plain]
+  \titlepage %
+  \begin{tikzpicture}[x=1mm,y=1mm,overlay,remember picture]
+    \pgftransformshift{\pgfpointanchor{current page}{center}}
+    \node[inner sep=0pt] (usac) at (-50,0) %
+    {\includegraphics[width=15mm]{images/usacByN}};
+    \node[inner sep=0pt] (ecfm) at (50,0) %
+    {\includegraphics[width=15mm]{images/ecfmByN}};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents[hidesubsections] 
+\end{frame}
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Introduction and Motivation
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\section{Sistemas cuánticos abiertos}
+\label{sec:Intro}
+
+\begin{frame}{Sistemas cuánticos abiertos}{¿Qué son?}
+
+	\only<1>{
+	Considerar a los sistemas cuánticos como aislados de su entorno
+	es una buena aproximación...
+  
+  \vfill
+
+	\centering
+	\includegraphics[height=6cm]{images/cerrados.pdf}
+  }
+  
+  \only<2>{
+  .. no obstante, los sistemas cuánticos reales están abiertos a interacciones
+  con su entorno.
+  
+  \vfill
+
+	\centering
+	\includegraphics[height=6cm]{images/abiertos.pdf}
+  }
+\end{frame}
+
+
+\begin{frame}{Sistemas cuánticos abiertos}%
+  {Matriz de densidad $\rho$}\pause
+  
+  Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
+  con probabilidad $p_i$, la matriz de densidad del sistema se define como
+  \begin{align*}
+  \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
+  \end{align*} \pause
+  
+  \vfill
+  
+	Una matriz $\rho$ es una matriz de densidad asociada 
+	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si
+	\begin{enumerate}
+	\item $\Tr (\rho)=1$,
+	\item $\rho\geq 0$.
+	\end{enumerate}
+	
+	\vfill
+\end{frame}
+
+
+\begin{frame}{Sistemas cuánticos abiertos}%
+  {Canales cuánticos}\pause
+  
+  \only<2>{
+	Una operación lineal $\mathcal{E}$ que actúa sobre 
+	la matriz de densidad $\rho$ 	como 
+	\begin{align*}
+	\mathcal{E}(\rho)=\rho'
+	\end{align*}
+	es un canal cuántico si
+	\begin{enumerate}
+	\item Preserva las características de la matriz de densidad,
+	\item Es una operación completamente positiva.
+	\end{enumerate}
+	}
+\end{frame}	
+
+\begin{frame}{Completa positividad}{¿Para qué o qué?}
+	\only<1-2>{
+	\begin{center}
+	\includegraphics[height=6cm]{images/CP1}
+	\end{center}
+	}	
+	\only<3>{
+	\begin{center}
+	\includegraphics[height=6cm]{images/CP2}
+	\end{center}	
+	}
+	
+	\onslide<2-3>{
+	No es suficiente que 	$\mathcal{E}(\rho_A)\geq0$. }\onslide<3>{También se tiene que cumplir 
+	$\mathcal{E}\otimes \mathds{1}(\rho_{total})\geq0$. \vspace{.5cm}}
+\end{frame}
+
+\begin{frame}{Completa positividad}{Definición}
+	\onslide<2>{
+	Una operación $\mathcal{E}$ es completamente positiva 
+	si y sólo si 
+	\begin{align*}
+	\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})\geq 0,
+	\end{align*}
+	con $\rho_{\mathcal{E}}$ el estado maximamente entrelazado
+	de un sistema compuesto por dos copias del sistema
+	sobre el que actúa $\mathcal{E}$.	\vfill
+
+	\textbf{Para recordar:} 
+	$\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})$ recibe 
+	el nombre de la \alert{matriz de Choi}~de~$\mathcal{E}$.
+	}
+\end{frame}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Qubits
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\section{Qubits}
+
+\begin{frame}{Qubits}
+	Un qubit es un sistema cuántico de dos niveles.
+	
+	\begin{columns}
+	\begin{column}{0.5\textwidth}
+	\only<2>{
+		\begin{align*}
+			\rho &= \frac{1}{2}\sum _{i=0}^3 r_i\sigma_i \\
+			\rho &= \frac{\mathds{1}+r_1\sigma_x+r_2\sigma_y+r_3\sigma_z}{2},
+		\end{align*}	
+		donde $\qty(r_1,r_2,r_3)$ se conoce como el vector de Bloch.
+	}
+	\end{column}
+	\begin{column}{0.5\textwidth}  %%<--- here
+  		\begin{center}
+    		\includegraphics[width=0.7\textwidth]{images/bloch}      
+     \end{center}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Canal cuántico de 1 qubit}{Bit-flip}	
+	Geométricamente,
+	\begin{center}
+	\begin{tabular}{m{2.5cm} m{1cm} m{2.5cm}}
+		\includegraphics[width=3cm]{images/bloch-ball}
+		& \hfill $\longmapsto$
+		& \includegraphics[width=3cm]{images/bit-flip}
+	\end{tabular}
+	\end{center}\pause
+	
+	El canal cuántico de bit-flip 	actúa sobre las componentes de Pauli
+	de la matriz de densidad de 1 qubit como
+	\begin{align*}
+	\qty(1,r_1,r_2,r_3) \longmapsto \qty(1,r_1,\qty(1-p)r_2,\qty(1-p)r_3).
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Qubits}{$n$ qubits}
+	En general, la matriz de densidad de $n$ qubits puede escribirse 
+	en la base de productos tensoriales de las matrices de Pauli como
+	\begin{align*}
+		\rho = \frac{1}{2^n}\sum _{j_1,\ldots,j_n=0}^3 r_{j_1,\ldots,j_n}
+		\sigma_{j_1}\otimes \ldots
+		\otimes\sigma_{j_n},
+	\end{align*}
+	con $r_{0,\ldots,0}=1$ $(\Tr\rho=1)$. \pause
+	Llamaremos \alert{componentes de Pauli} a las $r_{j_1,\ldots,j_n}$.
+\end{frame}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Theoretical framework
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\section{Operaciones PCE}
+\label{sec:Theory}
+
+\begin{frame}{Motivación (1/2)}{Bit-flip con $p=0.5$} \pause
+	Geométricamente, actúa como 
+	\begin{center}
+	\begin{tabular}{m{2.5cm} m{1cm} m{2.5cm}}
+		\includegraphics[width=3cm]{images/bloch-ball}
+		& \hfill $\longmapsto$
+		& \includegraphics[width=3cm]{images/bitFlip-toX}
+	\end{tabular}
+	\end{center}
+	
+	\vfill
+	
+	En términos de las componentes de Pauli, el bit-flip para $p=0.5$
+	actúa como
+	\begin{align*}
+	\qty(1,r_1,r_2,r_3)\longmapsto \qty(1,r_1,0,0).
+	\end{align*}
+\end{frame}
+
+
+\begin{frame}{Motivación (2/2)}{Mapeo de la esfera de Bloch a un disco} \pause
+	Consideremos la operación $\mathcal{E}$ que deforma
+	la esfera de Bloch como
+	\begin{center}
+	\begin{tabular}{m{2.5cm} m{1cm} m{2.5cm}}
+		\includegraphics[width=3cm]{images/bloch-ball}
+		& \hfill $\longmapsto$
+		& \includegraphics[width=3.5cm]{images/diskXY}
+	\end{tabular}
+	\end{center}
+	\begin{align*}
+	\qty(1,r_1,r_2,r_3)\longmapsto\qty(1,r_1,r_2,0).
+	\end{align*}
+	\pause
+		
+	$\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})$
+	no es una matriz positiva (i.e. $\mathcal{E}$ no es completamente positiva), 
+	entonces $\mathcal{E}$ no es un canal cuántico	. \vspace{.5cm}
+\end{frame}
+
+
+\begin{frame}{Operaciones PCE}{Definición y planteamiento del problema}\pause
+	Una operación PCE (\textit{Pauli component erasing}) 
+	es una operación lineal que actúa sobre las
+	componentes de Pauli de una matriz de densidad $\rho$ 
+	de $n$ qubits como
+	\begin{align*}
+	r_{j_1,\ldots,j_n}\longrightarrow \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n},
+	\end{align*}
+	con $\tau_{j_1,\ldots,j_n}=0,1$; excepto $\tau_{0,\ldots,0}=1$.
+	Es decir, borra o deja invariantes las componentes de Pauli. \pause
+	
+	\hfill
+	\includegraphics[height=1.5cm]{images/1qubit-pce-example001}
+	\hspace{1.8cm}
+	\includegraphics[height=1.5cm]{images/2qubit-pce-example001}
+	\hfill
+	\includegraphics[height=2cm]{images/3qubit-pce-example001}
+	\hspace{1cm} \pause
+
+	\vfill	
+	
+	\colorbox{Yellow}{\textbf{¿Cómo es la caracterización del subconjunto}}
+ 	\colorbox{Yellow}{\textbf{de las operaciones PCE que son canales cuánticos?}}
+% 	\colorbox{Yellow}{\textbf{que	son canales cuánticos?}} 
+\end{frame}
+
+
+\begin{frame}{Canales cuánticos PCE}{Diagonalización de la matriz de Choi} \pause
+Los eigenvalores de la matriz de Choi de una operación PCE 
+de $n$ qubits son
+\begin{align*}
+%\qty(\bigotimes_{}^na) \vec{\tau} \geq \vec{0},\\
+\vec{\lambda} = 
+\underbrace{\qty(a\otimes \ldots\otimes a)}_{n\text{ veces}} \vec{\tau}
+\end{align*}
+con
+\begin{align*}
+a=\mqty(1&1&1&1\\1&1&-1&-1\\1&-1&1&-1\\1&1&-1&-1)
+\end{align*}
+y $\vec{\tau}$ un vector de $4^n$ componentes.
+\end{frame}
+
+
+\begin{frame}{Canales cuánticos PCE}{$2^k$, pero también importa el orden}
+Los canales cuánticos PCE dejan $2^k$ componentes
+invariantes. Sin embargo, no sólo importa cuántas 
+componentes de Pauli, sino también cuáles. 
+
+\vfill
+
+\textbf{2 qubits:} \pause
+\begin{columns}
+\begin{column}{0.5\textwidth}
+No son canales cuánticos:
+\vspace{.3cm}
+\begin{center}
+\includegraphics[height=1.8cm]{images/2qubit-pce-BadoneHalf}
+\end{center}
+\vspace{1.6cm}
+\end{column} \pause
+\begin{column}{0.5\textwidth}
+Todos los canales cuánticos PCE que borran 15 componentes:
+\begin{center}
+\includegraphics[height=3.8cm]{images/2qubit-pce-oneHalf}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Canales cuánticos PCE}{¿Cuántos?}
+Los canales cuánticos parecen seguir una regla `espejo' para 
+el número de canales PCE según la cantidad de componentes 
+de Pauli invariantes. \pause
+
+\vfill
+
+\textbf{3 qubits:}
+\begin{table}[]
+\centering
+%\begin{tabular}{c|lllll}
+%\multirow{3}{*}{\textbf{canales PCE}} &                                &                                & \multicolumn{1}{c}{35}         &                                &                                 \\
+%                                                      &                                & \multicolumn{1}{c}{15}         &                                & \multicolumn{1}{c}{15}         &                                 \\
+%                                                      & \multicolumn{1}{c}{1}          &                                &                                &                                & \multicolumn{1}{c}{1}           \\
+%\hline 
+%\textbf{componentes}                                  & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{16}}
+%\end{tabular}
+%\end{table}
+%
+%\begin{table}[]
+%\begin{tabular}{c|lllll}
+%\multirow{3}{*}{\textbf{operaciones PCE}} &                                &                                & \multicolumn{1}{c}{455}        &                                &                                 \\
+%                                                      &                                & \multicolumn{1}{c}{15}         &                                & \multicolumn{1}{c}{6435}       &                                 \\
+%                                                      & \multicolumn{1}{c}{1}          &                                &                                &                                & \multicolumn{1}{c}{1}           \\
+%\hline
+%\textbf{componentes}                                  & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{16}}
+%\end{tabular}
+\begin{table}[]
+\footnotesize
+\begin{tabular}{cccccccc}
+\multirow{4}{*}{\textbf{canales PCE}} &            &            &            & 1395       &             &             &             \\
+                                                      &            &            & 651        &            & 651         &             &             \\
+                                                      &            & 63         &            &            &             & 63          &             \\
+                                                      & 1          &            &            &            &             &             & 1           \\
+\textbf{componentes}                                  & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8} & \textbf{16} & \textbf{32} & \textbf{64}
+\end{tabular}
+\end{table}
+\end{table} \pause
+
+\begin{table}[]
+\footnotesize
+\begin{tabular}{cccccccc}
+\multirow{4}{*}{\textbf{operaciones PCE}} &            &            &            & $5.5\times 10^7$ &                     &                         &             \\
+                                          &            &            & 39711      &             & $1.2\times 10^{14}$ &                         &             \\
+                                          &            & 63         &            &             &                     & $9.2\times 10^{17}$ &             \\
+                                          & 1          &            &            &             &                     &                         & 1           \\
+\textbf{componentes}                      & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8}  & \textbf{16}         & \textbf{32}             & \textbf{64}
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+\onslide<1->{
+\begin{frame}{Canales cuánticos PCE}{Generadores}
+Un canal cuántico PCE puede descomponerse como concatenación 
+de los elementos de un subconjunto generador.
+}
+
+\onslide<2->{
+\vfill
+\textbf{Generadores canales PCE de 2 qubits:}
+
+\begin{center}
+\includegraphics[height=4cm]{images/2qubits-generators}
+\end{center}
+}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Ejemplo: 2 qubits}
+\onslide<1->{
+Generadores:
+\begin{center}
+\includegraphics[width=8cm]{images/2qubits-generators}
+\end{center}
+}
+
+\onslide<2->{
+\hfill
+\begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.05cm} m{0.8cm}}
+\includegraphics[height=1.1cm]{images/E1}  
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{images/E4} 
+& $=$
+& \includegraphics[height=1.1cm]{images/E1E4} 
+\end{tabular} \hspace{1.3cm}
+}
+
+\onslide<3->{
+\hfill
+\begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
+\includegraphics[height=1.1cm]{images/E3}
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{images/E1}  
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{images/E4} 
+& $=$
+& \includegraphics[height=1.1cm]{images/E3E1E4} 
+\end{tabular} \hspace{1.3cm}
+}
+
+\onslide<4->{
+\hfill
+\begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
+\includegraphics[height=1.1cm]{images/E11}
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{images/E3}
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{images/E1}  
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{images/E4} 
+& $=$
+& \includegraphics[height=1.1cm]{images/E11E3E1E4} 
+\end{tabular} \hspace{1.3cm}
+}
+\end{frame}
+
+\begin{frame}{Hipótesis}
+Sea $PCE_n$ al conjunto de canales cuánticos PCE de $n$
+qubits. Existe un conjunto $\Gamma_n\subset PCE_n$ cuyos
+elementos son necesarios y suficientes para generar al resto
+de los elementos en $PCE_n$. \vfill \pause
+
+Sea $\mathcal{E}_j\in \Gamma_n$ y $\Phi \in PCE_n$. Un canal 
+PCE de $n$ qubits puede descomponerse como
+\begin{align*}
+\Phi = \underbrace{\mathcal{E}_{j_1}\circ \mathcal{E}_{j_2}\circ \ldots
+\circ \mathcal{E}_{j_l}}_{\text{máximo }2^n}.
+\end{align*}\vfill \pause
+
+Los elementos de $\Gamma_n$ son los canales PCE
+que proyectan la matriz de densidad $\rho$, escrita en la base de Pauli,
+a un subespacio que tiene la mitad de la dimensión del espacio sobre 
+el cual actúa $\Phi$.
+\end{frame}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Let's have good manners
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\begin{frame}
+  \begin{center}
+    ¡Muchas gracias!
+
+    \vfill
+
+    Contacto:
+
+    José Alfredo de León
+
+    deleongarrido.jose@gmail.com
+  \end{center}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
