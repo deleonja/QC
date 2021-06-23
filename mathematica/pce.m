@@ -7,7 +7,7 @@
 (* ::Input::Initialization:: *)
 (*Author: Jos\[EAcute] Alfredo de Le\[OAcute]n*)
 (*Date: August 07, 2020*)
-BeginPackage["quantumJA`"]
+BeginPackage["pce`"]
 
 Reshuffle::usage=
 "Reshuffle[SqMatrix] reshuffles the matrix SqMatrix."
