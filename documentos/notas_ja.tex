@@ -477,13 +477,46 @@ Estos hermanitos tienen la siguiente forma
 donde $\E_i$ son el canal identidad y los 3 canales PCE que mapean 
 la esfera de Bloch hacia alguno de los 3 ejes cartesianos.
 
-Un canal cuántico PCE $\phi$ que deja invariantes únicamente 
+En general, un canal cuántico PCE $\phi$ que deja invariantes únicamente 
 dos componentes, $\tau_{0,\ldots,0}$ y otra $\tau_{j_1,\ldots,j_n}$,
 tiene un `hermano mayor PCE' $\Phi$ que deja invariantes $4^n-1$
 componentes que es de la forma
 \begin{align}
-\Phi=\bigotimes_{i=1}^n\E_{j_i}+\bigotimes_{i=1}^{n}\1 -\E_{j_i},
+\Phi=\sum_{i=0}^{i\leq n/2}
+\sum_{j\in \mathcal{S}_{2i}^n}
+\bigotimes_{j_i=1}^n\Omega{j_i},
 \end{align}
-donde $\E_{j_i}$ son los canales cuánticos de 1 qubit de la identidad
-y los 3 canales que mapean la esfera de Bloch a alguno de los ejes 
-cartesianos.
+donde $\mathcal{S}_{2i}^n$ es el conjunto que contiene 
+a todos los subconjuntos con $2i$ elementos del 
+conjunto \newline $\{ 1,2,3,\ldots,n \}$ y
+\begin{align}
+\Omega_{j_i}= \left\{ \begin{array}{rc}
+             \E_{j_i}, & j_i \notin j \\
+             \1 -\E_{j_i}, & j_i \in j.
+             \end{array}
+   \right.
+\end{align}
+
+For example, let us elaborate the example for the 3 and 4 qubits 
+generators. First, the PCE generators for 3 qubits are
+\begin{align}
+\Phi_{j_1,j_2,j_3}=& \sum_{i=0}^{i\leq 3/2}
+\sum_{j\in \mathcal{S}_{2i}^3}
+\bigotimes_{j_i=1}^3\Omega{j_i} \nonumber \\
+=&\ \Ej{1}\ot\Ej{2}\ot\Ej{3} + \id{1}\ot\id{2}\ot\Ej{3} \\
+&+ \id{1}\ot\Ej{2}\ot\id{3} + \Ej{1}\ot\id{2}\ot\id{3}. \nonumber
+\end{align}
+The 4 qubits PCE generators are
+\begin{align}
+\Phi_{j_1,j_2,j_3,j_4}=& \sum_{i=0}^{i\leq 2}
+\sum_{j\in \mathcal{S}_{2i}^4}
+\bigotimes_{j_i=1}^4\Omega{j_i} \nonumber \\
+=&\ \Ej{1}\ot\Ej{2}\ot\Ej{3}\ot\Ej{4} + 
+\qty(\1-\Ej{1})\ot\qty(\1-\Ej{2})\ot\Ej{3}\ot\Ej{4} \nonumber \\
+&+ \qty(\1-\Ej{1})\ot\Ej{2}\ot\qty(\1-\Ej{3})\ot\Ej{4}
++ \qty(\1-\Ej{1})\ot\Ej{2}\ot\Ej{3}\ot\qty(\1-\Ej{4}) \\
+&+ \Ej{1}\ot\qty(\1-\Ej{2})\ot\qty(\1-\Ej{3})\ot\Ej{4}
++ \Ej{1}\ot\qty(\1-\Ej{2})\ot\Ej{3}\ot\qty(\1-\Ej{4}) \nonumber \\
+&+ \Ej{1}\ot\Ej{2}\ot\qty(\1-\Ej{3})\ot\qty(\1-\Ej{4}) \nonumber \\
+&+ \id{1}\ot\id{2}\ot\id{3}\ot\id{4}. \nonumber
+\end{align}
