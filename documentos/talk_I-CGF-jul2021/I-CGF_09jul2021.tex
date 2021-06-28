@@ -104,6 +104,8 @@
 %
 % to include graphics
 \usepackage{graphicx}%
+% path to images
+\graphicspath{ {./images/} }
 %
 % to use tiks: nice to draw diagrams
 \usepackage{tikz}%
@@ -145,11 +147,13 @@ pdfkeywords={quantum optics, quantum computing, quantum algorithms, quantum
 {\bf José Alfredo de León${}^1$, 
 Carlos Pineda${}^2$,\\
 David Dávalos${}^2$, 
-Alejandro Fonseca${}^2$}% this is the long name
+Alejandro Fonseca${}^3$}% this is the long name
 %
 % affiliation
-\institute{${}^1$Escuela de Ciencias Físicas y Matemáticas, USAC \newline%
-${}^2$Instituto de Física, UNAM}%
+\institute{${}^1$Escuela de Ciencias Físicas y Matemáticas, U. de 
+San Carlos de Guatemala\newline%
+${}^2$Instituto de Física, U. Nacional Autónoma de México\newline
+${}^3$Departamento de Física, U. Federal de Pernambuco}%
 %
 % date and information about the conference
 \date{I Congreso Guatemalteco de Física\\09 de julio de 2021}
@@ -164,10 +168,12 @@ ${}^2$Instituto de Física, UNAM}%
   \titlepage %
   \begin{tikzpicture}[x=1mm,y=1mm,overlay,remember picture]
     \pgftransformshift{\pgfpointanchor{current page}{center}}
-    \node[inner sep=0pt] (usac) at (-50,0) %
-    {\includegraphics[width=15mm]{images/usacByN}};
-    \node[inner sep=0pt] (ecfm) at (50,0) %
-    {\includegraphics[width=15mm]{images/ecfmByN}};
+    \node[inner sep=0pt] (usac) at (-35,-30) %
+    {\includegraphics[height=12mm]{logos/ecfmByN}};
+    \node[inner sep=0pt] (usac) at (0,-30) %
+    {\includegraphics[height=12mm]{logos/ifunam}};
+    \node[inner sep=0pt] (ecfm) at (35,-30) %
+    {\includegraphics[height=12mm]{logos/u-pernambuco}};
   \end{tikzpicture}
 \end{frame}
 
@@ -184,39 +190,70 @@ ${}^2$Instituto de Física, UNAM}%
 
 \begin{frame}{Sistemas cuánticos abiertos}{¿Qué son?}
 
+	\onslide<1->{
+	Considerar a los sistemas cuánticos como sistemas aislados de 
+	su entorno es una aproximación útil.
+  }
+
 	\only<1>{
-	Considerar a los sistemas cuánticos como aislados de su entorno
-	es una buena aproximación...
+	\vspace{-.1cm}
+	\begin{center}
+		\includegraphics[height=5.5cm]{sistema-cerrado.pdf}
+	\end{center}
+  }
+	
+	\only<2>{
+	\vspace{-.1cm}
+	\begin{center}
+		\includegraphics[height=5.5cm]{sistema-abierto.pdf}
+	\end{center}
+  }  
+  
+  \only<1>{
+  \vspace{-.6cm}
+  Sin embargo, los sistemas cuánticos reales son sistemas 
+  abiertos a interacciones con su entorno.
   
   \vfill
-
-	\centering
-	\includegraphics[height=6cm]{images/cerrados.pdf}
+	}
+	
+	\only<2>{
+  \vspace{-.6cm}
+  \alert{
+  Sin embargo, los sistemas cuánticos reales son sistemas 
+  abiertos a interacciones con su entorno.
   }
-  
-  \only<2>{
-  .. no obstante, los sistemas cuánticos reales están abiertos a interacciones
-  con su entorno.
   
   \vfill
+	}
 
-	\centering
-	\includegraphics[height=6cm]{images/abiertos.pdf}
-  }
 \end{frame}
 
 
 \begin{frame}{Sistemas cuánticos abiertos}%
-  {Matriz de densidad $\rho$}\pause
+  {Matriz de densidad $\rho$}
   
+	\only<1>{
+	\alert{
   Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
   con probabilidad $p_i$, la matriz de densidad del sistema se define como
   \begin{align*}
   \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
-  \end{align*} \pause
+  \end{align*}
+  }
+  }  
+  
+  \only<2>{
+  Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
+  con probabilidad $p_i$, la matriz de densidad del sistema se define como
+  \begin{align*}
+  \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
+  \end{align*}
+  }
   
   \vfill
   
+  \only<1>{
 	Una matriz $\rho$ es una matriz de densidad asociada 
 	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si
 	\begin{enumerate}
@@ -225,13 +262,26 @@ ${}^2$Instituto de Física, UNAM}%
 	\end{enumerate}
 	
 	\vfill
+	}
+	
+	\only<2>{
+	\alert{	
+	Una matriz $\rho$ es una matriz de densidad asociada 
+	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si}
+	\begin{enumerate}
+	\item \alert{$\Tr (\rho)=1$,}
+	\item \alert{$\rho\geq 0$.}
+	\end{enumerate}	
+	
+	\vfill
+	}
 \end{frame}
 
 
 \begin{frame}{Sistemas cuánticos abiertos}%
-  {Canales cuánticos}\pause
+  {Canales cuánticos}
   
-  \only<2>{
+  \only<1>{
 	Una operación lineal $\mathcal{E}$ que actúa sobre 
 	la matriz de densidad $\rho$ 	como 
 	\begin{align*}
@@ -243,40 +293,70 @@ ${}^2$Instituto de Física, UNAM}%
 	\item Es una operación completamente positiva.
 	\end{enumerate}
 	}
+	
+	\only<2>{
+	Una operación lineal $\mathcal{E}$ que actúa sobre 
+	la matriz de densidad $\rho$ 	como 
+	\begin{align*}
+	\mathcal{E}(\rho)=\rho'
+	\end{align*}
+	es un canal cuántico si
+	\begin{enumerate}
+	\item \alert{Preserva las características de la matriz de densidad},
+	\item Es una operación completamente positiva.
+	\end{enumerate}
+	}
+	
+	\only<3>{
+	Una operación lineal $\mathcal{E}$ que actúa sobre 
+	la matriz de densidad $\rho$ 	como 
+	\begin{align*}
+	\mathcal{E}(\rho)=\rho'
+	\end{align*}
+	es un canal cuántico si
+	\begin{enumerate}
+	\item Preserva las características de la matriz de densidad,
+	\item \alert{Es una operación completamente positiva}.
+	\end{enumerate}
+	}
 \end{frame}	
 
 \begin{frame}{Completa positividad}{¿Para qué o qué?}
-	\only<1-2>{
+	Supongamos una operación $\mathcal{E}$ que actúa sobre 
+	el sistema A.
+	
+	\only<1>{
+	\vspace{-.3cm}
 	\begin{center}
-	\includegraphics[height=6cm]{images/CP1}
+	\includegraphics[height=6cm]{CP1}
 	\end{center}
 	}	
-	\only<3>{
+	
+	\only<2>{
+	\vspace{-.3cm}
 	\begin{center}
-	\includegraphics[height=6cm]{images/CP2}
+	\includegraphics[height=6cm]{CP2}
 	\end{center}	
 	}
 	
-	\onslide<2-3>{
-	No es suficiente que 	$\mathcal{E}(\rho_A)\geq0$. }\onslide<3>{También se tiene que cumplir 
-	$\mathcal{E}\otimes \mathds{1}(\rho_{total})\geq0$. \vspace{.5cm}}
+	\vspace{-.5cm}
+	No es suficiente que 	$\mathcal{E}(\rho_A)\geq0$, \only<1>{también 
+	$\mathcal{E}\otimes \mathds{1}(\rho_{total})\geq0$.}\only<2>{\alert{también 
+	$\mathcal{E}\otimes \mathds{1}(\rho_{total})\geq0$.}} 
 \end{frame}
 
 \begin{frame}{Completa positividad}{Definición}
-	\onslide<2>{
 	Una operación $\mathcal{E}$ es completamente positiva 
 	si y sólo si 
 	\begin{align*}
 	\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})\geq 0,
 	\end{align*}
-	con $\rho_{\mathcal{E}}$ el estado maximamente entrelazado
-	de un sistema compuesto por dos copias del sistema
-	sobre el que actúa $\mathcal{E}$.	\vfill
+	donde $\rho_{\mathcal{E}}$ es el estado maximamente entrelazado
+	entre dos copias idénticas del sistema sobre el que actúa $\mathcal{E}$.
 
-	\textbf{Para recordar:} 
-	$\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})$ recibe 
-	el nombre de la \alert{matriz de Choi}~de~$\mathcal{E}$.
-	}
+%	\textbf{Para recordar:} 
+%	$\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})$ recibe 
+%	el nombre de la \alert{matriz de Choi}~de~$\mathcal{E}$.
 \end{frame}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -285,131 +365,140 @@ ${}^2$Instituto de Física, UNAM}%
 
 \section{Qubits}
 
-\begin{frame}{Qubits}
+\begin{frame}{¿Qué es un qubit?}
 	Un qubit es un sistema cuántico de dos niveles.
 	
 	\begin{columns}
-	\begin{column}{0.5\textwidth}
-	\only<2>{
+	\hspace{1cm}
+	\begin{column}{0.7\textwidth}
 		\begin{align*}
 			\rho &= \frac{1}{2}\sum _{i=0}^3 r_i\sigma_i \\
 			\rho &= \frac{\mathds{1}+r_1\sigma_x+r_2\sigma_y+r_3\sigma_z}{2},
 		\end{align*}	
-		donde $\qty(r_1,r_2,r_3)$ se conoce como el vector de Bloch.
-	}
-	\end{column}
-	\begin{column}{0.5\textwidth}  %%<--- here
+		$\qty(r_1,r_2,r_3)$ especifican las coordenadas cartesianas de un 
+ 		punto en la esfera de Bloch.
+	\end{column}\hspace{-1cm}
+	\begin{column}{0.5\textwidth}  
   		\begin{center}
-    		\includegraphics[width=0.7\textwidth]{images/bloch}      
+    		\includegraphics[width=0.7\textwidth]{bloch-sph}      
      \end{center}
-	\end{column}
+		\end{column}
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Canal cuántico de 1 qubit}{Bit-flip}	
-	Geométricamente,
+\begin{frame}{Canal \textit{bit-flip} de 1 qubit}
+	El \textit{bit-flip} actúa sobre la esfera de Bloch como
 	\begin{center}
-	\begin{tabular}{m{2.5cm} m{1cm} m{2.5cm}}
-		\includegraphics[width=3cm]{images/bloch-ball}
-		& \hfill $\longmapsto$
-		& \includegraphics[width=3cm]{images/bit-flip}
+	\begin{tabular}{m{2.5cm} m{1.5cm} m{2.5cm}}
+		\includegraphics[width=3cm]{unit_sph}
+		& \hfill \LARGE{$\longmapsto$} \hfill
+		& \includegraphics[width=3cm]{bit_flip_p0_3}
 	\end{tabular}
-	\end{center}\pause
+	\end{center}
 	
-	El canal cuántico de bit-flip 	actúa sobre las componentes de Pauli
-	de la matriz de densidad de 1 qubit como
+	Transforma a las componentes $r_i$ de la matriz de densidad como
 	\begin{align*}
 	\qty(1,r_1,r_2,r_3) \longmapsto \qty(1,r_1,\qty(1-p)r_2,\qty(1-p)r_3).
 	\end{align*}
 \end{frame}
 
-\begin{frame}{Qubits}{$n$ qubits}
-	En general, la matriz de densidad de $n$ qubits puede escribirse 
-	en la base de productos tensoriales de las matrices de Pauli como
+\begin{frame}{Matriz de densidad de $n$ qubits}
+	En la base de productos tensoriales de las matrices de Pauli, 
+	la matriz de densidad de $n$ qubits se escribe
 	\begin{align*}
 		\rho = \frac{1}{2^n}\sum _{j_1,\ldots,j_n=0}^3 r_{j_1,\ldots,j_n}
 		\sigma_{j_1}\otimes \ldots
-		\otimes\sigma_{j_n},
+		\otimes\sigma_{j_n},\hspace{.8cm} r_{0,\ldots,0}=1.
 	\end{align*}
-	con $r_{0,\ldots,0}=1$ $(\Tr\rho=1)$. \pause
-	Llamaremos \alert{componentes de Pauli} a las $r_{j_1,\ldots,j_n}$.
+	\alert{Llamaremos `componentes de Pauli' a las $r_{j_1,\ldots,j_n}$.}
 \end{frame}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% Theoretical framework
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Operaciones PCE
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 \section{Operaciones PCE}
 \label{sec:Theory}
 
-\begin{frame}{Motivación (1/2)}{Bit-flip con $p=0.5$} \pause
-	Geométricamente, actúa como 
+\begin{frame}{Motivación (1/2)}
+	Un caso particular del canal \textit{bit-flip} es cuando
 	\begin{center}
-	\begin{tabular}{m{2.5cm} m{1cm} m{2.5cm}}
-		\includegraphics[width=3cm]{images/bloch-ball}
-		& \hfill $\longmapsto$
-		& \includegraphics[width=3cm]{images/bitFlip-toX}
+	\begin{tabular}{m{2.5cm} m{1.5cm} m{2.5cm}}
+		\includegraphics[width=3cm]{unit_sph}
+		& \hfill \LARGE{$\longmapsto$}
+		& \includegraphics[width=3cm]{bit_flip_p0_5}
 	\end{tabular}
 	\end{center}
 	
-	\vfill
-	
-	En términos de las componentes de Pauli, el bit-flip para $p=0.5$
-	actúa como
+	Las componentes de Pauli $r_i$ se transforman como
 	\begin{align*}
 	\qty(1,r_1,r_2,r_3)\longmapsto \qty(1,r_1,0,0).
 	\end{align*}
+	
+	\onslide<2>{
+	\alert{¿Son canales cuánticos todas las operaciones que borran
+	cualesquiera de las componentes de Pauli de 1 qubit?}
+	}
+
 \end{frame}
 
 
-\begin{frame}{Motivación (2/2)}{Mapeo de la esfera de Bloch a un disco} \pause
-	Consideremos la operación $\mathcal{E}$ que deforma
-	la esfera de Bloch como
+\begin{frame}{Motivación (2/2)}
+	\alert{No.}
+	Las operaciones $\Lambda$ que borran dos componentes de Pauli no 
+	son canales cuánticos.
 	\begin{center}
-	\begin{tabular}{m{2.5cm} m{1cm} m{2.5cm}}
-		\includegraphics[width=3cm]{images/bloch-ball}
-		& \hfill $\longmapsto$
-		& \includegraphics[width=3.5cm]{images/diskXY}
+	\begin{tabular}{m{2.5cm} m{1.3cm} m{2.5cm}}
+		\includegraphics[width=3cm]{unit_sph}
+		& \hfill \LARGE{$\longmapsto$}
+		& \includegraphics[width=3.5cm]{unit_disk_xy}
 	\end{tabular}
 	\end{center}
 	\begin{align*}
 	\qty(1,r_1,r_2,r_3)\longmapsto\qty(1,r_1,r_2,0).
 	\end{align*}
-	\pause
+	
+	\only<1>{	
+	$\Lambda\otimes \mathds{1}(\dyad{\text{Bell}}{\text{Bell}})\ngeq0$, 
+	por consiguiente	$\Lambda$ no es completamente positiva. 
+	}
+	
+	\only<2>{
+	\alert{$\Lambda\otimes \mathds{1}(\dyad{\text{Bell}}{\text{Bell}})\ngeq0$, 
+	por consiguiente	$\Lambda$ no es completamente positiva.}
+	}
 		
-	$\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})$
-	no es una matriz positiva (i.e. $\mathcal{E}$ no es completamente positiva), 
-	entonces $\mathcal{E}$ no es un canal cuántico	. \vspace{.5cm}
+	\vspace{.5cm}
 \end{frame}
 
 
-\begin{frame}{Operaciones PCE}{Definición y planteamiento del problema}\pause
+\begin{frame}{Operaciones PCE}
 	Una operación PCE (\textit{Pauli component erasing}) 
-	es una operación lineal que actúa sobre las
-	componentes de Pauli de una matriz de densidad $\rho$ 
-	de $n$ qubits como
+	es una operación lineal que transforma a las 	componentes 
+	de Pauli de una matriz de densidad $\rho$ de $n$ qubits como
 	\begin{align*}
-	r_{j_1,\ldots,j_n}\longrightarrow \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n},
+	r_{j_1,\ldots,j_n}\longmapsto \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n},
+	\hspace{.8cm}\tau_{j_1,\ldots,j_n}=0,1.
 	\end{align*}
-	con $\tau_{j_1,\ldots,j_n}=0,1$; excepto $\tau_{0,\ldots,0}=1$.
-	Es decir, borra o deja invariantes las componentes de Pauli. \pause
+	Una operación PCE borra o deja invariantes las componentes de Pauli. 
 	
 	\hfill
-	\includegraphics[height=1.5cm]{images/1qubit-pce-example001}
+	\includegraphics[height=1.5cm]{1qubit_pce_01}
 	\hspace{1.8cm}
-	\includegraphics[height=1.5cm]{images/2qubit-pce-example001}
+	\includegraphics[height=1.5cm]{2qubit_pce_01}
 	\hfill
-	\includegraphics[height=2cm]{images/3qubit-pce-example001}
-	\hspace{1cm} \pause
+	\includegraphics[height=2cm]{3qubit_pce_01}
+	\hspace{1cm} 
 
 	\vfill	
 	
-	\colorbox{Yellow}{\textbf{¿Cómo es la caracterización del subconjunto}}
- 	\colorbox{Yellow}{\textbf{de las operaciones PCE que son canales cuánticos?}}
-% 	\colorbox{Yellow}{\textbf{que	son canales cuánticos?}} 
+	\onslide<2>{
+	\alert{	\textbf{Problema:} ¿cuáles son las características del suconjunto 
+	de canales cuánticos de las operaciones PCE?}
+	}
 \end{frame}
 
 
-\begin{frame}{Canales cuánticos PCE}{Diagonalización de la matriz de Choi} \pause
+\begin{frame}{Canales cuánticos PCE}{Eigenvalores matriz de Choi} 
 Los eigenvalores de la matriz de Choi de una operación PCE 
 de $n$ qubits son
 \begin{align*}
@@ -425,40 +514,49 @@ y $\vec{\tau}$ un vector de $4^n$ componentes.
 \end{frame}
 
 
-\begin{frame}{Canales cuánticos PCE}{$2^k$, pero también importa el orden}
-Los canales cuánticos PCE dejan $2^k$ componentes
-invariantes. Sin embargo, no sólo importa cuántas 
-componentes de Pauli, sino también cuáles. 
+\begin{frame}{Canales cuánticos PCE}
+{Regla $2^k$}
+Los canales cuánticos PCE son operaciones que dejan $2^k$ 
+componentes de Pauli $r_{j_1,\ldots,j_n}$ invariantes. Sin embargo, 
+no sólo importa cuántas $r_{j_1,\ldots,j_n}$, sino también cuáles. 
 
-\vfill
+\vspace{.6cm}
 
-\textbf{2 qubits:} \pause
+\small{\textbf{\underline{2 qubits, 8 componentes invariantes:}}}
+
+\vspace{.2cm}
+
+\small{
 \begin{columns}
 \begin{column}{0.5\textwidth}
-No son canales cuánticos:
-\vspace{.3cm}
+\hspace{.3cm}
+Operaciones PCE que no son\newline
+\hspace{.3cm}
+canales cuánticos:
+\vspace{.1cm}
 \begin{center}
-\includegraphics[height=1.8cm]{images/2qubit-pce-BadoneHalf}
+\includegraphics[height=1.8cm]{2qubit_pceOp_8components}
 \end{center}
 \vspace{1.6cm}
-\end{column} \pause
+\end{column} 
 \begin{column}{0.5\textwidth}
 Todos los canales cuánticos PCE que borran 15 componentes:
 \begin{center}
-\includegraphics[height=3.8cm]{images/2qubit-pce-oneHalf}
+\includegraphics[height=3.8cm]{2qubit_pceQCh_8components}
 \end{center}
 \end{column}
-\end{columns}
+\end{columns}}
 \end{frame}
 
-\begin{frame}{Canales cuánticos PCE}{¿Cuántos?}
-Los canales cuánticos parecen seguir una regla `espejo' para 
-el número de canales PCE según la cantidad de componentes 
-de Pauli invariantes. \pause
+
+
+\begin{frame}{Canales cuánticos PCE}{Regla espejo}
+El número de canales PCE según la cantidad de componentes 
+de Pauli invariantes obedece una regla `espejo'.
 
 \vfill
 
-\textbf{3 qubits:}
+\only<1>{\small{\textbf{\underline{3 qubits:}}}}
 \begin{table}[]
 \centering
 %\begin{tabular}{c|lllll}
@@ -488,7 +586,7 @@ de Pauli invariantes. \pause
 \textbf{componentes}                                  & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8} & \textbf{16} & \textbf{32} & \textbf{64}
 \end{tabular}
 \end{table}
-\end{table} \pause
+\end{table} 
 
 \begin{table}[]
 \footnotesize
@@ -503,91 +601,99 @@ de Pauli invariantes. \pause
 
 \end{frame}
 
-\onslide<1->{
-\begin{frame}{Canales cuánticos PCE}{Generadores}
-Un canal cuántico PCE puede descomponerse como concatenación 
-de los elementos de un subconjunto generador.
-}
 
-\onslide<2->{
+
+\begin{frame}{Canales cuánticos PCE}{Generadores}
+Los canales cuánticos PCE pueden escribirse como concatenación 
+de canales generadores.
+
 \vfill
-\textbf{Generadores canales PCE de 2 qubits:}
+\small{\textbf{\underline{Generadores canales PCE de 2 qubits:}}}
 
 \begin{center}
-\includegraphics[height=4cm]{images/2qubits-generators}
+\includegraphics[height=4cm]{2qubits_pce_generators}
 \end{center}
-}
 
 \end{frame}
 
 
 
 
-\begin{frame}{Ejemplo: 2 qubits}
+\begin{frame}{Ejemplo}{2 qubits}
 \onslide<1->{
-Generadores:
+\underline{Generadores:}
 \begin{center}
-\includegraphics[width=8cm]{images/2qubits-generators}
+\includegraphics[width=8cm]{2qubits_pce_generators}
 \end{center}
 }
 
 \onslide<2->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.05cm} m{0.8cm}}
-\includegraphics[height=1.1cm]{images/E1}  
+\includegraphics[height=1.1cm]{images/E2}  
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E4} 
+& \includegraphics[height=1.1cm]{images/E5} 
 & $=$
-& \includegraphics[height=1.1cm]{images/E1E4} 
+& \includegraphics[height=1.1cm]{images/E2E5} 
 \end{tabular} \hspace{1.3cm}
 }
 
 \onslide<3->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
-\includegraphics[height=1.1cm]{images/E3}
+\includegraphics[height=1.1cm]{images/E4}
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E1}  
+& \includegraphics[height=1.1cm]{images/E2}  
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E4} 
+& \includegraphics[height=1.1cm]{images/E5} 
 & $=$
-& \includegraphics[height=1.1cm]{images/E3E1E4} 
+& \includegraphics[height=1.1cm]{images/E4E2E5} 
 \end{tabular} \hspace{1.3cm}
 }
 
 \onslide<4->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
-\includegraphics[height=1.1cm]{images/E11}
+\includegraphics[height=1.1cm]{images/E12}
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E3}
+& \includegraphics[height=1.1cm]{images/E4}
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E1}  
+& \includegraphics[height=1.1cm]{images/E2}  
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E4} 
+& \includegraphics[height=1.1cm]{images/E5} 
 & $=$
-& \includegraphics[height=1.1cm]{images/E11E3E1E4} 
+& \includegraphics[height=1.1cm]{images/E12E4E2E5} 
 \end{tabular} \hspace{1.3cm}
 }
 \end{frame}
 
-\begin{frame}{Hipótesis}
-Sea $PCE_n$ al conjunto de canales cuánticos PCE de $n$
-qubits. Existe un conjunto $\Gamma_n\subset PCE_n$ cuyos
-elementos son necesarios y suficientes para generar al resto
-de los elementos en $PCE_n$. \vfill \pause
+\begin{frame}{Canales PCE}{$n$ qubits}
+%Sea $PCE_n$ al conjunto de canales cuánticos PCE de $n$
+%qubits. Existe un conjunto $\Gamma_n\subset PCE_n$ cuyos
+%elementos son necesarios y suficientes para generar al resto
+%de los elementos en $PCE_n$. \vfill 
 
-Sea $\mathcal{E}_j\in \Gamma_n$ y $\Phi \in PCE_n$. Un canal 
-PCE de $n$ qubits puede descomponerse como
+%Sea $\mathcal{E}_j\in \Gamma_n$ y $\Phi \in PCE_n$. 
+Un canal PCE de $n$ qubits puede escribirse como
 \begin{align*}
 \Phi = \underbrace{\mathcal{E}_{j_1}\circ \mathcal{E}_{j_2}\circ \ldots
-\circ \mathcal{E}_{j_l}}_{\text{máximo }2^n}.
-\end{align*}\vfill \pause
+\circ \mathcal{E}_{j_l}}_{\text{máximo }2^n},
+\end{align*}
+con $\mathcal{E}_{j_i}$ los generadores.
 
-Los elementos de $\Gamma_n$ son los canales PCE
-que proyectan la matriz de densidad $\rho$, escrita en la base de Pauli,
-a un subespacio que tiene la mitad de la dimensión del espacio sobre 
-el cual actúa $\Phi$.
+\vfill
+
+\only<1>{
+Los generadores $\mathcal{E}_{j_i}$ son las únicas formas que están 
+físicamente permitidas de borrar la mitad de las componentes de Pauli 
+de un sistema de $n$ qubits.
+}
+\only<2>{
+\alert{
+Los generadores $\mathcal{E}_{j_i}$ son las únicas formas que están 
+físicamente permitidas de borrar la mitad de las componentes de Pauli 
+de un sistema de $n$ qubits.}
+}
 \end{frame}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
