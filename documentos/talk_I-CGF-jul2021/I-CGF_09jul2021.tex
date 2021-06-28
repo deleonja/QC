@@ -104,6 +104,8 @@
 %
 % to include graphics
 \usepackage{graphicx}%
+% path to images
+\graphicspath{ {./images/} }
 %
 % to use tiks: nice to draw diagrams
 \usepackage{tikz}%
@@ -167,11 +169,11 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
   \begin{tikzpicture}[x=1mm,y=1mm,overlay,remember picture]
     \pgftransformshift{\pgfpointanchor{current page}{center}}
     \node[inner sep=0pt] (usac) at (-35,-30) %
-    {\includegraphics[height=12mm]{images/ecfmByN}};
+    {\includegraphics[height=12mm]{logos/ecfmByN}};
     \node[inner sep=0pt] (usac) at (0,-30) %
-    {\includegraphics[height=12mm]{images/ifunam}};
+    {\includegraphics[height=12mm]{logos/ifunam}};
     \node[inner sep=0pt] (ecfm) at (35,-30) %
-    {\includegraphics[height=12mm]{images/u-pernambuco}};
+    {\includegraphics[height=12mm]{logos/u-pernambuco}};
   \end{tikzpicture}
 \end{frame}
 
@@ -196,14 +198,14 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\only<1>{
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=5.5cm]{images/cerrados.pdf}
+		\includegraphics[height=5.5cm]{sistema-cerrado.pdf}
 	\end{center}
   }
 	
 	\only<2>{
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=5.5cm]{images/abiertos.pdf}
+		\includegraphics[height=5.5cm]{sistema-abierto.pdf}
 	\end{center}
   }  
   
@@ -326,14 +328,14 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\only<1>{
 	\vspace{-.3cm}
 	\begin{center}
-	\includegraphics[height=6cm]{images/CP1}
+	\includegraphics[height=6cm]{CP1}
 	\end{center}
 	}	
 	
 	\only<2>{
 	\vspace{-.3cm}
 	\begin{center}
-	\includegraphics[height=6cm]{images/CP2}
+	\includegraphics[height=6cm]{CP2}
 	\end{center}	
 	}
 	
@@ -376,9 +378,9 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 		$\qty(r_1,r_2,r_3)$ especifican las coordenadas cartesianas de un 
  		punto en la esfera de Bloch.
 	\end{column}\hspace{-1cm}
-	\begin{column}{0.5\textwidth}  %%<--- here
+	\begin{column}{0.5\textwidth}  
   		\begin{center}
-    		\includegraphics[width=0.7\textwidth]{images/bloch}      
+    		\includegraphics[width=0.7\textwidth]{bloch-sph}      
      \end{center}
 		\end{column}
 	\end{columns}
@@ -388,9 +390,9 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	El \textit{bit-flip} actúa sobre la esfera de Bloch como
 	\begin{center}
 	\begin{tabular}{m{2.5cm} m{1.5cm} m{2.5cm}}
-		\includegraphics[width=3cm]{images/bloch-ball}
+		\includegraphics[width=3cm]{unit_sph}
 		& \hfill \LARGE{$\longmapsto$} \hfill
-		& \includegraphics[width=3cm]{images/bit-flip}
+		& \includegraphics[width=3cm]{bit_flip_p0_3}
 	\end{tabular}
 	\end{center}
 	
@@ -421,9 +423,9 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	Un caso particular del canal \textit{bit-flip} es cuando
 	\begin{center}
 	\begin{tabular}{m{2.5cm} m{1.5cm} m{2.5cm}}
-		\includegraphics[width=3cm]{images/bloch-ball}
+		\includegraphics[width=3cm]{unit_sph}
 		& \hfill \LARGE{$\longmapsto$}
-		& \includegraphics[width=3cm]{images/bitFlip-toX}
+		& \includegraphics[width=3cm]{bit_flip_p0_5}
 	\end{tabular}
 	\end{center}
 	
@@ -446,9 +448,9 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	son canales cuánticos.
 	\begin{center}
 	\begin{tabular}{m{2.5cm} m{1.3cm} m{2.5cm}}
-		\includegraphics[width=3cm]{images/bloch-ball}
+		\includegraphics[width=3cm]{unit_sph}
 		& \hfill \LARGE{$\longmapsto$}
-		& \includegraphics[width=3.5cm]{images/diskXY}
+		& \includegraphics[width=3.5cm]{unit_disk_xy}
 	\end{tabular}
 	\end{center}
 	\begin{align*}
@@ -480,11 +482,11 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	Una operación PCE borra o deja invariantes las componentes de Pauli. 
 	
 	\hfill
-	\includegraphics[height=1.5cm]{images/1qubit-pce-example001}
+	\includegraphics[height=1.5cm]{1qubit_pce_01}
 	\hspace{1.8cm}
-	\includegraphics[height=1.5cm]{images/2qubit-pce-example001}
+	\includegraphics[height=1.5cm]{2qubit_pce_01}
 	\hfill
-	\includegraphics[height=2cm]{images/3qubit-pce-example001}
+	\includegraphics[height=2cm]{3qubit_pce_01}
 	\hspace{1cm} 
 
 	\vfill	
@@ -533,14 +535,14 @@ Operaciones PCE que no son\newline
 canales cuánticos:
 \vspace{.1cm}
 \begin{center}
-\includegraphics[height=1.8cm]{images/2qubit-pce-BadoneHalf}
+\includegraphics[height=1.8cm]{2qubit_pceOp_8components}
 \end{center}
 \vspace{1.6cm}
 \end{column} 
 \begin{column}{0.5\textwidth}
 Todos los canales cuánticos PCE que borran 15 componentes:
 \begin{center}
-\includegraphics[height=3.8cm]{images/2qubit-pce-oneHalf}
+\includegraphics[height=3.8cm]{2qubit_pceQCh_8components}
 \end{center}
 \end{column}
 \end{columns}}
@@ -609,7 +611,7 @@ de canales generadores.
 \small{\textbf{\underline{Generadores canales PCE de 2 qubits:}}}
 
 \begin{center}
-\includegraphics[height=4cm]{images/2qubits-generators}
+\includegraphics[height=4cm]{2qubits_pce_generators}
 \end{center}
 
 \end{frame}
@@ -621,46 +623,46 @@ de canales generadores.
 \onslide<1->{
 \underline{Generadores:}
 \begin{center}
-\includegraphics[width=8cm]{images/2qubits-generators}
+\includegraphics[width=8cm]{2qubits_pce_generators}
 \end{center}
 }
 
 \onslide<2->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.05cm} m{0.8cm}}
-\includegraphics[height=1.1cm]{images/E1}  
+\includegraphics[height=1.1cm]{images/E2}  
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E4} 
+& \includegraphics[height=1.1cm]{images/E5} 
 & $=$
-& \includegraphics[height=1.1cm]{images/E1E4} 
+& \includegraphics[height=1.1cm]{images/E2E5} 
 \end{tabular} \hspace{1.3cm}
 }
 
 \onslide<3->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
-\includegraphics[height=1.1cm]{images/E3}
+\includegraphics[height=1.1cm]{images/E4}
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E1}  
+& \includegraphics[height=1.1cm]{images/E2}  
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E4} 
+& \includegraphics[height=1.1cm]{images/E5} 
 & $=$
-& \includegraphics[height=1.1cm]{images/E3E1E4} 
+& \includegraphics[height=1.1cm]{images/E4E2E5} 
 \end{tabular} \hspace{1.3cm}
 }
 
 \onslide<4->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
-\includegraphics[height=1.1cm]{images/E11}
+\includegraphics[height=1.1cm]{images/E12}
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E3}
+& \includegraphics[height=1.1cm]{images/E4}
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E1}  
+& \includegraphics[height=1.1cm]{images/E2}  
 & $\bigcirc$ 
-& \includegraphics[height=1.1cm]{images/E4} 
+& \includegraphics[height=1.1cm]{images/E5} 
 & $=$
-& \includegraphics[height=1.1cm]{images/E11E3E1E4} 
+& \includegraphics[height=1.1cm]{images/E12E4E2E5} 
 \end{tabular} \hspace{1.3cm}
 }
 \end{frame}
