@@ -190,42 +190,42 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 
 \begin{frame}{Sistemas cuánticos abiertos}{¿Qué son?}
 
-	\onslide<1->{
-	Considerar a los sistemas cuánticos como sistemas aislados de 
-	su entorno es una aproximación útil.
-  }
+%	\onslide<1->{
+%	Considerar a los sistemas cuánticos como sistemas aislados de 
+%	su entorno es una aproximación útil.
+%  }
 
 	\only<1>{
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=5.5cm]{sistema-cerrado.pdf}
+		\includegraphics[height=7cm]{sistema-cerrado.pdf}
 	\end{center}
   }
 	
 	\only<2>{
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=5.5cm]{sistema-abierto.pdf}
+		\includegraphics[height=7cm]{sistema-abierto.pdf}
 	\end{center}
   }  
   
-  \only<1>{
-  \vspace{-.6cm}
-  Sin embargo, los sistemas cuánticos reales son sistemas 
-  abiertos a interacciones con su entorno.
-  
-  \vfill
-	}
-	
-	\only<2>{
-  \vspace{-.6cm}
-  \alert{
-  Sin embargo, los sistemas cuánticos reales son sistemas 
-  abiertos a interacciones con su entorno.
-  }
-  
-  \vfill
-	}
+%  \only<1>{
+%  \vspace{-.6cm}
+%  Sin embargo, los sistemas cuánticos reales son sistemas 
+%  abiertos a interacciones con su entorno.
+%  
+%  \vfill
+%	}
+%	
+%	\only<2>{
+%  \vspace{-.6cm}
+%  \alert{
+%  Sin embargo, los sistemas cuánticos reales son sistemas 
+%  abiertos a interacciones con su entorno.
+%  }
+%  
+%  \vfill
+%	}
 
 \end{frame}
 
@@ -233,18 +233,15 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 \begin{frame}{Sistemas cuánticos abiertos}%
   {Matriz de densidad $\rho$}
   
-	\only<1>{
-	\alert{
-  Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
+  	\only<1>{Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
   con probabilidad $p_i$, la matriz de densidad del sistema se define como
   \begin{align*}
   \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
-  \end{align*}
-  }
-  }  
-  
-  \only<2>{
-  Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
+  \end{align*}}\only<2>{\alert{Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
+  con probabilidad $p_i$, la matriz de densidad del sistema se define como
+  \begin{align*}
+  \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
+  \end{align*}}}\only<3>{Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
   con probabilidad $p_i$, la matriz de densidad del sistema se define como
   \begin{align*}
   \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
@@ -262,9 +259,16 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\end{enumerate}
 	
 	\vfill
-	}
+	}\only<2>{
+	Una matriz $\rho$ es una matriz de densidad asociada 
+	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si
+	\begin{enumerate}
+	\item $\Tr (\rho)=1$,
+	\item $\rho\geq 0$.
+	\end{enumerate}
 	
-	\only<2>{
+	\vfill
+	}\only<3>{
 	\alert{	
 	Una matriz $\rho$ es una matriz de densidad asociada 
 	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si}
@@ -410,7 +414,9 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 		\sigma_{j_1}\otimes \ldots
 		\otimes\sigma_{j_n},\hspace{.8cm} r_{0,\ldots,0}=1.
 	\end{align*}
-	\alert{Llamaremos `componentes de Pauli' a las $r_{j_1,\ldots,j_n}$.}
+	\only<1>{Llamaremos `componentes de Pauli' a las 
+	$r_{j_1,\ldots,j_n}$.}\only<2>{\alert{Llamaremos 
+	`componentes de Pauli' a las $r_{j_1,\ldots,j_n}$.}}
 \end{frame}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -443,7 +449,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 
 
 \begin{frame}{Motivación (2/2)}
-	\alert{No.}
+	\only<1>{\alert{No.}}\only<2>{No.}
 	Las operaciones $\Lambda$ que borran dos componentes de Pauli no 
 	son canales cuánticos.
 	\begin{center}
@@ -453,6 +459,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 		& \includegraphics[width=3.5cm]{unit_disk_xy}
 	\end{tabular}
 	\end{center}
+	\vspace{-1cm}
 	\begin{align*}
 	\qty(1,r_1,r_2,r_3)\longmapsto\qty(1,r_1,r_2,0).
 	\end{align*}
@@ -479,7 +486,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	r_{j_1,\ldots,j_n}\longmapsto \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n},
 	\hspace{.8cm}\tau_{j_1,\ldots,j_n}=0,1.
 	\end{align*}
-	Una operación PCE borra o deja invariantes las componentes de Pauli. 
+	\only<1>{Una operación PCE borra o deja invariantes las componentes de Pauli.}\only<2>{\alert{Una operación PCE borra o deja invariantes las componentes de Pauli. }}\only<3>{Una operación PCE borra o deja invariantes las componentes de Pauli.} 
 	
 	\hfill
 	\includegraphics[height=1.5cm]{1qubit_pce_01}
@@ -491,7 +498,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 
 	\vfill	
 	
-	\onslide<2>{
+	\onslide<3>{
 	\alert{	\textbf{Problema:} ¿cuáles son las características del suconjunto 
 	de canales cuánticos de las operaciones PCE?}
 	}
@@ -546,6 +553,7 @@ Todos los canales cuánticos PCE que borran 15 componentes:
 \end{center}
 \end{column}
 \end{columns}}
+\vspace{2cm}
 \end{frame}
 
 
