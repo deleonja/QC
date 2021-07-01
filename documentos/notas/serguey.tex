@@ -9,7 +9,12 @@
 \usepackage{siunitx} 
 \usepackage{enumerate} 
 \usepackage{pgfplots}
+
+% To add figures
 \usepackage{graphicx}
+% Path to figures
+\graphicspath{ {../images/} }
+
 \usepackage{pgfplotstable}
 \usepackage{tikz,pgfplots}
 \usepackage{amsmath} 
@@ -44,7 +49,7 @@
 % Titulo y otros {{{
 \title{Projective maps on a system of $n$ qubits} 
 %Title should be concise and to the point  
-\author{J. A. de León\\ \small{in collaboration with C. Pineda, D. Dávalos, A. Fonseca}}
+\author{J. A. de León, C. Pineda, D. Dávalos, A. Fonseca}
 \date{\today}  
 \maketitle
 % }}}
@@ -98,14 +103,11 @@ In the following subsections we present the PCE channels for
 \begin{figure}[H] % {{{
 	\centering
 	\hfill \hfill
-	\includegraphics[height=2.5cm]
-	{img/tablero-1q}
+	\includegraphics[height=2.5cm]	{tablero-1q}
 	\hfill
-	\includegraphics[width=2.5cm]
-	{img/rho2q(2)}
+	\includegraphics[width=2.5cm]{rho2q(2)}
 	\hfill 
-	\includegraphics[width=2.5cm]
-	{img/rho-3q}
+	\includegraphics[width=2.5cm]{rho-3q}
 	\hfill \hfill
 	\caption{From left to right the identity map acting on
   an arbitrary density matrix of 1, 2 and 3 qubits, respectively. 
@@ -126,8 +128,7 @@ These three flip channels are equivalent via permutation
 of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
 \begin{figure}[H]% {{{
 	\centering
-	\includegraphics[width=5cm]
-	{img/1q-CCs.png}
+	\includegraphics[width=5cm]{1q-CCs.png}
 	\caption{
 1-qubit PCE channels. From left to right patterns represent  
 the following channels: identity,
@@ -159,8 +160,7 @@ that elements in a class are connected by
 
 \begin{figure}[H] % {{{
 	\centering
-  \includegraphics[height=1.2cm]
-	{img/C16.png}
+  \includegraphics[height=1.2cm]{C16.png}
 	\caption{C${}^{1}$}
 	\label{fig:2q-c1}
 \end{figure} % }}}
@@ -168,15 +168,13 @@ that elements in a class are connected by
 \begin{figure}[H] % {{{
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C12.png}
+	  \includegraphics[width=.9\textwidth]{C12.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^2$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C22.png}
+	  \includegraphics[width=.9\textwidth]{C22.png}
 		\caption{C${}_2^2$}
 	\end{minipage}
 \end{figure} % }}}
@@ -184,28 +182,24 @@ that elements in a class are connected by
 \begin{figure}[H] % {{{
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C14.png}
+	  \includegraphics[width=.9\textwidth]{C14.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^4$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C24.png}
+	  \includegraphics[width=.9\textwidth]{C24.png}
 		\caption{C${}_2^4$}
 		\label{fig:2q-4c-2}
 	\end{minipage}\vfill
 \begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C34.png}
+	  \includegraphics[width=.9\textwidth]{C34.png}
 		\caption{C${}_3^4$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C44.png}
+	  \includegraphics[width=.9\textwidth]{C44.png}
 		\vspace{2.5cm}
 		\caption{C${}_4^4$}
 	\end{minipage}
@@ -214,23 +208,20 @@ that elements in a class are connected by
 \begin{figure}[H] % {{{
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C18.png}
+	  \includegraphics[width=.9\textwidth]{C18.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^8$}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
-	  \includegraphics[width=.9\textwidth]
-		{img/C28.png}
+	  \includegraphics[width=.9\textwidth]{C28.png}
 		\caption{C${}_2^8$}
 	\end{minipage}
 \end{figure} % }}}
 
 \begin{figure}[H] % {{{
 	\centering
-  \includegraphics[height=1.2cm]
-	{img/C0.png}
+  \includegraphics[height=1.2cm]{C0.png}
 	\caption{C${}^{16}$}
 	\label{fig:2q-c16}
 \end{figure} % }}}
@@ -251,7 +242,7 @@ and then the map is not a quantum channel.
 % 	\includegraphics[height=2cm]{img/not-cc}
 % \end{figure}
 \begin{center}
-	\includegraphics[height=2cm]{img/not-cc}
+	\includegraphics[height=2cm]{not-cc}
 \end{center}
 
 \item 
@@ -302,7 +293,7 @@ invariant too, or \textit{b)} both components with indices $i0$ and $0j$ are
 erased.
 Let us take a look at the next example. 
 \begin{center}
-\includegraphics[width=2cm]{img/ex-2q2c-empiricalRule}
+\includegraphics[width=2cm]{ex-2q2c-empiricalRule}
 \end{center}
 % \hfill \hfill
 % \newline
@@ -314,7 +305,7 @@ as in the following pattern
 \begin{center}
 % \newline
 % \hfill
-\includegraphics[width=2cm]{img/ex-2q4c-empiricalRule},
+\includegraphics[width=2cm]{ex-2q4c-empiricalRule},
 % \hfill \hfill 
 % \newline
 \end{center}
@@ -342,7 +333,7 @@ Let's go back to the last pattern in the previous example. This rule
 ensures that components in the correlation matrix outside of row 2 and 
 column 1 may be left invariant by a PCE channel, i.e.
 \begin{center}
-\includegraphics[width=2cm]{img/ex-2q8c-empiricalRule},
+\includegraphics[width=2cm]{ex-2q8c-empiricalRule},
 \end{center}
 which is another PCE channel.
 \end{enumerate}	
@@ -382,7 +373,7 @@ permutation of individual components.
 The only map that leaves invariant 1 component in $\rho$ is the completely
 depolarizing channel, and it is trivially a PCE channel.
 \begin{figure}[H]
-	\includegraphics[height=4cm]{img/3q-1c}
+	\includegraphics[height=4cm]{3q-1c}
 	\caption{Completely depolarizing channel for 3 qubits.}
 	\label{fig:QC-3q-1c}
 \end{figure}
@@ -400,11 +391,11 @@ PCE channels. It's important to mention that in the 2-qubits case all
 \begin{figure}[H]
 	\centering
 	\hfill \hfill
-	\includegraphics[height=4cm]{img/3q-2c-1}
+	\includegraphics[height=4cm]{3q-2c-1}
 	\hfill
-	\includegraphics[height=4cm]{img/3q-2c-2}
+	\includegraphics[height=4cm]{3q-2c-2}
 	\hfill
-	\includegraphics[height=4cm]{img/3q-2c-3}
+	\includegraphics[height=4cm]{3q-2c-3}
 	\hfill \hfill
 	\caption{3-qubits 2-components-invariant PCE channels. 
 	One element of each of the 3 equivalence classes 
@@ -441,27 +432,27 @@ previous results.
 \begin{figure}[H]
 	\centering
 	\hfill \hfill
-	\includegraphics[height=3cm]{img/3q-4c-si-1}
+	\includegraphics[height=3cm]{3q-4c-si-1}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-si-2}
+	\includegraphics[height=3cm]{3q-4c-si-2}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-si-3}
+	\includegraphics[height=3cm]{3q-4c-si-3}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-si-4}
+	\includegraphics[height=3cm]{3q-4c-si-4}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-si-5}
+	\includegraphics[height=3cm]{3q-4c-si-5}
 	\hfill
 	\vfill
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-no-1}
+	\includegraphics[height=3cm]{3q-4c-no-1}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-no-2}
+	\includegraphics[height=3cm]{3q-4c-no-2}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-no-3}
+	\includegraphics[height=3cm]{3q-4c-no-3}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-no-4}
+	\includegraphics[height=3cm]{3q-4c-no-4}
 	\hfill
-	\includegraphics[height=3cm]{img/3q-4c-no-5}
+	\includegraphics[height=3cm]{3q-4c-no-5}
 	\hfill \hfill
 	\caption{3-qubits 4-components-invariant PCE channels. 
 	One element of every of the 10 equivalence classes.}
@@ -499,13 +490,13 @@ begin with an element of the same equivalence class as the second
 element on top of \fref{fig:QC-3q-4c}, then we make use of one of 
 the cases 2-4 of the first empirical rule for 3 qubits and get the PCE channel below.
 \begin{center}
-	\includegraphics[width=4cm]{img/3q-8c-je}.
+	\includegraphics[width=4cm]{3q-8c-je}.
 \end{center}
 Finally, we make use of the second rule to left invariant only components
 corresponding to correlations between all qubits in the system (green cubes)
 and get another PCE channel (pattern below).
 \begin{center}
-	\includegraphics[width=4cm]{img/3q-8c}
+	\includegraphics[width=4cm]{3q-8c}
 \end{center}
 What we have done is start with a PCE channel that leaves 4 invariant
 components, make our way trough a 8-invariant-components PCE channel and 
