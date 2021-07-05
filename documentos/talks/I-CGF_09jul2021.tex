@@ -188,26 +188,28 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 \section{Sistemas cuánticos abiertos}
 \label{sec:Intro}
 
-\begin{frame}{Sistemas cuánticos abiertos}{¿Qué son?}
+\begin{frame}{Sistema cerrado}
+	\vspace{-.1cm}
+	\begin{center}
+		\includegraphics[height=7cm]{sistema_cerrado.pdf}
+	\end{center}
+\end{frame}
 
-%	\onslide<1->{
-%	Considerar a los sistemas cuánticos como sistemas aislados de 
-%	su entorno es una aproximación útil.
-%  }
+\begin{frame}{Sistema abierto}
 
 	\only<1>{
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=7cm]{sistema-cerrado.pdf}
+		\includegraphics[height=7cm]{sistema_abierto01.pdf}
 	\end{center}
   }
-	
-	\only<2>{
+  
+  \only<2>{
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=7cm]{sistema-abierto.pdf}
+		\includegraphics[height=7cm]{sistema_abierto02.pdf}
 	\end{center}
-  }  
+  }    
   
 %  \only<1>{
 %  \vspace{-.6cm}
@@ -230,64 +232,38 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 \end{frame}
 
 
-\begin{frame}{Sistemas cuánticos abiertos}%
-  {Matriz de densidad $\rho$}
+\begin{frame}{Sistemas abiertos}
+{¿cómo representar a los estados?}
+   \only<1>{
+  La herramienta más apropiada para representar al estado de un 
+  sistema cuántico abierto es la matriz de densidad $\rho$. \vfill
   
-  	\only<1>{Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
-  con probabilidad $p_i$, la matriz de densidad del sistema se define como
+  Por ejemplo, supongamos un sistema cuyo estado es $\ket{\psi}$,
+  su matriz de densidad se escribe
   \begin{align*}
-  \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
-  \end{align*}}\only<2>{\alert{Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
-  con probabilidad $p_i$, la matriz de densidad del sistema se define como
-  \begin{align*}
-  \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
-  \end{align*}}}\only<3>{Si un sistema se encuentra en alguno de los estados $\ket{\psi_i}$ 
-  con probabilidad $p_i$, la matriz de densidad del sistema se define como
-  \begin{align*}
-  \rho \equiv \sum_{i}p_i\dyad{\psi_i}{\psi_i}.
+  \rho=\dyad{\psi}{\psi}.
   \end{align*}
   }
-  
-  \vfill
-  
-  \only<1>{
-	Una matriz $\rho$ es una matriz de densidad asociada 
-	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si
+
+	\only<2>{
+	Una matriz $\rho$ representa a un estado cuántico si y sólo si 	
 	\begin{enumerate}
-	\item $\Tr (\rho)=1$,
-	\item $\rho\geq 0$.
-	\end{enumerate}
-	
-	\vfill
-	}\only<2>{
-	Una matriz $\rho$ es una matriz de densidad asociada 
-	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si
-	\begin{enumerate}
-	\item $\Tr (\rho)=1$,
-	\item $\rho\geq 0$.
-	\end{enumerate}
-	
-	\vfill
-	}\only<3>{
-	\alert{	
-	Una matriz $\rho$ es una matriz de densidad asociada 
-	a un ensamble de estados $\{p_i,\ket{\psi_i}\}$ si y sólo si}
-	\begin{enumerate}
-	\item \alert{$\Tr (\rho)=1$,}
-	\item \alert{$\rho\geq 0$.}
+		\item $\Tr (\rho)=1$,
+		\item $\rho^{\dagger}=\rho$,
+		\item $\rho\geq 0$.
 	\end{enumerate}	
-	
-	\vfill
 	}
 \end{frame}
 
 
-\begin{frame}{Sistemas cuánticos abiertos}%
-  {Canales cuánticos}
+\begin{frame}{Sistemas abiertos}%
+  {Dinámica}
+  
+  La teoría de los canales cuánticos es una forma para describir 
+  la evolución de la matriz de densidad (estado cuántico). \vfill
   
   \only<1>{
-	Una operación lineal $\mathcal{E}$ que actúa sobre 
-	la matriz de densidad $\rho$ 	como 
+	Una operación lineal $\mathcal{E}$ que actúa sobre $\rho$ 	como 
 	\begin{align*}
 	\mathcal{E}(\rho)=\rho'
 	\end{align*}
@@ -299,8 +275,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	}
 	
 	\only<2>{
-	Una operación lineal $\mathcal{E}$ que actúa sobre 
-	la matriz de densidad $\rho$ 	como 
+	Una operación lineal $\mathcal{E}$ que actúa sobre $\rho$ como 
 	\begin{align*}
 	\mathcal{E}(\rho)=\rho'
 	\end{align*}
@@ -312,8 +287,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	}
 	
 	\only<3>{
-	Una operación lineal $\mathcal{E}$ que actúa sobre 
-	la matriz de densidad $\rho$ 	como 
+	Una operación lineal $\mathcal{E}$ que actúa sobre $\rho$ 	como 
 	\begin{align*}
 	\mathcal{E}(\rho)=\rho'
 	\end{align*}
@@ -329,38 +303,48 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	Supongamos una operación $\mathcal{E}$ que actúa sobre 
 	el sistema A.
 	
-	\only<1>{
-	\vspace{-.3cm}
-	\begin{center}
-	\includegraphics[height=6cm]{CP1}
-	\end{center}
-	}	
-	
-	\only<2>{
-	\vspace{-.3cm}
+	\only<1->{
 	\begin{center}
 	\includegraphics[height=6cm]{CP2}
 	\end{center}	
 	}
 	
-	\vspace{-.5cm}
 	No es suficiente que 	$\mathcal{E}(\rho_A)\geq0$, \only<1>{también 
-	$\mathcal{E}\otimes \mathds{1}(\rho_{total})\geq0$.}\only<2>{\alert{también 
-	$\mathcal{E}\otimes \mathds{1}(\rho_{total})\geq0$.}} 
+	$\qty(\mathcal{E}\otimes \mathds{1}_k)\qty[\rho_{total}]\geq0$.}\only<2>{\alert{también 
+	$\qty(\mathcal{E}\otimes \mathds{1}_k)\qty[\rho_{total}]\geq0$.}} 
 \end{frame}
 
-\begin{frame}{Completa positividad}{Definición}
-	Una operación $\mathcal{E}$ es completamente positiva 
-	si y sólo si 
+\begin{frame}{Canal cuántico}
+	\begin{center}
+		\includegraphics[width=7cm]{QuantumChannel}
+	\end{center}
+	\vspace{-.2cm}
+	\only<1>{
+	Una operación $\mathcal{E}$ es un canal cuántico si y sólo si 
 	\begin{align*}
-	\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})\geq 0,
+	 \qty(\mathcal{E}\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]
+	\hspace{.5cm}	 
+	 \text{(matriz de Choi de }\mathcal{E})
 	\end{align*}
-	donde $\rho_{\mathcal{E}}$ es el estado maximamente entrelazado
-	entre dos copias idénticas del sistema sobre el que actúa $\mathcal{E}$.
+	es (1) de traza unitaria, (2) Hermítica y (3) positiva.}
+	\only<2>{
+	Una operación $\mathcal{E}$ es un canal cuántico si y sólo si 
+	\begin{align*}
+	 \qty(\mathcal{E}\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]
+	\hspace{.5cm}	 
+	 \alert{\text{(matriz de Choi de }\mathcal{E})}
+	\end{align*}
+	es (1) de traza unitaria, (2) Hermítica y (3) positiva.	
+	}
+\end{frame}
 
-%	\textbf{Para recordar:} 
-%	$\mathcal{E}\otimes \mathds{1}(\rho_{\mathcal{E}})$ recibe 
-%	el nombre de la \alert{matriz de Choi}~de~$\mathcal{E}$.
+
+\begin{frame}{Resumen}
+	\begin{enumerate}
+		\item Sistemas cuánticos reales: abiertos
+		\item Estados cuánticos: matriz de densidad $\rho$
+		\item Dinámica: canales cuánticos
+	\end{enumerate}
 \end{frame}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -369,18 +353,20 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 
 \section{Qubits}
 
-\begin{frame}{¿Qué es un qubit?}
+\begin{frame}{Qubit}
 	Un qubit es un sistema cuántico de dos niveles.
 	
 	\begin{columns}
 	\hspace{1cm}
 	\begin{column}{0.7\textwidth}
 		\begin{align*}
-			\rho &= \frac{1}{2}\sum _{i=0}^3 r_i\sigma_i \\
 			\rho &= \frac{\mathds{1}+r_1\sigma_x+r_2\sigma_y+r_3\sigma_z}{2},
 		\end{align*}	
 		$\qty(r_1,r_2,r_3)$ especifican las coordenadas cartesianas de un 
- 		punto en la esfera de Bloch.
+ 		punto en la esfera de Bloch,
+ 	\begin{align*}
+ 		\alert{\rho = \qty(1,r_1,r_2,r_3)}.
+ 	\end{align*}
 	\end{column}\hspace{-1cm}
 	\begin{column}{0.5\textwidth}  
   		\begin{center}
@@ -402,7 +388,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	
 	Transforma a las componentes $r_i$ de la matriz de densidad como
 	\begin{align*}
-	\qty(1,r_1,r_2,r_3) \longmapsto \qty(1,r_1,\qty(1-p)r_2,\qty(1-p)r_3).
+	\qty(1,r_1,r_2,r_3) \longmapsto \qty(1,r_1,\qty(1-2p)r_2,\qty(1-2p)r_3).
 	\end{align*}
 \end{frame}
 
@@ -465,12 +451,12 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\end{align*}
 	
 	\only<1>{	
-	$\Lambda\otimes \mathds{1}(\dyad{\text{Bell}}{\text{Bell}})\ngeq0$, 
+	$\qty(\Lambda\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]\ngeq0$, 
 	por consiguiente	$\Lambda$ no es completamente positiva. 
 	}
 	
 	\only<2>{
-	\alert{$\Lambda\otimes \mathds{1}(\dyad{\text{Bell}}{\text{Bell}})\ngeq0$, 
+	\alert{$\qty(\Lambda\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]\ngeq0$, 
 	por consiguiente	$\Lambda$ no es completamente positiva.}
 	}
 		
@@ -489,17 +475,17 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\only<1>{Una operación PCE borra o deja invariantes las componentes de Pauli.}\only<2>{\alert{Una operación PCE borra o deja invariantes las componentes de Pauli. }}\only<3>{Una operación PCE borra o deja invariantes las componentes de Pauli.} 
 	
 	\hfill
-	\includegraphics[height=1.5cm]{1qubit_pce_01}
+	\includegraphics[height=2cm]{1qubit_pce_01}
 	\hspace{1.8cm}
-	\includegraphics[height=1.5cm]{2qubit_pce_01}
+	\includegraphics[height=2cm]{2qubit_pce_01}
 	\hfill
-	\includegraphics[height=2cm]{3qubit_pce_01}
+	\includegraphics[height=2.5cm]{3qubit_pce_01}
 	\hspace{1cm} 
 
 	\vfill	
 	
-	\onslide<3>{
-	\alert{	\textbf{Problema:} ¿cuáles son las características del suconjunto 
+	\only<2>{\textbf{Problema:} ¿cuáles son las características del suconjunto 
+	de canales cuánticos de las operaciones PCE?}\only<3>{\alert{	\textbf{Problema:} ¿cuáles son las características del suconjunto 
 	de canales cuánticos de las operaciones PCE?}
 	}
 \end{frame}

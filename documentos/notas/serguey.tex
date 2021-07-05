@@ -26,13 +26,35 @@
 %\usepackage{bbold}
 
 
-\newcommand{\fref}[1]{fig.~\ref{#1}}  \newcommand{\tref}[1]{table~\ref{#1}}
-\newcommand{\Fref}[1]{Fig.~\ref{#1}}  \newcommand{\Tref}[1]{Table~\ref{#1}}
+\newcommand{\fref}[1]{fig.~\ref{#1}}  
+\newcommand{\tref}[1]{table~\ref{#1}}
+\newcommand{\Fref}[1]{Fig.~\ref{#1}}  
+\newcommand{\Tref}[1]{Table~\ref{#1}}
 
-\newcommand{\h}[1]{\colorbox{Yellow}{#1}}
-\newcommand{\1}{\mathds{1}}
+
 \newcommand{\R}{\mathcal{R}}
-
+\newcommand{\psii}{\psi_i}
+\newcommand{\Pk}[1]{\ket{\psi_{#1} }}
+\newcommand{\Pb}[1]{\bra{\psi_{#1} }}
+\newcommand{\pk}{\ket{\psi}}
+\newcommand{\M}{\mathcal{M}^{(N)}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\Ej}[1]{\E_{j_{#1}}}
+\newcommand{\id}[1]{\qty(\1-\E_{j_{#1}})}
+\newcommand{\Erho}{\mathcal{E}(\rho)}
+\newcommand{\1}{\mathds{1}}
+\newcommand{\ten}{\otimes}
+\newcommand{\h}[1]{\colorbox{Yellow}{#1}}
+\newcommand{\hi}{\mathcal{H}}
+\newcommand{\txt}[1]{\text{#1}}
+\newcommand{\here}{\h{\hspace{15cm}} }
+\newcommand{\rhoi}{\dyad{\psii}{\psii}}
+\newcommand{\ind}[2]{ {{}^{#1}_{#2}} }
+\newcommand{\rc}[1]{r_{#1}}
+\newcommand{\pauli}[2]{\sigma_{#1}\otimes\sigma_{#2}}
+\newcommand{\Er}{\E_{\mathcal{R}} }
+\newcommand{\PCE}[1]{\mathsf{PCE}_\mathsf{#1}}
+\newcommand{\ot}{\otimes}
 \usepackage[]{lineno}  \linenumbers
 \setlength\linenumbersep{3pt}
 	
@@ -47,47 +69,131 @@
 % }}}
 \begin{document}
 % Titulo y otros {{{
-\title{Projective maps on a system of $n$ qubits} 
+\title{Pauli component erasing operations} 
 %Title should be concise and to the point  
 \author{J. A. de León, C. Pineda, D. Dávalos, A. Fonseca}
 \date{\today}  
 \maketitle
 % }}}
 % Intro {{{
-According to \cite{bengtsson_zyczkowski_2017}, an arbitrary density matrix on $n$  
-qubits can be written as
-\begin{align}
-  \rho = \frac{1}{2^n}\1 + \sum _{i=1}^{2^{2n}-1}\tau _i\sigma _i,
-	\label{rho}
+%According to \cite{bengtsson_zyczkowski_2017}, an arbitrary density 
+%matrix on $n$  
+%qubits can be written as
+The density matrix of a system with $n$ qubits can be expressed as 
+\begin{align}\label{eq:rho_nQubits_pauliBasis}
+\rho =\frac{1}{2^n} \sum_{j_1,\ldots,j_n=0}^3r_{j_1,\ldots,j_n}
+\sigma_{j_1}\otimes \ldots \otimes \sigma_{j_n},\hspace{2cm} r_{0,\ldots,0}=1
 \end{align}
-where the $\sigma _i$s are tensor products of Pauli 
-matrices, which together with the identity, form a orthogonal basis in the space of
-$2^n\times 2^n$ matrices. Thus the $\tau_i$s are the projections of $\rho$ onto
-each element of this basis, using the Hilbert-Schmidt inner product.
+where $\sigma_{j_k}$ are the Pauli matrices (with $\sigma_0$ as $\1$)
+and $r_{j_1,\ldots,j_n}$ the projections of $\rho$ onto each element of 
+the basis of tensor products of Pauli matrices. We may refer to the 
+$r_{j_1,\ldots,j_n}$ as the ``Pauli components'' of the density matrix 
+of a system of qubits.  The component $r_{0,\ldots,0}$
+must be equal to one in order for $\rho$ to satisfy $\Tr \rho =1$. 
 
-In this work, we are interested in studying the set of maps that erase
-some of the components $\tau_i$ in $\rho$, and characterize the subset of maps
-that are quantum channels.
-Let us call this subset Pauli component erasing
-channels -\pce{} channels-.
-%We will refer to the coefficients in both terms of 
-%\eqref{rho} as the components in $\rho$ \ddnote{No se que quieres decir con esta frase JA, si no es nada importante, quitemosla}. 
+Let us now define what a Pauli component erasing (PCE) operation is. 
+A linear operation $\mathcal{E}$ is a PCE operations if it 
+acts on a density matrix of $n$ qubits and transforms its Pauli components as
+\begin{align}\label{eq:PCE-definition}
+r_{j_1,\ldots,j_n} \longmapsto \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n}
+\hspace{1cm} \tau_{j_1,\ldots,j_n}=0,1,
+\hspace{1cm} \tau_{0,\ldots,0}=1.
+\end{align}
+In simple words, a PCE operation leaves invariant or erases the Pauli 
+components of a density matrix of $n$ qubits.
+%\begin{align}
+%  \rho = \frac{1}{2^n}\1 + \sum _{i=1}^{2^{2n}-1}\tau _i\sigma _i,
+%	\label{rho}
+%\end{align}
+%where the $\sigma _i$s are tensor products of Pauli 
+%matrices, which together with the identity, form a orthogonal basis in the space of
+%$2^n\times 2^n$ matrices. Thus the $\tau_i$s are the projections of $\rho$ onto
+%each element of this basis, using the Hilbert-Schmidt inner product.
+
+In this work, we are interested in studying the subset of PCE operations
+that are quantum channels. 
+Let us discuss briefly the definition of a quantum channel.
+A quantum channel is a linear operation that acts on a density matrix $\rho$
+that is completely positive and preserves the trace of $\rho$. The complete
+positivity is a condition that captures the non-locality of 
+quantum mechanics. One standard definition is the following: an operation
+$\mathcal{E}$ is completely positive if and only if $\mathcal{E}\otimes\1_k$
+is a positive operator for every possible dimension $k$. In other words, 
+$\mathcal{E}\otimes\1_k$ must be an operator that maps positive 
+matrices onto positive matrices, including the entangled states between 
+the system which $\mathcal{E}$ acts on and an arbitrary system 
+which $\1_k$ acts on. In fact, the complete positivity of an operation 
+$\mathcal{E}$ may be evaluated by checking that the maximally 
+entangled pure state between the system and an identical copy is mapped 
+by $\mathcal{E}\otimes\1$ onto a positive matrix, \textit{i.e.}
+$\qty(\mathcal{E}\otimes\1)\qty[\dyad{\phi^+}{\phi^+}]\geq 0$, with 
+$\dyad{\phi^+}{\phi^+}$ the maximally entangled pure state state.
+
+We're interested in characterizing the quantum PCE channels.
 For 1 qubit the picture of our problem is easy to understand given that 
-$\tau_i$ are the components of a vector in the Bloch ball, the so-called
-Bloch vector. As an example, let us consider a map that erases any single
+the Pauli components are the components of a vector in the Bloch sphere,
+the so-called Bloch vector. 
+As an example, let us consider a map that erases any single
 component of the Bloch vector. Geometrically, this map collapses 
 the Bloch ball into a disk. This operation is not completely positive, and
 therefore is not a quantum channel.  However, erasing two components yields 
 a quantum channel.
 
-So far, evaluating complete positivity numerically, we have obtained all 1 and
-2 \pce{} channels. Whereas for $3$ qubits systems we have numerically analyzed
-only maps that leave invariant 1, 2, 3, 4, and 64 components in $\rho$.
-Nonetheless, we have strong indications that only maps that leave invariant 8
-components are needed to analyze in order to find the complete set of 3-qubit
-PCE channels.
+So far, we have analytically solved the diagonalization for 
+complete positivity of a more general class of operations than the PCE 
+and have numerically found the all the PCE quantum channels up to 
+4-qubit systems. We have made several observations from our results, but
+we have not been able to prove them analytically and connect them 
+all as a consequence of the mathematical characterization we desire
+to find of the PCE quantum channels.
+%
+%So far, we have evaluated complete positivity numerically, we have obtained all 1 and
+%2 \pce{} operations. Whereas for $3$ qubits systems we have numerically analyzed
+%only maps that leave invariant 1, 2, 3, 4, and 64 Pauli components in $\rho$.
+%Nonetheless, we have strong indications that only maps that leave invariant 8
+%components are needed to analyze in order to find the complete set of 3-qubit
+%PCE channels.
 % }}}
 \section*{Results} % {{{
+
+\subsection*{Complete positivity: analytical solution}
+Let us discuss the role of the complete positivity condition of the 
+PCE operations in our problem. We desire to find what are the 
+characteristics that make a PCE operation a quantum channel.
+In the way we defined a PCE operation in \eqref{eq:PCE-definition} it 
+is a trace preserving operation. Therefore, the complete positivity is 
+the only condition to be evaluated given a PCE operation. 
+
+We found an analytical solution to evaluate the complete positivity.
+Recall that an operation $\mathcal{E}$ is completely positive if 
+$\qty(\mathcal{E}\otimes\1)\qty[\dyad{\phi^+}{\phi^+}]\geq 0$,
+where $\dyad{\phi^+}{\phi^+}$ is the maximally entangled pure 
+state between the system and another one that is an identical copy.
+We showed that the diagonalization of 
+$\qty(\mathcal{E}\otimes\1)\qty[\dyad{\phi^+}{\phi^+}]\geq 0$,
+with $\mathcal{E}$ an operation that acts on the Pauli components of
+a density matrix of $n$ qubits as
+\begin{align} \label{eq:PauliOperation}
+r_{j_1,\ldots,j_n}\longmapsto \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n},
+\hspace{1.5cm} \tau_{0,\ldots,0}=1,
+\end{align}
+yields the eigenvalues $\lambda_i$
+\begin{align} \label{eq:eigv_Choi_Pauli_operation}
+\vec{\lambda}=\frac{1}{2^n}\qty(\bigotimes^na)\vec{\tau},
+\end{align}
+where 
+\begin{align}
+a=\mqty(1&1&1&1\\1&1&-1&-1\\1&-1&1&-1\\1&-1&-1&1)
+\end{align} 
+and the components of $\vec{\tau}$ the same ones in 
+\eqref{eq:PauliOperation}. It is very important to realize that 
+\eqref{eq:eigv_Choi_Pauli_operation} yields the diagonalization
+not exclusively of a PCE operation. The difference between 
+the definition of a PCE operation in \eqref{eq:PCE-definition}
+and \eqref{eq:PauliOperation} is the relaxation in the value of 
+the $\tau_{j_1,\ldots,j_n}$ (exclusively 0 or 1 for a PCE operation). 
+
+\subsection*{PCE quantum channels}
 In \fref{fig:pictorial-rep-rho} we introduce a pictorial representation 
 for the identity map acting on a density matrix for systems 
 of 1, 2 and 3 qubits,
@@ -121,19 +227,19 @@ In the following subsections we present the PCE channels for
 In \fref{fig:1q-ccs} we present the PCE channels for 1 qubit.
 The first and last patterns represent identity 
 and the total depolarizing channel. 
-Patterns in between represent 
-bit-phase flip, phase-flip and bit-flip channels (from left to right), 
-all of them for $p=1/2$.	
-These three flip channels are equivalent via permutation
-of the components $\tau_i$ of the Bloch vector in \eqref{rho}.
+Patterns in between represent operations that map the Bloch 
+sphere to a line on the Cartesian axes, respectively.
+These three channels are equivalent via permutation
+of the components $r_i$ of the Bloch vector.
 \begin{figure}[H]% {{{
 	\centering
 	\includegraphics[width=5cm]{1q-CCs.png}
 	\caption{
 1-qubit PCE channels. From left to right patterns represent  
 the following channels: identity,
-bit-phase flip, phase flip, bit flip (the last three for 
-$p=0.5$), and completely depolarizing.}
+mapping of the Bloch sphere to $x$ axis, $y$ axis, $z$ axis, 
+and completely depolarizing (channel that maps every state 
+to the maximally mixed).}
 	\label{fig:1q-ccs}
 \end{figure} % }}}
 % }}}
@@ -171,11 +277,13 @@ that elements in a class are connected by
 	  \includegraphics[width=.9\textwidth]{C12.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^2$}
+		\label{fig:equivalence_class_c12}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]{C22.png}
 		\caption{C${}_2^2$}
+		\label{fig:equivalence_class_22}
 	\end{minipage}
 \end{figure} % }}}
 
@@ -185,23 +293,26 @@ that elements in a class are connected by
 	  \includegraphics[width=.9\textwidth]{C14.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^4$}
+		\label{fig:equivalence_class_c14}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]{C24.png}
 		\caption{C${}_2^4$}
-		\label{fig:2q-4c-2}
+		\label{fig:equivalence_class_c24}
 	\end{minipage}\vfill
 \begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]{C34.png}
 		\caption{C${}_3^4$}
+		\label{fig:equivalence_class_c34}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]{C44.png}
 		\vspace{2.5cm}
 		\caption{C${}_4^4$}
+		\label{fig:equivalence_class_c44}
 	\end{minipage}
 \end{figure} % }}}
 
@@ -211,11 +322,13 @@ that elements in a class are connected by
 	  \includegraphics[width=.9\textwidth]{C18.png}
 		\vspace{1.2cm}
 		\caption{C${}_1^8$}
+		\label{fig:equivalence_class_18}
 	\end{minipage}\hfill
 	\begin{minipage}[c]{0.5\textwidth}
 		\centering
 	  \includegraphics[width=.9\textwidth]{C28.png}
 		\caption{C${}_2^8$}
+		\label{fig:equivalence_class_28}
 	\end{minipage}
 \end{figure} % }}}
 
@@ -228,11 +341,12 @@ that elements in a class are connected by
 
 In general, our results exhibit the following features:
 \begin{itemize}
-\item Only a power-of-2 number of components in $\rho$ 
-may be left invariant by PCE 
-channels. However, not only the number of components in $\rho$ 
+\item (\textit{Power-of-2 rule})
+Only a power-of-2 number of Pauli components in $\rho$ 
+may be left invariant by a PCE channel. 
+However, not only the number of Pauli components in $\rho$ 
 to leave invariant determines complete positivity since
-not all maps that leave $2^{k}$ components invariant in $\rho$
+not all maps that leave $2^{k}$ Pauli components invariant in $\rho$
 are quantum channels. For example, the pattern below corresponds 
 to a map that is a potential element of C${}_2^4$ (\Fref{fig:2q-4c-2}).
 Nevertheless, complete positivity is not satisfied 
@@ -245,44 +359,193 @@ and then the map is not a quantum channel.
 	\includegraphics[height=2cm]{not-cc}
 \end{center}
 
-\item 
-The ratio of PCE channels and all possible maps
-that erase components in $\rho$ according to number of qubits 
-and number of components
-invariant are shown in \fref{fig:CCs-by-components}.
+\item \textit{(Mirroring)}
+The number of PCE quantum channels as a function of the number of Pauli 
+components left invariant shows to be symmetric with respect to a
+particular value. 
+The number of PCE operations and quantum channels,
+as a function of the number of Pauli components left invariant, 
+for 2 qubits are shown in \tref{tab:qtm_channels}.
 
-%Two numbers
-%of same color correspond to quantum channels that we suspect have a 1:1 
-%correspondence. In the next item we extend this discussion.
+%The ratio PCE channels$:$PCE operations according to number of qubits 
+%and number of Pauli components invariant are shown in 
+%\fref{fig:CCs-by-components}.
+%
+%\begin{figure}[H]% {{{
+%\centering	
+%\footnotesize
+%\begin{tabular}{c|ccccccccccc|c}
+%% \bf{
+%\textbf{qubits}  & \multicolumn{11}{c|}{PCE quantum channels${}:{}$PCE operations 
+%($2^0,\ldots,2^{2n}$ Pauli components components invariant)} & total PCE \\
+%\hline
+%1 &&&&&$1:1$&$3:3$&$1:1$&&&&&5\\
+%2 &&&&$1:1$&$15:15$&$35:455$&$15:6435$&$1:1$&&&&67\\
+%3 &&&$1:1$&$63:63$&$651:39711$&?/$6\times 10^8$&
+%$651:1\times 10^{14}$&$63:{9\times 10^{17}}$&$1:1$&&&?
+%% }
+%\end{tabular}
+%\caption{First column shows the number of qubits in the system.  In the second
+%column each position correspond to the number of components invariant ($2^0,
+%2^1, \ldots, 2^{2n}$) and the numbers shown are the ratios of PCE channels
+%and all possible maps according to the number of components invariant.  Finally, third column
+%specifies the total number of PCE channels for a $n$-qubit system.}
+%\label{fig:CCs-by-components}
+%\end{figure} % }}}
 
+\begin{table}[H]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|cccccccccccccccc}
+\cline{2-17}
+\multicolumn{1}{l|}{}                               & \multicolumn{16}{c|}{\textbf{Number of Pauli components left invariant}}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \\[.5ex]
+\multicolumn{1}{l|}{}                               & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{3}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{5}} & \multicolumn{1}{c}{\textbf{6}} & \multicolumn{1}{c}{\textbf{7}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{9}} & \multicolumn{1}{c}{\textbf{10}} & \multicolumn{1}{c}{\textbf{11}} & \multicolumn{1}{c}{\textbf{12}} & \multicolumn{1}{c}{\textbf{13}} & \multicolumn{1}{c}{\textbf{14}} & \multicolumn{1}{c}{\textbf{15}} & \multicolumn{1}{c|}{\textbf{16}} \\ \cline{2-17} 
+\multicolumn{1}{c|}{\textbf{\# of PCE operations}}   & 1                               & 15                              & 105                             & 455                             & 1365                            & 3003                            & 5005                            & 6435                            & 6435                            & 5005                             & 3003                             & 1365                             & 455                              & 105                              & 15                               & 1                                \\[.4ex]
+\multicolumn{1}{c|}{\textbf{\# of PCE qtm channels}} & 1                               & 15                              & 0                               & 35                              & 0                               & 0                               & 0                               & 15                              & 0                               & 0                                & 0                                & 0                                & 0                                & 0                                & 0                                & 1                               
+\end{tabular}%
+}
+\caption{Tabla}
+\label{tab:qtm_channels}
+\end{table}
+Let us focus only on the quantum channels:
+\begin{table}[H]
+\centering
+\resizebox{.42\textwidth}{!}{%
+\begin{tabular}{l|ccccc}
+\cline{2-6}
+\multicolumn{1}{l|}{}                               & \multicolumn{5}{c|}{\textbf{Number of $\boldsymbol{r_{ij}}$ inv.}} \\[.5ex]
+\multicolumn{1}{l|}{}                               & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} &  \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} &  \multicolumn{1}{c|}{\textbf{16}} \\ \cline{2-6} 
+\multicolumn{1}{c|}{\textbf{\# of PCE qtm channels}} & 1                               & 15                               & 35                          & 15                        & 1                               
+\end{tabular}%
+}
+\end{table}
+We denote $f(k)$ the number of PCE quantum channels as a function
+of the number $k$ of Pauli components left invariant. The number $k$
+must be a power of 2.
+In the case of 2 qubits, $f(k)$ is symmetric with respect to $k=4$. 
+Our numerical results show that $f(k)$ is symmetric with respect
+to $k=2^n$, in general. When 
+considering only a power-of-2 Pauli components invariant,  
+\tref{tab:qtm_channels} shows that this symmetry 
+is not a property of the PCE operations, but only of the quantum channels.
 
-\begin{figure}[H]% {{{
-\centering	
-\footnotesize
-\begin{tabular}{c|ccccccccccc|c}
-% \bf{
-qubits  & \multicolumn{11}{c|}{Ratio of PCE channels/all possible maps for 
-$2^0,\ldots,2^{2n}$ components invariant} & total PCE \\
-\hline
-1 &&&&&\textcolor{Magenta}{1/1}&3/3&\textcolor{Magenta}{1/1}&&&&&5\\
-2 &&&&\textcolor{Blue}{1/1}&\textcolor{Plum}{15/15}&35/455&
-\textcolor{Plum}{15/6435}&\textcolor{Blue}{1/1}&&&&67\\
-3 &&&\textcolor{BrickRed}{1/1}&\textcolor{YellowOrange}{63/63}&
-\textcolor{Green}{651/39711}&
-?/$6\times 10^8$&
-\textcolor{Green}{651?/${1\times 10^{14}}$}&
-\textcolor{YellowOrange}{63?/${9\times 10^{17}}$}&
-\textcolor{BrickRed}{1/1}&&&?
-% }
-\end{tabular}
-\caption{First column shows the number of qubits in the system.  In the second
-column each position correspond to the number of components invariant ($2^0,
-2^1, \ldots, 2^{2n}$) and the numbers shown are the ratios of PCE channels
-and all possible maps according to the number of components invariant.  Finally, third column
-specifies the total number of PCE channels for a $n$-qubit system.}
-\label{fig:CCs-by-components}
-\end{figure} % }}}
+\item \textit{($1:1$ correspondence)} There might be a 
+$1:1$ correspondence between PCE quantum channels
+that leave $2^k$ and $2^{2n-k}$ Pauli components invariant. 
+That is to say in the 2-qubits case, 
+PCE channels in Figs. \ref{fig:equivalence_class_c12}
+and \ref{fig:equivalence_class_28} correspond to one 
+PCE channel in Figs. \ref{fig:equivalence_class_18} and
+\ref{fig:equivalence_class_28}. In fact, we've deduced from 
+our numerical results the correspondence between PCE channels 
+that leave 2 and the half the total Pauli components. For 2 qubits,
+given the set $\{j_1,j_2 \}$ of indices of the Pauli component $r_{j_1,j_2}$ left
+invariant, other than $r_{0,0}$, of every member in figs.
+\ref{fig:equivalence_class_18} and \ref{fig:equivalence_class_18} one 
+can one can find a single partner in figs. \ref{fig:equivalence_class_18} and
+\ref{fig:equivalence_class_28} via
+\begin{align}
+\Phi_{j_1,j_2}=\E_{j_1}\ot\E_{j_2}+\qty(\1-\E_{j_1})\ot\qty(\1-\E_{j_2}),
+\end{align}
+where $\E_{j_l}$ are the first four 1-qubit PCE channels in 
+\fref{fig:1q-ccs}, the identity and the 3 PCE operations that 
+map the Bloch sphere to a line on every Cartesian axis. In general, 
+a PCE quantum channel that leaves invariant $r_{0,\ldots,0}$ and 
+$r_{j_1,\ldots,j_n}$ has a single PCE partner that leaves invariant 
+half of the total Pauli components of the form 
+\begin{align}
+\Phi_{j_1,\ldots,j_n}=\sum_{i=0}^{i\leq n/2}\sum_{j\in \mathcal{S}_{2i}^n}
+\bigotimes_{j_i=1}^n\Omega_{j_i},
+\end{align}
+with $\mathcal{S}_{2i}^n$ the set of all subsets with $2i$ elements 
+from $\{1,2,\ldots,n\}$ and
+\begin{align}
+\Omega_{j_i}= \left\{ \begin{array}{rc}
+             \E_{j_i}, & j_i \notin j \\
+             \1 -\E_{j_i}, & j_i \in j.
+             \end{array}
+   \right.
+\end{align}
+We elaborate the 3-qubits and 4-qubits case. For 3 qubits, 
+every PCE quantum channel that leaves invariant $r_{0,0,0}$ and 
+$r_{j_1,j_2,j_3}$ has a PCE partner that leaves 32 Pauli components 
+that can be written in the form
+\begin{align}
+\Phi_{j_1,j_2,j_3}=& \sum_{i=0}^{i\leq 3/2}
+\sum_{j\in \mathcal{S}_{2i}^3}
+\bigotimes_{j_i=1}^3\Omega{j_i} \nonumber \\
+=&\ \Ej{1}\ot\Ej{2}\ot\Ej{3} + \id{1}\ot\id{2}\ot\Ej{3} \\
+&+ \id{1}\ot\Ej{2}\ot\id{3} + \Ej{1}\ot\id{2}\ot\id{3}. \nonumber
+\end{align}
+For 4 qubits, every PCE quantum channel that leaves invariant $r_{0,0,0,0}$ 
+and  $r_{j_1,j_2,j_3,j_4}$ has a PCE partner that leaves 128 Pauli components 
+that can be written in the form
+\begin{align}
+\Phi_{j_1,j_2,j_3,j_4}=& \sum_{i=0}^{i\leq 2}
+\sum_{j\in \mathcal{S}_{2i}^4}
+\bigotimes_{j_i=1}^4\Omega{j_i} \nonumber \\
+=&\ \Ej{1}\ot\Ej{2}\ot\Ej{3}\ot\Ej{4} + 
+\qty(\1-\Ej{1})\ot\qty(\1-\Ej{2})\ot\Ej{3}\ot\Ej{4} \nonumber \\
+&+ \qty(\1-\Ej{1})\ot\Ej{2}\ot\qty(\1-\Ej{3})\ot\Ej{4}
++ \qty(\1-\Ej{1})\ot\Ej{2}\ot\Ej{3}\ot\qty(\1-\Ej{4}) \\
+&+ \Ej{1}\ot\qty(\1-\Ej{2})\ot\qty(\1-\Ej{3})\ot\Ej{4}
++ \Ej{1}\ot\qty(\1-\Ej{2})\ot\Ej{3}\ot\qty(\1-\Ej{4}) \nonumber \\
+&+ \Ej{1}\ot\Ej{2}\ot\qty(\1-\Ej{3})\ot\qty(\1-\Ej{4}) \nonumber \\
+&+ \id{1}\ot\id{2}\ot\id{3}\ot\id{4}. \nonumber
+\end{align}
 
+\item There exists a set of PCE generators and every other PCE 
+quantum channel can be written as concatenation of the generators.
+The identity plus the PCE channels that leave invariant half the total 
+components constitute the set of generators. For example, 
+the 2-qubits generators are
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.75\textwidth]{2Q-fundamentals}
+  \caption{Generators of 2 qubits.}
+  \label{fig:2qubits-generators}
+\end{figure}
+and concatenation with the patterns is understood as the intersection
+of black squares in the patterns of the generators. For example:
+
+\hfill
+\begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.05cm} m{0.8cm}}
+\includegraphics[height=1.1cm]{E2}  
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{E5} 
+& $=$
+& \includegraphics[height=1.1cm]{E2E5} 
+\end{tabular} \hspace{1.3cm}
+
+\hfill
+\begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
+\includegraphics[height=1.1cm]{E4}
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{E2}  
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{E5} 
+& $=$
+& \includegraphics[height=1.1cm]{E4E2E5} 
+\end{tabular} \hspace{1.3cm}
+
+\hfill
+\begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
+\includegraphics[height=1.1cm]{E12}
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{E4}
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{E2}  
+& $\bigcirc$ 
+& \includegraphics[height=1.1cm]{E5} 
+& $=$
+& \includegraphics[height=1.1cm]{E12E4E2E5} 
+\end{tabular} \hspace{1.3cm}
+
+This shows the idea and that is possible to construct from the generators
+in \Fref{fig:2qubits-generators} 
+all PCE channels in Figs. from \ref{fig:2q-c1} to \ref{fig:equivalence_class_c44}
+
+\janote{Considero que los siguientes items meten ruido y no aportan}
 \item Empirical observations of results for 2 qubits 
 led us to some rules that 
 patterns showed from \fref{fig:2q-c1} to \fref{fig:2q-c16} obey:

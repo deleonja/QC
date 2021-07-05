@@ -3,13 +3,13 @@ InfoKey: Creator
 InfoValue: Draw
 InfoBegin
 InfoKey: CreationDate
-InfoValue: D:20210702163820-06&apos;00&apos;
+InfoValue: D:20210702174610-06&apos;00&apos;
 InfoBegin
 InfoKey: Producer
 InfoValue: LibreOffice 6.4
-PdfID0: 482e77f3dad75179848254a51693f329
-PdfID1: 482e77f3dad75179848254a51693f329
-NumberOfPages: 7
+PdfID0: 027049a3888b4b9b52a3f97d5803c578
+PdfID1: 027049a3888b4b9b52a3f97d5803c578
+NumberOfPages: 10
 BookmarkBegin
 BookmarkTitle: Page 1
 BookmarkLevel: 1
@@ -38,6 +38,18 @@ BookmarkBegin
 BookmarkTitle: Page 7
 BookmarkLevel: 1
 BookmarkPageNumber: 7
+BookmarkBegin
+BookmarkTitle: Page 8
+BookmarkLevel: 1
+BookmarkPageNumber: 8
+BookmarkBegin
+BookmarkTitle: Page 9
+BookmarkLevel: 1
+BookmarkPageNumber: 9
+BookmarkBegin
+BookmarkTitle: Page 10
+BookmarkLevel: 1
+BookmarkPageNumber: 10
 PageMediaBegin
 PageMediaNumber: 1
 PageMediaRotation: 0
@@ -70,6 +82,21 @@ PageMediaRect: 0 0 792 612
 PageMediaDimensions: 792 612
 PageMediaBegin
 PageMediaNumber: 7
+PageMediaRotation: 0
+PageMediaRect: 0 0 792 612
+PageMediaDimensions: 792 612
+PageMediaBegin
+PageMediaNumber: 8
+PageMediaRotation: 0
+PageMediaRect: 0 0 792 612
+PageMediaDimensions: 792 612
+PageMediaBegin
+PageMediaNumber: 9
+PageMediaRotation: 0
+PageMediaRect: 0 0 792 612
+PageMediaDimensions: 792 612
+PageMediaBegin
+PageMediaNumber: 10
 PageMediaRotation: 0
 PageMediaRect: 0 0 792 612
 PageMediaDimensions: 792 612
