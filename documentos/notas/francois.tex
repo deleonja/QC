@@ -74,15 +74,23 @@
 \author{J. A. de León, C. Pineda, D. Dávalos, A. Fonseca}
 \date{\today}  
 \maketitle
+\abstract{We study operations that act on the density matrix of $n$-qubits
+systems and erase its projections onto tensor products of Pauli matrices. We
+call this operations Pauli component erasing (PCE). We seek to characterize 
+the subset of PCE operations that are quantum channels. We have solved 
+analytically the complete positivity of a more general kind of operations.
+Our numerical results suggest that PCE quantum channels have an algebraic structure.}
+
 % }}}
 % Intro {{{
-%According to \cite{bengtsson_zyczkowski_2017}, an arbitrary density 
-%matrix on $n$  
-%qubits can be written as
-The density matrix of a system with $n$ qubits can be expressed as 
+The density matrix is an adequate tool to describe the kinematics 
+of open quantum systems. An operator $\rho$ represents a quantum state and
+is called a density operator if it is (1) of unitary trace, (2) Hermitian, and 
+(3) positive. The density matrix of a system of $n$ qubits can be written as 
 \begin{align}\label{eq:rho_nQubits_pauliBasis}
 \rho =\frac{1}{2^n} \sum_{j_1,\ldots,j_n=0}^3r_{j_1,\ldots,j_n}
-\sigma_{j_1}\otimes \ldots \otimes \sigma_{j_n},\hspace{2cm} r_{0,\ldots,0}=1
+\sigma_{j_1}\otimes \ldots \otimes \sigma_{j_n},
+\hspace{2cm} r_{0,\ldots,0}=1,
 \end{align}
 where $\sigma_{j_k}$ are the Pauli matrices (with $\sigma_0$ as $\1$)
 and $r_{j_1,\ldots,j_n}$ the projections of $\rho$ onto each element of 
@@ -544,8 +552,19 @@ of black squares in the patterns of the generators. For example:
 This shows the idea and that is possible to construct from the generators
 in \Fref{fig:2qubits-generators} 
 all PCE channels in Figs. from \ref{fig:2q-c1} to \ref{fig:equivalence_class_c44}
+\end{itemize}
 
-\janote{Considero que los siguientes items meten ruido y no aportan}
+\section*{Appendix}
+\textit{\textbf{Note:}} This section contains
+\begin{enumerate}
+\item Observations on empirical rules con construct a PCE quantum channel
+for 2 and 3 qubits.
+\item Comparison with other kind of Pauli operations studied by Ruskai.
+\end{enumerate}
+The appendix could be skipped without loss of continuity of 
+the current observations on our results in the rest of this document.
+
+\begin{itemize}
 \item Empirical observations of results for 2 qubits 
 led us to some rules that 
 patterns showed from \fref{fig:2q-c1} to \fref{fig:2q-c16} obey:
@@ -604,12 +623,6 @@ Actually, this two simple rules allow us to relate
 different equivalence classes. In the previous example we were able to connect 
 an element of C${}_2^2$ to one of C${}_3^4$, to another one of
 C${}_2^8$.
-
-\item \textit{(Rainbow hypothesis)} PCE channels
-that leave $2^k$ components invariant and $2^{2n-k}$ have a
-1:1 correspondence. That is to say, two numbers of the same color 
-in \fref{fig:CCs-by-components} correspond to PCE
-channels that have a 1:1 correspondence. 
 
 \item The action of a PCE channel on every subsystem must be another
 PCE channel. 
@@ -827,19 +840,19 @@ Then, there are PCE channels that cannot be in $\R$, like
 all 8-components-invariant PCE channels, as shown in the previous example. 
 
 
-% }}}
-\section*{To-do} % {{{
-In order to fully understand our results and generalize this kind of maps 
-for $n$ qubits we propose the following:
-\begin{enumerate}
-\item Investigate the Kraus operator representation of this quantum channels.
-\item Investigate the Schmidt spectrum of the Choi matrix.
-\item Investigate the Jamiolkowski isomorphism to find an equivalence between
-CP and the empirical rules listed previously.
-\item Use our current results to propose an efficient way to do numerical
-analysis to find 3-qubit quantum channels that leave 8 components invariant.
-\end{enumerate}
-% }}}
+%% }}}
+%\section*{To-do} % {{{
+%In order to fully understand our results and generalize this kind of maps 
+%for $n$ qubits we propose the following:
+%\begin{enumerate}
+%\item Investigate the Kraus operator representation of this quantum channels.
+%\item Investigate the Schmidt spectrum of the Choi matrix.
+%\item Investigate the Jamiolkowski isomorphism to find an equivalence between
+%CP and the empirical rules listed previously.
+%\item Use our current results to propose an efficient way to do numerical
+%analysis to find 3-qubit quantum channels that leave 8 components invariant.
+%\end{enumerate}
+%% }}}
 \bibliographystyle{unsrt}
 \bibliography{references}
 \vfill
