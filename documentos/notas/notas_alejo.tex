@@ -154,60 +154,13 @@ which is also the diagonal form of $\hat{M}^c$. In this way, the $4^N$ eigenvalu
 % 
 From this we can evaluate whether the set of coefficients $\tau_{\vec{\alpha}\vec{\beta}}$ satisfy the condition to the specific operation be considered a quantum channel, i.e. $\lambda_{\vec{\mu}\vec{\nu}}\geq 0$, for all $\vec{\mu},\vec{\nu}$.
  
+\subsection{Analytical derivation of conditions for PCE channels}
 % 
+Is it possible to infer the whole set of conditions (rules) a PCE channel must satisfy from the general expression for the eigenvalues of the Choi matrix (Eq. \ref{EigenChoi})? Work in progress...
+
 % 
+\subsection{Extremal channels}
 % 
-% 
-% 
-% 
-% Usando o mesmo método foi possível generalizar o resultado para o caso de um canal envolvendo um número arbitrário de qubits $N$, obtendo a seguinte expressão
-% %
-% \begin{equation}
-% \lambda_{\vec{\mu}\vec{\nu}}=\frac{1}{2^N}\sum_{\vec{j}\vec{k}}(-1)^{\vec{j}\cdot\vec{\mu}\oplus \vec{k}\cdot\vec{\nu}}\tau_{\vec{j}\vec{k}},
-% \end{equation}
-% %
-% onde o símbolo``$\oplus$" representa soma módulo 2, a dimensão dos vetores envolvidos é $N$, e cada uma das componentes pode atingir os valores $0$ ou $1$. Vale a pena destacar que esta expressão concorda com resultados numéricos obtidos previamente.
-% 
-% O resultado anteriormente mencionado possui grande importância pois além do fato de não ter sido previamente reportado, fornece uma ferramenta analitica para avaliar as condições que devem satisfazer os coeficientes de uma operação quântica $\tau_{\vec{j}\vec{k}}$, para ser considerados canales quânticos válidos. No caso particular de canais tipo PCE, dentro das características mais relevantes extraídas da expressão dos autovalores que vale a pena mencionar, temos que somente uma quantidade $2^m$ de coeficientes $\tau_{\vec{j}\vec{k}}$ pode ser não nulo.
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-% % It is possible to show that the eigenvalues of the Choi matrix associated to a Pauli channel of $N$ qubits may be written in a compact form as
-% % 
-% \begin{equation}
-%  \lambda_{\vec{\mu}\vec{\nu}}=\sum_{\vec{m}\vec{n}}(-1)^{\vec{\mu}\cdot\vec{m} + \vec{\nu}\cdot\vec{n}} \tau_{\vec{m}\vec{n}},
-%  \label{EigenChoi}
-% \end{equation}
-% % 
-% 
-% 
-% 
-% 
-% 
-% where $\tau_{\vec{m}\vec{n}}$ are the channel coefficients, the dimension of the ``vector indices" is $N$ and each vector element may attain the values $0$ or $1$. For instance, for $N=1$ we have
-% % 
-% \begin{equation}
-%  \lambda_{\mu\nu}=\sum_{m,n=0}^1(-1)^{\mu m + \nu n} \tau_{m,n}.
-% \end{equation}
-% % 
-% % 
-% \subsection{Analytical derivation of conditions for PCE channels}
-% % 
-% Is it possible to infer the whole set of conditions (rules) a PCE channel must satisfy from the general expression for the eigenvalues of the Choi matrix (Eq. \ref{EigenChoi})? Work in progress...
-% 
-% % 
-% \subsection{Extremal channels}
-% % 
-% It can be shown that PCE channels correspond to the extremal points in the polytope of trace preserving channels and non-negative $\tau$ coefficients for the case $M=1$. For $N>1$, in addition to the set of PCE channels, there are other  ``extremal channels", it there anything special around them?
+It can be shown that PCE channels correspond to the extremal points in the polytope of trace preserving channels and non-negative $\tau$ coefficients for the case $M=1$. For $N>1$, in addition to the set of PCE channels, there are other  ``extremal channels", it there anything special around them?
 
 
