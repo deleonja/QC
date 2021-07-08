@@ -9,7 +9,7 @@
 \usepackage{siunitx} 
 \usepackage{enumerate} 
 \usepackage{pgfplots}
-
+\usepackage{physics}
 % To add figures
 \usepackage{graphicx}
 % Path to figures
@@ -23,6 +23,7 @@
 \usepackage{amsfonts}
 \newcommand{\pce}{PCE}
 \usepackage{dsfont}
+\usepackage{amssymb}
 %\usepackage{bbold}
 
 
@@ -30,7 +31,7 @@
 \newcommand{\tref}[1]{table~\ref{#1}}
 \newcommand{\Fref}[1]{Fig.~\ref{#1}}  
 \newcommand{\Tref}[1]{Table~\ref{#1}}
-
+\newcommand\dsone{\mathds{1}}
 
 \newcommand{\R}{\mathcal{R}}
 \newcommand{\psii}{\psi_i}
@@ -82,7 +83,8 @@ analytically the complete positivity of a more general kind of operations.
 Our numerical results suggest that PCE quantum channels have an algebraic structure.}
 
 % }}}
-% Intro {{{
+% Intro 
+\section*{Introduction} % {{{
 The density matrix is an adequate tool to describe the kinematics 
 of open quantum systems. An operator $\rho$ represents a quantum state and
 is called a density operator if it is (1) of unitary trace, (2) Hermitian, and 
@@ -163,6 +165,159 @@ to find of the PCE quantum channels.
 %PCE channels.
 % }}}
 \section*{Results} % {{{
+
+\subsection*{Diagonalization of the Choi matrix}
+Due to the fact that the Pauli matrices and the identity form a basis of the Hilber-Shmidt space, the state of a qubit may be written as
+% 
+\begin{equation}
+ \hat{\rho}=\frac{1}{2}\sum_{j,k=0}^1r_{jk}\hat{v}_{jk},
+\end{equation}
+%
+where $\hat{v}_{00}=\dsone$, $\hat{v}_{01}=\hat{\sigma}_x$, $\hat{v}_{10}=i\hat{\sigma}_y$ and $\hat{v}_{11}=\hat{\sigma}_z$.
+% 
+Rewriting $\hat{\rho}$ in ``vector" notation, we have
+%
+\begin{equation}
+ \vec{\rho}=\frac{1}{2}\sum_{jk=0}^1r_{jk}\vec{v}_{jk},
+\end{equation}
+%
+The action of a quantum operation $\hat{M}$ (in its matrix form), capable of modifying each one of the coefficients $r_{jk}$ independently may be written as
+%
+\begin{equation}
+ \hat{M}\vec{\rho}=\frac{1}{2}\sum_{jk=0}^1\tau_{jk}r_{jk}\vec{v}_{jk}.
+\end{equation}
+%
+In our particular case (PCE operations), $\tau_{jk}=\{0,1\}$. 
+
+In order to determine whether any specific operation, characterized by the set of coefficients $\{\tau_{jk}\}$ corresponds to a quantum channel, we must ensure that the eigenvalues associated to the Choi matrix are non-negative. For this, let write $\hat{M}$ in the vector Pauli basis
+%
+\begin{equation}
+ \hat{M}=\sum_{jk=0}^1\tau_{jk}~\vec{v}_{jk}\vec{v}_{jk}^\intercal.
+ \label{EQA1}
+\end{equation}
+%
+On the other hand, it is easy to show that the elements of the computational and Pauli bases are related by $\vec{u}=\hat{T}\vec{v}$
+\begin{equation}
+\vec{u}=\begin{pmatrix}
+\hat{u}_{00} \\ \hat{u}_{01} \\ \hat{u}_{10} \\ \hat{u}_{11}
+\end{pmatrix}=\frac{1}{2}\begin{pmatrix}
+1 & 0 & 0 & 1\\
+0 & 1 & 1 & 0\\
+0 & 1 & -1 & 0\\
+1 & 0 & 0 & -1
+\end{pmatrix} \begin{pmatrix}
+\hat{v}_{00} \\ \hat{v}_{01} \\ \hat{v}_{10} \\ \hat{v}_{11}
+\end{pmatrix},
+\end{equation}
+% 
+where $\hat{u}_{jk}=\dyad{j}{k}$. The inverse relation reads $\vec{v}=\hat{S}\vec{u}$
+\begin{equation}
+\vec{v}=\begin{pmatrix}
+\hat{v}_{00} \\ \hat{v}_{01} \\ \hat{v}_{10} \\ \hat{v}_{11}
+\end{pmatrix}=\begin{pmatrix}
+1 & 0 & 0 & 1\\
+0 & 1 & 1 & 0\\
+0 & 1 & -1 & 0\\
+1 & 0 & 0 & -1
+\end{pmatrix} \begin{pmatrix}
+\hat{u}_{00} \\ \hat{u}_{01} \\ \hat{u}_{10} \\ \hat{u}_{11}
+\end{pmatrix}.
+\end{equation}
+% 
+Thus, for this ``indexing choice" of the elements of the bases, the transformation matrices satisfy $\hat{S}=2\hat{T}$. Then one can relate the bases elements in a compact form as
+% 
+\begin{equation}
+ \vec{v}_{jk}=\sum_{mn=0}^1S_{mn}^{(jk)}\vec{u}_{mn},
+\end{equation}
+% 
+by substituting this in Eq. \ref{EQA1} we get $\hat{M}$ in the computational basis
+% 
+\begin{align}
+ \hat{M}=&\sum_{jk=0}^1\tau_{jk}~\left(\sum_{mn=0}^1S_{mn}^{(jk)}\vec{u}_{mn} \right) \left(\sum_{pq=0}^1S_{jk}^{(pq)}\vec{u}^\intercal_{pq} \right),\\
+ =&\sum_{mnpq=0}^1\left(\sum_{jk=0}^1 S_{mn}^{(jk)}S_{jk}^{(pq)}  \tau_{jk} \right) \vec{u}_{mn}\vec{u}^\intercal_{pq}.\\
+ &\sum_{mnpq=0}^1 M_{\substack{mn\\pq}} ~\vec{u}_{mn}\vec{u}^\intercal_{pq}.
+\end{align}
+% 
+In order to obtain the Choi matrix $\hat{M}^c$, we must perform the reshuffling operation on $\hat{M}$, i.e. $M_{\substack{mn\\pq}} \to M_{\substack{mp\\nq}}$ \cite{bengtsson_zyczkowski_2017}. In this way, $\hat{M}^c$ holds
+
+\begin{equation}
+\hat{M}^c=\sum_{mnpq=0}^1\left(\sum_{jk=0}^1 S_{mp}^{(jk)}S_{jk}^{(nq)}  \tau_{jk} \right) \vec{u}_{mn}\vec{u}^\intercal_{pq}.
+\end{equation}
+%
+Back to the Pauli basis, we have
+%
+\begin{equation}
+ \hat{M}^c=\sum_{\mu\nu\alpha\beta=0}^1\left\{\sum_{jk=0}^1\left[\sum_{mnpq=0}^1S_{mp}^{(jk)}S_{jk}^{(nq)}T_{\mu\nu}^{(mn)}T_{pq}^{(\alpha\beta)}\right]\tau_{jk}\right\}\vec{v}_{\mu\nu}\vec{v}_{\alpha\beta}^\intercal.
+\end{equation}
+%
+By taking into account the relation between the transformation matrices $T_{\mu\nu}^{(mn)}=\frac{1}{2}S_{\mu\nu}^{(mn)}$, $\hat{M}^c$ reads
+%
+\begin{equation}
+ \hat{M}^c=\frac{1}{4}\sum_{\mu\nu\alpha\beta=0}^1\left\{\sum_{jk=0}^1\left[\sum_{mnpq=0}^1S_{mp}^{(jk)}S_{jk}^{(nq)}S_{\mu\nu}^{(mn)}S_{pq}^{(\alpha\beta)}\right]\tau_{jk}\right\}\vec{v}_{\mu\nu}\vec{v}_{\alpha\beta}^\intercal.
+\end{equation}
+%
+By noticing that $S_{mn}^{(jk)}=(-1)^m\delta_{jm}\delta_{kn}+\delta_{j,m\oplus 1}\delta_{k,n\oplus 1}$, and after several steps it is possible to show that 
+% 
+\begin{equation}
+\frac{1}{4}\sum_{jk=0}^1\left[\sum_{mnpq=0}^1S_{mp}^{(jk)}S_{jk}^{(nq)}S_{\mu\nu}^{(mn)}S_{pq}^{(\alpha\beta)}\right]\tau_{jk}=\frac{1}{2}\delta_{\nu\beta}\delta_{\mu\alpha}\sum_{jk=0}^1(-1)^{j\mu\oplus k\nu}\tau_{jk},
+\label{EQAL2}
+\end{equation}
+% 
+after substituting, the Choi matrix reduces to
+%
+\begin{align}
+ \hat{M}^c=&\frac{1}{2}\sum_{\mu\nu\alpha\beta=0}^1\left\{\delta_{\nu\beta}\delta_{\mu\alpha}\sum_{jk=0}^1(-1)^{j\mu\oplus k\nu}\tau_{jk}\right\}\vec{v}_{\mu\nu}\vec{v}_{\alpha\beta}^\intercal,\\
+ =&\frac{1}{2}\sum_{\mu\nu=0}^1\left\{\sum_{jk=0}^1(-1)^{j\mu\oplus k\nu}\tau_{jk}\right\}\vec{v}_{\mu\nu}\vec{v}_{\mu\nu}^\intercal.
+\end{align}
+%
+As it can be seen, this is the diagonal form of the Choi matrix. Thus, its 4 eigenvalues may be written in a compact form as
+%
+\begin{equation}
+\lambda_{\mu\nu}=\frac{1}{2}\sum_{jk=0}^1(-1)^{j\mu\oplus k\nu}\tau_{jk},
+\end{equation}
+%
+where $\mu,\nu=\{0,1\}$. Note in addition that this is in agreement with results already known in literature.
+
+By following the same steps we can obtain the generalization to the $N$-qubits case. First of all note that $\hat{M}$ may be written as
+%
+\begin{equation}
+ \hat{M}=\sum_{\vec{k}\vec{l}}\tau_{\vec{k}\vec{l}}~\vec{v}_{\vec{k}\vec{l}}\vec{v}_{\vec{k}\vec{l}}^\intercal,
+%  \label{EQA1}
+\end{equation}
+% 
+where
+% 
+\begin{equation}
+ \vec{v}_{\vec{k}\vec{l}}=\vec{v}_{k_1l_1}\otimes\dots\vec{v}_{k_Nl_N}=\bigotimes_{j=1}^N\vec{v}_{k_jl_j}.
+%  \label{EQA1}
+\end{equation}
+% 
+Let write $\hat{M}$ in the $N$-qubits computational basis
+% 
+\begin{align}
+ \hat{M}=&\sum_{\vec{k}\vec{l}\vec{p}\vec{q}}\left\{\sum_{\vec{m}\vec{n}} \left[ \prod_{i=1}^N S_{k_il_i}^{(m_in_i)}S_{m_in_i}^{(p_iq_i)} \right] \tau_{\vec{m}\vec{n}} \right\} \bigotimes_{j=1}^N\vec{u}_{k_jl_j}\vec{u}_{p_jq_j}^\intercal,\\
+ =&\sum_{\vec{k}\vec{l}\vec{p}\vec{q}} M_{\vec{k}\vec{l}\vec{p}\vec{q}} ~\bigotimes_{j=1}^N\vec{u}_{k_jl_j}\vec{u}_{p_jq_j}^\intercal.
+\end{align}
+% 
+After reshuffling ($M_{\vec{k}\vec{l}\vec{p}\vec{q}}\to M_{\vec{k}\vec{p}\vec{l}\vec{q}}$) we can get the associated Choi matrix. Back to the Pauli basis, $\hat{M}^c$ holds
+%
+\begin{equation}
+ \hat{M}^c=\frac{1}{4^N}\sum_{\vec{\mu}\vec{\nu}\vec{\alpha}\vec{\beta}}\left\{\sum_{\vec{m}\vec{n}}\left[\prod_{i=1}^N\left(\sum_{k_il_ip_iq_i=0}^1 S_{k_ip_i}^{(m_in_i)} S_{m_in_i}^{(l_iq_i)}S_{\mu_i\nu_i}^{(k_il_i)}S_{p_iq_i}^{(\alpha_i\beta_i)}\right)\right]\tau_{\vec{m}\vec{n}}\right\} \bigotimes_{j=1}^N\vec{v}_{\mu_j\nu_j}\vec{v}_{\alpha_j\beta_j}^\intercal.
+\end{equation}
+% 
+Using the result in Eq. \ref{EQAL2} and after some steps it can be shown that
+%
+\begin{equation}
+ \hat{M}^c=\sum_{\vec{\mu}\vec{\nu}}\left\{\frac{1}{2^N}\sum_{\vec{\alpha}\vec{\beta}}(-1)^{\vec{\mu}\cdot\vec{\alpha}\oplus \vec{\nu}\cdot\vec{\beta}}\tau_{\vec{\alpha}\vec{\beta}}\right\}\vec{v}_{\vec{\mu}\vec{\nu}}\vec{v}_{\vec{\mu}\vec{\nu}}^\intercal,
+\end{equation}
+% 
+which is also the diagonal form of $\hat{M}^c$. In this way, the $4^N$ eigenvalues may be written compactly as
+% 
+\begin{equation}
+ \lambda_{\vec{\mu}\vec{\nu}}=\frac{1}{2^N}\sum_{\vec{\alpha}\vec{\beta}}(-1)^{\vec{\mu}\cdot\vec{\alpha}\oplus \vec{\nu}\cdot\vec{\beta}}\tau_{\vec{\alpha}\vec{\beta}}.
+\end{equation}
+% 
+From this we can evaluate whether the set of coefficients $\tau_{\vec{\alpha}\vec{\beta}}$ satisfy the condition to the specific operation be considered a quantum channel, i.e. $\lambda_{\vec{\mu}\vec{\nu}}\geq 0$, for all $\vec{\mu},\vec{\nu}$. Note moreover that the expression above may also be written as a tensor product of $4\times 4$ matrices $a$, as illustrated in the next subsection.
 
 \subsection*{Complete positivity: analytical solution}
 Let us discuss the role of the complete positivity condition of the 
@@ -356,7 +511,7 @@ However, not only the number of Pauli components in $\rho$
 to leave invariant determines complete positivity since
 not all maps that leave $2^{k}$ Pauli components invariant in $\rho$
 are quantum channels. For example, the pattern below corresponds 
-to a map that is a potential element of C${}_2^4$ (\Fref{fig:2q-4c-2}).
+to a map that is a potential element of C${}_2^4$ (\Fref{fig:equivalence_class_c24}).
 Nevertheless, complete positivity is not satisfied 
 and then the map is not a quantum channel. 
 % \begin{figure}[H]
