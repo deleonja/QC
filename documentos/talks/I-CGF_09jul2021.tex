@@ -185,31 +185,50 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % Introduction and Motivation
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-\section{Sistemas cuánticos abiertos}
+\section{Introducción}
 \label{sec:Intro}
 
-\begin{frame}{Sistema cerrado}
-	\vspace{-.1cm}
-	\begin{center}
-		\includegraphics[height=7cm]{sistema_cerrado.pdf}
-	\end{center}
-\end{frame}
-
-\begin{frame}{Sistema abierto}
-
+\begin{frame}{Motivación}{¿por qué estudiar canales cuánticos?}
 	\only<1>{
+	Sistema ideal:
+	\vspace{-.5cm}
+	\begin{columns}
+	\begin{column}{.5\textwidth}
+	\begin{center}
+		\includegraphics[width=6cm]{sistema_cerrado.pdf}
+	\end{center}
+	\end{column}
+	\hfill
+	\begin{column}{.45\textwidth}
+	\begin{center}
+		\includegraphics[width=5cm]{dynamics_closed}
+	\end{center}
+	\end{column}
+	\end{columns}
+	}
+%\end{frame}
+%
+%\begin{frame}{Sistema abierto}
+	\only<2>{
+	Sistemas reales: abiertos
 	\vspace{-.1cm}
 	\begin{center}
-		\includegraphics[height=7cm]{sistema_abierto01.pdf}
+		\includegraphics[width=5cm]{sistema_abierto01.pdf}
+		\hfill
+		\includegraphics[width=5cm]{sistema_abierto02.pdf}
+	\end{center}
+	\begin{center}
+		\hspace{.5cm}
+		\includegraphics[width=5cm]{dynamics_open}
 	\end{center}
   }
   
-  \only<2>{
-	\vspace{-.1cm}
-	\begin{center}
-		\includegraphics[height=7cm]{sistema_abierto02.pdf}
-	\end{center}
-  }    
+%  \only<2>{
+%	\vspace{-.1cm}
+%	\begin{center}
+%		\includegraphics[height=7cm]{sistema_abierto02.pdf}
+%	\end{center}
+%  }    
   
 %  \only<1>{
 %  \vspace{-.6cm}
@@ -232,8 +251,9 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 \end{frame}
 
 
-\begin{frame}{Sistemas abiertos}
-{¿cómo representar a los estados?}
+\section{Formalismo}
+\begin{frame}{Matriz de densidad}
+{¿cómo representar a los estados de un sistema abierto?}
    \only<1>{
   La herramienta más apropiada para representar al estado de un 
   sistema cuántico abierto es la matriz de densidad $\rho$. \vfill
@@ -256,11 +276,11 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 \end{frame}
 
 
-\begin{frame}{Sistemas abiertos}%
-  {Dinámica}
+\begin{frame}{Canales cuánticos}%
+  {¿cómo describir la dinámica de los sistemas abiertos?}
   
-  La teoría de los canales cuánticos es una forma para describir 
-  la evolución de la matriz de densidad (estado cuántico). \vfill
+  La teoría de los canales cuánticos es un formalismo para describir 
+  la evolución de los sistemas abiertos. \vfill
   
   \only<1>{
 	Una operación lineal $\mathcal{E}$ que actúa sobre $\rho$ 	como 
@@ -294,7 +314,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	es un canal cuántico si
 	\begin{enumerate}
 	\item Preserva las características de la matriz de densidad,
-	\item \alert{Es una operación completamente positiva}.
+	\item \alert{Es una operación completamente positiva. ¿¿¿???}
 	\end{enumerate}
 	}
 \end{frame}	
@@ -309,9 +329,8 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\end{center}	
 	}
 	
-	No es suficiente que 	$\mathcal{E}(\rho_A)\geq0$, \only<1>{también 
-	$\qty(\mathcal{E}\otimes \mathds{1}_k)\qty[\rho_{total}]\geq0$.}\only<2>{\alert{también 
-	$\qty(\mathcal{E}\otimes \mathds{1}_k)\qty[\rho_{total}]\geq0$.}} 
+	No es suficiente que 	$\mathcal{E}(\rho_A)\geq0$, \alert{también 
+	$\qty(\mathcal{E}\otimes \mathds{1}_k)\qty[\rho_{total}]\geq0$.}
 \end{frame}
 
 \begin{frame}{Canal cuántico}
@@ -319,29 +338,28 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 		\includegraphics[width=7cm]{QuantumChannel}
 	\end{center}
 	\vspace{-.2cm}
+%	\only<1>{
+%	Una operación $\mathcal{E}$ es un canal cuántico si y sólo si 
+%	\begin{align*}
+%	 \qty(\mathcal{E}\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]
+%	\hspace{.5cm}	 
+%	 \text{(matriz de Choi de }\mathcal{E})
+%	\end{align*}
+%	es (1) de traza unitaria, (2) Hermítica y (3) positiva.}
 	\only<1>{
 	Una operación $\mathcal{E}$ es un canal cuántico si y sólo si 
 	\begin{align*}
 	 \qty(\mathcal{E}\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]
 	\hspace{.5cm}	 
-	 \text{(matriz de Choi de }\mathcal{E})
-	\end{align*}
-	es (1) de traza unitaria, (2) Hermítica y (3) positiva.}
-	\only<2>{
-	Una operación $\mathcal{E}$ es un canal cuántico si y sólo si 
-	\begin{align*}
-	 \qty(\mathcal{E}\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]
-	\hspace{.5cm}	 
-	 \alert{\text{(matriz de Choi de }\mathcal{E})}
+	 \alert{\text{(}\propto  \text{matriz de Choi de }\mathcal{E})}
 	\end{align*}
 	es (1) de traza unitaria, (2) Hermítica y (3) positiva.	
 	}
 \end{frame}
 
 
-\begin{frame}{Resumen}
+\begin{frame}{Resumen}{Sistemas cuánticos abiertos}
 	\begin{enumerate}
-		\item Sistemas cuánticos reales: abiertos
 		\item Estados cuánticos: matriz de densidad $\rho$
 		\item Dinámica: canales cuánticos
 	\end{enumerate}
@@ -376,6 +394,21 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\end{columns}
 \end{frame}
 
+\begin{frame}{Rotación de la esfera de Bloch}
+	Las rotaciones de la esfera de Bloch con canales cuánticos de 1 qubit.
+	\begin{center}
+	\begin{tabular}{m{2.5cm} m{1.5cm} m{2.5cm}}
+		\includegraphics[width=3cm]{rotation_01}
+		& \hfill \LARGE{$\longmapsto$} \hfill
+		& \includegraphics[width=3cm]{rotation_02}
+	\end{tabular}
+	\end{center}
+	
+	\begin{align*}
+	\qty(1,r_1,r_2,r_3) \longmapsto \qty(1,r_1,-r_3,r_2).
+	\end{align*}
+\end{frame}
+
 \begin{frame}{Canal \textit{bit-flip} de 1 qubit}
 	El \textit{bit-flip} actúa sobre la esfera de Bloch como
 	\begin{center}
@@ -400,9 +433,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 		\sigma_{j_1}\otimes \ldots
 		\otimes\sigma_{j_n},\hspace{.8cm} r_{0,\ldots,0}=1.
 	\end{align*}
-	\only<1>{Llamaremos `componentes de Pauli' a las 
-	$r_{j_1,\ldots,j_n}$.}\only<2>{\alert{Llamaremos 
-	`componentes de Pauli' a las $r_{j_1,\ldots,j_n}$.}}
+	\alert{Llamaremos ``componentes de Pauli'' a las $r_{j_1,\ldots,j_n}$.}
 \end{frame}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -426,16 +457,14 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\qty(1,r_1,r_2,r_3)\longmapsto \qty(1,r_1,0,0).
 	\end{align*}
 	
-	\onslide<2>{
 	\alert{¿Son canales cuánticos todas las operaciones que borran
 	cualesquiera de las componentes de Pauli de 1 qubit?}
-	}
 
 \end{frame}
 
 
 \begin{frame}{Motivación (2/2)}
-	\only<1>{\alert{No.}}\only<2>{No.}
+	\only<1>{\alert{No.}}
 	Las operaciones $\Lambda$ que borran dos componentes de Pauli no 
 	son canales cuánticos.
 	\begin{center}
@@ -450,15 +479,8 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	\qty(1,r_1,r_2,r_3)\longmapsto\qty(1,r_1,r_2,0).
 	\end{align*}
 	
-	\only<1>{	
-	$\qty(\Lambda\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]\ngeq0$, 
-	por consiguiente	$\Lambda$ no es completamente positiva. 
-	}
-	
-	\only<2>{
 	\alert{$\qty(\Lambda\otimes \mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]\ngeq0$, 
 	por consiguiente	$\Lambda$ no es completamente positiva.}
-	}
 		
 	\vspace{.5cm}
 \end{frame}
@@ -472,7 +494,7 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 	r_{j_1,\ldots,j_n}\longmapsto \tau_{j_1,\ldots,j_n}r_{j_1,\ldots,j_n},
 	\hspace{.8cm}\tau_{j_1,\ldots,j_n}=0,1.
 	\end{align*}
-	\only<1>{Una operación PCE borra o deja invariantes las componentes de Pauli.}\only<2>{\alert{Una operación PCE borra o deja invariantes las componentes de Pauli. }}\only<3>{Una operación PCE borra o deja invariantes las componentes de Pauli.} 
+	\alert{Una operación PCE borra o deja invariantes las component's de Pauli. }
 	
 	\hfill
 	\includegraphics[height=2cm]{1qubit_pce_01}
@@ -484,56 +506,77 @@ ${}^3$Departamento de Física, U. Federal de Pernambuco}%
 
 	\vfill	
 	
-	\only<2>{\textbf{Problema:} ¿cuáles son las características del suconjunto 
-	de canales cuánticos de las operaciones PCE?}\only<3>{\alert{	\textbf{Problema:} ¿cuáles son las características del suconjunto 
-	de canales cuánticos de las operaciones PCE?}
-	}
+	\textbf{Problema:} ¿cuáles son las características del suconjunto 
+	de canales cuánticos de las operaciones PCE?
 \end{frame}
 
 
 \begin{frame}{Canales cuánticos PCE}{Eigenvalores matriz de Choi} 
-Los eigenvalores de la matriz de Choi de una operación PCE 
-de $n$ qubits son
+Los eigenvalores de $\qty(\mathcal{E}\otimes
+\mathds{1})\qty[\dyad{\text{Bell}}{\text{Bell}}]$ son
 \begin{align*}
 %\qty(\bigotimes_{}^na) \vec{\tau} \geq \vec{0},\\
-\vec{\lambda} = 
+\vec{\lambda} = \frac{1}{2^n}
 \underbrace{\qty(a\otimes \ldots\otimes a)}_{n\text{ veces}} \vec{\tau}
 \end{align*}
 con
 \begin{align*}
 a=\mqty(1&1&1&1\\1&1&-1&-1\\1&-1&1&-1\\1&1&-1&-1)
 \end{align*}
-y $\vec{\tau}$ un vector de $4^n$ componentes.
+y $\vec{\tau}$ un vector de $4^n$ componentes cuyas 
+componentes son los 0's y 1's que definen a la operación PCE $\mathcal{E}$.
+\alert{¡¡Esta es la diagonalización exacta de una matriz de dimensión $4^n$!!}
+\end{frame}
+
+\begin{frame}{Canales PCE de 1 y 2 qubits}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+De 8 operaciones posibles:
+\begin{figure}
+\includegraphics[height=2.2cm]{1qubitPCE}
+\end{figure}
+5 son canales cuánticos:
+\begin{figure}
+\includegraphics[height=2.2cm]{1qubit}
+\end{figure}
+\end{column} 
+\begin{column}{0.6\textwidth}
+De $\sim$32,000, 67 son canales cuánticos:
+\begin{figure}
+\includegraphics[width=.9\textwidth]{2qubits_01}\\
+\includegraphics[width=.9\textwidth]{2qubits_02}\\
+\includegraphics[width=.9\textwidth]{2qubits_03}
+\end{figure}
+\end{column}
+\end{columns}
 \end{frame}
 
 
 \begin{frame}{Canales cuánticos PCE}
 {Regla $2^k$}
-Los canales cuánticos PCE son operaciones que dejan $2^k$ 
-componentes de Pauli $r_{j_1,\ldots,j_n}$ invariantes. Sin embargo, 
-no sólo importa cuántas $r_{j_1,\ldots,j_n}$, sino también cuáles. 
+De todas las operaciones PCE, sólo aquellas que dejan 
+invariantes $2^k$ componentes de Pauli siguen siendo 
+candidatos a canales cuánticos (\alert{sólo cantidatos}).
 
-\vspace{.6cm}
+\vspace{.4cm}
 
 \small{\textbf{\underline{2 qubits, 8 componentes invariantes:}}}
 
-\vspace{.2cm}
+\vspace{.15cm}
 
 \small{
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \hspace{.3cm}
-Operaciones PCE que no son\newline
+No canales cuánticos:
 \hspace{.3cm}
-canales cuánticos:
-\vspace{.1cm}
 \begin{center}
 \includegraphics[height=1.8cm]{2qubit_pceOp_8components}
 \end{center}
 \vspace{1.6cm}
 \end{column} 
 \begin{column}{0.5\textwidth}
-Todos los canales cuánticos PCE que borran 15 componentes:
+Canales cuánticos:
 \begin{center}
 \includegraphics[height=3.8cm]{2qubit_pceQCh_8components}
 \end{center}
@@ -544,84 +587,110 @@ Todos los canales cuánticos PCE que borran 15 componentes:
 
 
 
-\begin{frame}{Canales cuánticos PCE}{Regla espejo}
-El número de canales PCE según la cantidad de componentes 
-de Pauli invariantes obedece una regla `espejo'.
-
-\vfill
-
-\only<1>{\small{\textbf{\underline{3 qubits:}}}}
-\begin{table}[]
-\centering
-%\begin{tabular}{c|lllll}
-%\multirow{3}{*}{\textbf{canales PCE}} &                                &                                & \multicolumn{1}{c}{35}         &                                &                                 \\
-%                                                      &                                & \multicolumn{1}{c}{15}         &                                & \multicolumn{1}{c}{15}         &                                 \\
-%                                                      & \multicolumn{1}{c}{1}          &                                &                                &                                & \multicolumn{1}{c}{1}           \\
-%\hline 
-%\textbf{componentes}                                  & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{16}}
-%\end{tabular}
+%\begin{frame}{Canales cuánticos PCE}{Regla espejo}
+%El número de canales PCE según la cantidad de componentes 
+%de Pauli invariantes obedece una regla `espejo'.
+%
+%\vfill
+%
+%\only<1>{\small{\textbf{\underline{2 qubits:}}}}
+%%\begin{table}[]
+%%\centering
+%%\begin{tabular}{c|lllll}
+%%\multirow{3}{*}{\textbf{canales PCE}} &                                &                                & \multicolumn{1}{c}{35}         &                                &                                 \\
+%%                                                      &                                & \multicolumn{1}{c}{15}         &                                & \multicolumn{1}{c}{15}         &                                 \\
+%%                                                      & \multicolumn{1}{c}{1}          &                                &                                &                                & \multicolumn{1}{c}{1}           \\
+%%\hline 
+%%\textbf{componentes}                                  & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{16}}
+%%\end{tabular}
+%%\end{table}
+%%
+%%\begin{table}[]
+%%\begin{tabular}{c|lllll}
+%%\multirow{3}{*}{\textbf{operaciones PCE}} &                                &                                & \multicolumn{1}{c}{455}        &                                &                                 \\
+%%                                                      &                                & \multicolumn{1}{c}{15}         &                                & \multicolumn{1}{c}{6435}       &                                 \\
+%%                                                      & \multicolumn{1}{c}{1}          &                                &                                &                                & \multicolumn{1}{c}{1}           \\
+%%\hline
+%%\textbf{componentes}                                  & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{16}}
+%%\end{tabular}
+%%\begin{table}[]
+%%\footnotesize
+%%\begin{tabular}{cccccccc}
+%%\multirow{4}{*}{\textbf{canales PCE}} &            &            &            & 1395       &             &             &             \\
+%%                                                      &            &            & 651        &            & 651         &             &             \\
+%%                                                      &            & 63         &            &            &             & 63          &             \\
+%%                                                      & 1          &            &            &            &             &             & 1           \\
+%%\textbf{componentes}                                  & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8} & \textbf{16} & \textbf{32} & \textbf{64}
+%%\end{tabular}
+%%\end{table}
+%%\end{table} 
+%%
+%%\begin{table}[]
+%%\footnotesize
+%%\begin{tabular}{cccccccc}
+%%\multirow{4}{*}{\textbf{operaciones PCE}} &            &            &            & $5.5\times 10^7$ &                     &                         &             \\
+%%                                          &            &            & 39711      &             & $1.2\times 10^{14}$ &                         &             \\
+%%                                          &            & 63         &            &             &                     & $9.2\times 10^{17}$ &             \\
+%%                                          & 1          &            &            &             &                     &                         & 1           \\
+%%\textbf{componentes}                      & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8}  & \textbf{16}         & \textbf{32}             & \textbf{64}
+%%\end{tabular}
+%%\end{table}
+%\begin{table}[H]
+%\resizebox{\textwidth}{!}{%
+%\begin{tabular}{l|cccccccccccccccc}
+%\cline{2-17}
+%\multicolumn{1}{l|}{}                               & \multicolumn{16}{c|}{\textbf{Number of Pauli components left invariant}}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \\[.5ex]
+%\multicolumn{1}{l|}{}                               & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{3}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{5}} & \multicolumn{1}{c}{\textbf{6}} & \multicolumn{1}{c}{\textbf{7}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{9}} & \multicolumn{1}{c}{\textbf{10}} & \multicolumn{1}{c}{\textbf{11}} & \multicolumn{1}{c}{\textbf{12}} & \multicolumn{1}{c}{\textbf{13}} & \multicolumn{1}{c}{\textbf{14}} & \multicolumn{1}{c}{\textbf{15}} & \multicolumn{1}{c|}{\textbf{16}} \\ \cline{2-17} 
+%\multicolumn{1}{c|}{\textbf{\# of PCE operations}}   & 1                               & 15                              & 105                             & 455                             & 1365                            & 3003                            & 5005                            & 6435                            & 6435                            & 5005                             & 3003                             & 1365                             & 455                              & 105                              & 15                               & 1                                \\[.4ex]
+%\multicolumn{1}{c|}{\textbf{\# of PCE qtm channels}} & 1                               & 15                              & 0                               & 35                              & 0                               & 0                               & 0                               & 15                              & 0                               & 0                                & 0                                & 0                                & 0                                & 0                                & 0                                & 1                               
+%\end{tabular}%
+%}
 %\end{table}
 %
-%\begin{table}[]
-%\begin{tabular}{c|lllll}
-%\multirow{3}{*}{\textbf{operaciones PCE}} &                                &                                & \multicolumn{1}{c}{455}        &                                &                                 \\
-%                                                      &                                & \multicolumn{1}{c}{15}         &                                & \multicolumn{1}{c}{6435}       &                                 \\
-%                                                      & \multicolumn{1}{c}{1}          &                                &                                &                                & \multicolumn{1}{c}{1}           \\
-%\hline
-%\textbf{componentes}                                  & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} & \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} & \multicolumn{1}{c}{\textbf{16}}
-%\end{tabular}
-\begin{table}[]
-\footnotesize
-\begin{tabular}{cccccccc}
-\multirow{4}{*}{\textbf{canales PCE}} &            &            &            & 1395       &             &             &             \\
-                                                      &            &            & 651        &            & 651         &             &             \\
-                                                      &            & 63         &            &            &             & 63          &             \\
-                                                      & 1          &            &            &            &             &             & 1           \\
-\textbf{componentes}                                  & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8} & \textbf{16} & \textbf{32} & \textbf{64}
-\end{tabular}
-\end{table}
-\end{table} 
+%\begin{table}[H]
+%\centering
+%\resizebox{.5\textwidth}{!}{%
+%\begin{tabular}{l|ccccc}
+%\cline{2-6}
+%\multicolumn{1}{l|}{}                               & \multicolumn{5}{c|}{\textbf{Number of $\boldsymbol{r_{ij}}$ inv.}} \\[.5ex]
+%\multicolumn{1}{l|}{}                               & \multicolumn{1}{c}{\textbf{1}} & \multicolumn{1}{c}{\textbf{2}} &  \multicolumn{1}{c}{\textbf{4}} & \multicolumn{1}{c}{\textbf{8}} &  \multicolumn{1}{c|}{\textbf{16}} \\ \cline{2-6} 
+%\multicolumn{1}{c|}{\textbf{\# of PCE qtm channels}} & 1                               & 15                               & 35                          & 15                        & 1                               
+%\end{tabular}%
+%}
+%\end{table}
+%
+%\end{frame}
 
-\begin{table}[]
-\footnotesize
-\begin{tabular}{cccccccc}
-\multirow{4}{*}{\textbf{operaciones PCE}} &            &            &            & $5.5\times 10^7$ &                     &                         &             \\
-                                          &            &            & 39711      &             & $1.2\times 10^{14}$ &                         &             \\
-                                          &            & 63         &            &             &                     & $9.2\times 10^{17}$ &             \\
-                                          & 1          &            &            &             &                     &                         & 1           \\
-\textbf{componentes}                      & \textbf{1} & \textbf{2} & \textbf{4} & \textbf{8}  & \textbf{16}         & \textbf{32}             & \textbf{64}
-\end{tabular}
-\end{table}
 
-\end{frame}
 
 
 
 \begin{frame}{Canales cuánticos PCE}{Generadores}
 Los canales cuánticos PCE pueden escribirse como concatenación 
-de canales generadores.
+de canales generadores,
+\begin{align*}
+\Phi = \underbrace{\mathcal{E}_{j_1}\circ \mathcal{E}_{j_2}\circ \ldots
+\circ \mathcal{E}_{j_l}}_{\text{máximo }2^n},
+\end{align*}
+con $\mathcal{E}_{j_i}$ los generadores.
 
 \vfill
-\small{\textbf{\underline{Generadores canales PCE de 2 qubits:}}}
 
-\begin{center}
-\includegraphics[height=4cm]{2qubits_pce_generators}
-\end{center}
-
+Los generadores $\mathcal{E}_{j_i}$ son las únicas formas que están 
+físicamente permitidas de borrar la mitad de las componentes de Pauli 
+de un sistema de $n$ qubits $+\ \mathds{1}$.
 \end{frame}
 
-
-
-
-\begin{frame}{Ejemplo}{2 qubits}
-\onslide<1->{
+\begin{frame}{Ejemplo: 2 qubits}
+{Canales PCE a partir de generadores}
+%\onslide<1->{
 \underline{Generadores:}
 \begin{center}
 \includegraphics[width=8cm]{2qubits_pce_generators}
 \end{center}
-}
+%}
 
-\onslide<2->{
+%\onslide<2->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.05cm} m{0.8cm}}
 \includegraphics[height=1.1cm]{E2}  
@@ -630,9 +699,9 @@ de canales generadores.
 & $=$
 & \includegraphics[height=1.1cm]{E2E5} 
 \end{tabular} \hspace{1.3cm}
-}
+%}
 
-\onslide<3->{
+%\onslide<3->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
 \includegraphics[height=1.1cm]{E4}
@@ -643,9 +712,9 @@ de canales generadores.
 & $=$
 & \includegraphics[height=1.1cm]{E4E2E5} 
 \end{tabular} \hspace{1.3cm}
-}
+%}
 
-\onslide<4->{
+%\onslide<4->{
 \hfill
 \begin{tabular}{m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm} m{.1cm} m{0.8cm}}
 \includegraphics[height=1.1cm]{E12}
@@ -658,36 +727,30 @@ de canales generadores.
 & $=$
 & \includegraphics[height=1.1cm]{E12E4E2E5} 
 \end{tabular} \hspace{1.3cm}
-}
+%}
 \end{frame}
 
-\begin{frame}{Canales PCE}{$n$ qubits}
-%Sea $PCE_n$ al conjunto de canales cuánticos PCE de $n$
-%qubits. Existe un conjunto $\Gamma_n\subset PCE_n$ cuyos
-%elementos son necesarios y suficientes para generar al resto
-%de los elementos en $PCE_n$. \vfill 
 
-%Sea $\mathcal{E}_j\in \Gamma_n$ y $\Phi \in PCE_n$. 
-Un canal PCE de $n$ qubits puede escribirse como
-\begin{align*}
-\Phi = \underbrace{\mathcal{E}_{j_1}\circ \mathcal{E}_{j_2}\circ \ldots
-\circ \mathcal{E}_{j_l}}_{\text{máximo }2^n},
-\end{align*}
-con $\mathcal{E}_{j_i}$ los generadores.
 
-\vfill
-
-\only<1>{
-Los generadores $\mathcal{E}_{j_i}$ son las únicas formas que están 
-físicamente permitidas de borrar la mitad de las componentes de Pauli 
-de un sistema de $n$ qubits.
-}
-\only<2>{
-\alert{
-Los generadores $\mathcal{E}_{j_i}$ son las únicas formas que están 
-físicamente permitidas de borrar la mitad de las componentes de Pauli 
-de un sistema de $n$ qubits.}
-}
+\begin{frame}{Resumen}
+	\only<1>{
+	\begin{itemize}
+		\item Una operación PCE es una operación que actúa sobre un sistema
+		de $n$ qubits y que borra o deja invariantes a sus componentes de Pauli.
+		\item El problema que estudiamos es caracterizar a las operaciones PCE 
+		que son canales cuánticos (las que satisfacen la condición de completa
+		positividad).
+	\end{itemize}
+	}
+	\only<2>{
+	\begin{itemize}
+		\item Diagonalización de la matriz de Choi: $\vec{\lambda}=a^{\otimes n}\vec{\tau}$
+		\item Una operación PCE $\Phi$ se puede entender como la concatenación
+		de canales cuánticos que describen las únicas formas permitidas por 
+		la mecánica cuántica de borrar la mitad todas componentes de Pauli del
+		estado de un sistema de qubits.
+	\end{itemize}
+	}
 \end{frame}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
