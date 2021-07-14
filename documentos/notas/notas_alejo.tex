@@ -164,3 +164,162 @@ Is it possible to infer the whole set of conditions (rules) a PCE channel must s
 It can be shown that PCE channels correspond to the extremal points in the polytope of trace preserving channels and non-negative $\tau$ coefficients for the case $M=1$. For $N>1$, in addition to the set of PCE channels, there are other  ``extremal channels", it there anything special around them?
 
 
+\section{Notes on Eigenvalues}
+% 
+We have already proved that the eigenvalues associated to the Choi matrix of an arbitrary Pauli map on $N$ qubits read
+% 
+\begin{equation}
+ \lambda_{\vec{\mu}}=\frac{1}{2^N}\sum_{\vec{\alpha}}(-1)^{\vec{\mu}\cdot\vec{\alpha}}\tau_{\vec{\alpha}}, 
+ \label{Eq1}
+\end{equation}
+% 
+where the coefficients $\tau_{\vec{\alpha}}$ in our particular case (PCE operations) are either 0 or 1 (erase or preserve Pauli components), $\vec{\alpha}=(\alpha_1,\cdots,\alpha_{2N})$, $\vec{\mu}=(\mu_1,\cdots,\mu_{2N})$, $\alpha_j=0,1$ and $\mu_k=0,1$.
+
+Our task is then to find what conditions the coefficients $\tau_{\vec{\alpha}}$ must satisfy in order to the specific operation be considered a quantum channel, i.e. $\lambda_{\vec{\mu}}\geq 0$, $\forall$ $\vec{\mu}$. The only constraint we impose is that the operations must preserve the trace of density matrices, i.e. $\tau_{\vec{0}}=1$.
+
+First of all consider that the operation has $r$ non-null coefficients, denoted by $\tau_{\vec{\beta}_0},\dots,\tau_{\vec{\beta}_{r-1}}$ (where $\tau_{\vec{\beta}_0}=\tau_{\vec{0}}$). In this way, the expression for the eigenvalues (Eq. \ref{Eq1}) is reduced to
+% 
+\begin{equation}
+ \lambda_{\vec{\mu}}=\frac{1}{2^N}\sum_{j=0}^{r-1}(-1)^{\vec{\mu}\cdot\vec{\beta}_j}.
+ \label{Eq2}
+ \end{equation}
+% 
+Thus a PCE operation preserving $r$ $\left(1\leq r \leq 4^N\right)$ Pauli components may be considered a quantum channel if the associated indices $\vec{\beta}_j$ satisfy the condition
+% 
+\begin{equation}
+ 1+(-1)^{\vec{\mu}\cdot\vec{\beta}_1}+\cdots+(-1)^{\vec{\mu}\cdot\vec{\beta}_{r-1}}\geq 0,
+ \label{Eq3}
+ \end{equation}
+% 
+for all $\vec{\mu}$. Note that the trivial case $r=1$, corresponds to the completely depolarizing channel. 
+
+In order to the above requirement to be fulfilled for $r>1$, is easy to see that we need to have at least $\left[\frac{r+1}{2}\right]$ positive, or at most $\left[\frac{r}{2}\right]$ negative terms, where $\left[x\right]$ denotes the integer part of $x$. Moreover, a positive term is obtained if $\vec{\mu}\cdot\vec{\beta}_{j}\Mod 2=0$ and a negative one if $\vec{\mu}\cdot\vec{\beta}_{j}\Mod 2=1$. Thus Eq. \ref{Eq3} is satisfied whenever
+% 
+\begin{equation}
+\sum_{j=1}^{r-1} \left\{ \vec{\mu}\cdot\vec{\beta}_{j}\Mod 2 \right\}\leq \left[\frac{r}{2}\right], ~~\forall ~ \vec{\mu}.
+ \label{Eq4}
+ \end{equation}
+%  
+In particular, it can be easily seen that for $r=2$, any choice of multi-index $\vec{\beta}_{1}$ satisfies the condition $\vec{\mu}\cdot\vec{\beta}_{1}\Mod 2 \leq 1$, and thus any PCE operation with two non-null coefficients $\tau_{\vec{\beta}_0}=1$ and $\tau_{\vec{\beta}_1}=1$ is a quantum channel. In this case it is easy to show that the amount of PCE channels of this kind is given by
+% 
+\begin{equation}
+ \mathcal{N}^{(2)}_N=4^N-1.
+\label{Eq10}
+ \end{equation}
+
+Define $\gamma_{\vec{\mu}, j} \equiv \vec{\mu}\cdot\vec{\beta}_{j}\Mod 2$, thus the condition in Eq. \ref{Eq4} holds
+% 
+\begin{equation}
+\sum_{j=1}^{r-1} \gamma_{\vec{\mu}, j} \leq \left[r/2\right], ~~\forall ~ \vec{\mu}.
+ \label{Eq6}
+ \end{equation}
+
+Let explore some more general cases in detail.
+
+
+\subsection{PCE operations preserving 3 components}
+% 
+The condition for the case $r=3$ reads
+% 
+\begin{equation}
+ \gamma_{\vec{\mu}, 1} +\gamma_{\vec{\mu}, 2}\leq 1, ~~\forall ~ \vec{\mu}.
+\label{Eq5}
+ \end{equation}
+% 
+It can be shown that given an arbitrary $\vec{\beta}_{1}$, the only multi-index $\vec{\beta}_{2}$ satisfying Eq. \ref{Eq5} corresponds to the trivial one $\vec{\beta}_{0}$, for all $\vec{\mu}$ and arbitrary $N$. Then no PCE operation preserving three components is quantum channel.
+
+% How to prove this in general? (trivial for $N=1$).
+
+\subsection{PCE operations preserving 4 components}
+% 
+For $r=4$ we have
+% 
+\begin{equation}
+ \gamma_{\vec{\mu}, 1} + \gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 3} \leq 2, ~~\forall ~ \vec{\mu}.
+\label{Eq7}
+ \end{equation}
+%
+The only way to ensure that the inequality is not violated is by fixing one of the coefficients $\gamma$ as a sum modulo 2 of the remaining two, e.g. $\gamma_{\vec{\mu}, 3}=\gamma_{\vec{\mu}, 1}\oplus \gamma_{\vec{\mu}, 2}$, for arbitrary and different multi-indices $\vec{\beta}_{1}$, $\vec{\beta}_{2}$. The condition above reduces to 
+% 
+\begin{equation}
+ \gamma_{\vec{\mu}, 1} + \gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 1}\oplus\gamma_{\vec{\mu}, 2} \leq 2.
+\label{Eq8}
+ \end{equation}
+%
+It is easy to check that this expression is always satisfied for all $\vec{\mu}$ and arbitrary $N$. 
+
+In conclusion, any PCE operation with 4 non-null components, characterized by the set of multi-indices $\{\vec{\beta}_{0},\vec{\beta}_{1},\vec{\beta}_{2},\vec{\beta}_{1}\oplus\vec{\beta}_{2}\}$, for arbitrary and different $\vec{\beta}_{1}$, $\vec{\beta}_{2}$ is a quantum channel. 
+
+Moreover, it is possible to show that by employing the above construction we can obtain the following amount of different quantum channels
+% 
+\begin{equation}
+ \mathcal{N}^{(4)}_N=\frac{(4^N-2)(4^N-1)}{6}.
+\label{Eq9}
+ \end{equation}
+% 
+The numerical value of $\mathcal{N}^{(4)}_N$ is in agreement with previous numerical treatments up to $N=6$, indicating that the construction above may be sufficient to generate all PCE channels preserving 4 Pauli components.
+
+\subsection{PCE operations preserving more than 4 components}
+% 
+For $r=5$ we have
+% 
+\begin{equation}
+ \gamma_{\vec{\mu}, 1} + \gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 3} + \gamma_{\vec{\mu}, 4}\leq 2, ~~\forall ~ \vec{\mu}.
+\label{Eq11}
+ \end{equation}
+%  
+We can follow a procedure analogous to the previous one, this time adding a coefficient $\gamma_{\vec{\mu}, 4}$, associated to an independent multi-index $\vec{\beta}_{4}$,
+% 
+\begin{equation}
+ \gamma_{\vec{\mu}, 1} + \gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 1}\oplus\gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 4}\leq 2,  ~~\forall ~ \vec{\mu}.
+\label{Eq12}
+ \end{equation}
+% 
+Nevertheless, as in the case $r=3$, it can be proved that the only multi-index satisfying the previous condition for all $\vec{\mu}$ corresponds to $\vec{\beta}_{4}=\vec{\beta}_{0}$. Furthermore one can carry out the same procedure for $r=6$ and $r=7$, obtaining the same result.
+
+For $r=8$, in analogy to the case $r=4$ the optimal arrangement of $\gamma$ coefficients in the inequality reads
+% 
+\begin{equation}
+ \gamma_{\vec{\mu}, 1} + \gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 1}\oplus\gamma_{\vec{\mu}, 2} +\gamma_{\vec{\mu}, 4} + \gamma_{\vec{\mu}, 4}\oplus\gamma_{\vec{\mu}, 1} + \gamma_{\vec{\mu}, 4}\oplus\gamma_{\vec{\mu}, 2} + \gamma_{\vec{\mu}, 4}\oplus\gamma_{\vec{\mu}, 1}\oplus\gamma_{\vec{\mu}, 2}\leq 4.
+\label{Eq13}
+ \end{equation}
+%
+Then, any PCE operation with 8 non-null components, characterized by the set of multi-indices $\{\vec{\beta}_{0},\vec{\beta}_{1},\vec{\beta}_{2},\vec{\beta}_{1}\oplus\vec{\beta}_{2},\vec{\beta}_{4},\vec{\beta}_{4}\oplus\vec{\beta}_{1},\vec{\beta}_{4}\oplus\vec{\beta}_{2},\vec{\beta}_{4}\oplus\vec{\beta}_{1}\oplus\vec{\beta}_{2}\}$, for arbitrary and different $\vec{\beta}_{1}$, $\vec{\beta}_{2}$, $\vec{\beta}_{4}$ is a quantum channel.
+
+One can perform the same procedure, and the next point the inequalities are satisfied is $r=16$. The results are summarized in Table \ref{table1}.
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline 
+$\vec{\beta}$ & $r$ & $[r/2]$ &                  \\ \hline \hline
+ \cellcolor{gray} $\vec{\beta}_{0}$ & \cellcolor{gray} 1 & \cellcolor{gray} 0 & \multirow{4}{*}{$N\geq 1$} \\ \cline{1-3}
+\cellcolor{lightgray}\textcolor{red}{$\vec{\beta}_{1}$} & \cellcolor{lightgray} 2 & \cellcolor{lightgray}1 &                    \\ \cline{1-3}
+\textcolor{red}{$\vec{\beta}_{2}$} &  &  &                    \\ %\hline
+\cellcolor{lightgray} $\vec{\beta}_{1}\oplus\vec{\beta}_{2}$ & \cellcolor{lightgray}4 & \cellcolor{lightgray}2 &                    \\ \hline\hline
+\textcolor{red}{$\vec{\beta}_{4}$} &  &  &  \multirow{12}{*}{$N\geq 2$}                      \\ %\hline
+$\vec{\beta}_{4}\oplus\vec{\beta}_{1}$ &  &  &                    \\ %\hline
+$\vec{\beta}_{4}\oplus\vec{\beta}_{2}$ &  &  &                    \\ %\hline
+\cellcolor{lightgray} $\vec{\beta}_{4}\oplus\vec{\beta}_{1}\oplus\vec{\beta}_{2}$ & \cellcolor{lightgray} 8 & \cellcolor{lightgray} 4 &                    \\ \cline{1-3}
+\textcolor{red}{$\vec{\beta}_{8}$} &  &  &                    \\ %\hline
+$\vec{\beta}_{8}\oplus\vec{\beta}_{1}$ &  &  &                    \\ %\hline
+$\vec{\beta}_{8}\oplus\vec{\beta}_{2}$ &  &  &                    \\ %\hline
+$\vec{\beta}_{8}\oplus\vec{\beta}_{4}$ &  &  &                    \\ %\hline
+$\vec{\beta}_{8}\oplus\vec{\beta}_{1}\oplus\vec{\beta}_{2}$ &  &  &                    \\ %\hline
+$\vec{\beta}_{8}\oplus\vec{\beta}_{1}\oplus\vec{\beta}_{4}$ &  &  &                    \\ %\hline
+$\vec{\beta}_{8}\oplus\vec{\beta}_{2}\oplus\vec{\beta}_{4}$ &  &  &                    \\ %\hline
+\cellcolor{lightgray} $\vec{\beta}_{8}\oplus\vec{\beta}_{1}\oplus\vec{\beta}_{2}\oplus\vec{\beta}_{4}$ & \cellcolor{lightgray} 16 & \cellcolor{lightgray} 8 &                    \\ %\hline
+\hline \hline
+\textcolor{red}{$\vec{\beta}_{16}$} &  &  &   \multirow{6}{*}{$N\geq 3$}                 \\ %\cline{1-3} \cline{1-3}
+\dots &  &  &                    \\ %\cline{1-3}
+\cellcolor{lightgray} $ \vec{\beta}_{16}\oplus \cdots \oplus \vec{\beta}_{8}$& \cellcolor{lightgray} 32 & \cellcolor{lightgray} 16 &                    \\ \cline{1-3}
+\textcolor{red}{$\vec{\beta}_{32}$} &  &  &                     \\ %\cline{1-3}
+\dots & &  &                    \\ %\cline{1-3}
+\cellcolor{lightgray} $ \vec{\beta}_{32}\oplus \cdots \oplus \vec{\beta}_{16}$& \cellcolor{lightgray} 64 & \cellcolor{lightgray} 32 &                    \\ \cline{1-3}
+\hline
+\end{tabular}
+\caption{Summary of sets of multi-indices $\vec{\beta}$ leading to PCE channels. For a given a number of qubits $N$, it is possible to obtain PCE quantum channels  preserving $r$ Pauli components. The first column shows the corresponding sets of multi-indices satisfying Eq. \ref{Eq4}. Note that for fixed values of $N$ and $r$, all multi-indices may be generated from a minimal set of independent $\vec{\beta}$'s (red). Finally note that this minimum amount of independent multi-indices is equal to $2N$.}
+\label{table1}
+\end{table}
+
